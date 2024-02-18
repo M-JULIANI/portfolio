@@ -1,0 +1,98 @@
+[
+    {
+        "id": "treeviewer",
+        "type": "project",
+        "props": {
+            "name": "Tree Viewer",
+            "tags": [
+                "js",
+                "css"
+            ],
+            "content": "Find the deployed viewer here. While working with tree data structures (rendering and patching them), I was compelled to build an interactive tree viewer/explorer where one could zoom into different levels of the tree selectively. This is very much work in progress and looking to make it more performance to handle larger trees.",
+            "thumbnail": "data/thumbnails/treeviewer-thumbnail.png"
+        },
+        "children": [
+            {
+                "id": "data/images/treeviewer-image.png",
+                "type": "image",
+                "props": {
+                    "name": "",
+                    "tags": [],
+                    "content": ""
+                },
+                "children": []
+            }
+        ]
+    },
+    {
+        "id": "scaffoldcity",
+        "type": "project",
+        "props": {
+            "name": "Scaffold City",
+            "tags": [
+                "bartlett",
+                "c#",
+                "unity"
+            ],
+            "content": "Presentation",
+            "thumbnail": "data/thumbnails/scaffoldcity-thumbnail.png"
+        },
+        "children": [
+            {
+                "id": "scaffoldcity-presentation",
+                "type": "pdf",
+                "props": {
+                    "name": "",
+                    "tags": [],
+                    "content": "Presentation"
+                },
+                "children": []
+            },
+            {
+                "id": "scaffoldcity-01.gif",
+                "type": "image",
+                "props": {
+                    "name": "",
+                    "tags": [],
+                    "content": ""
+                },
+                "children": []
+            },
+            {
+                "id": "scaffoldcity-02.gif",
+                "type": "image",
+                "props": {
+                    "name": "",
+                    "tags": [],
+                    "content": ""
+                },
+                "children": []
+            }
+        ]
+    },
+    {
+        "id": "skyline",
+        "type": "project",
+        "props": {
+            "name": "Skyline Generator",
+            "tags": [
+                "js",
+                "css"
+            ],
+            "content": "Find the deployed viewer here.",
+            "thumbnail": "data/thumbnails/skyline-thumbnail.png"
+        },
+        "children": [
+            {
+                "id": "data/images/skyline-image.png",
+                "type": "image",
+                "props": {
+                    "name": "",
+                    "tags": [],
+                    "content": ""
+                },
+                "children": []
+            }
+        ]
+    }
+]
