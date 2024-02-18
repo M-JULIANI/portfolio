@@ -1,98 +1,134 @@
-[
-    {
-        "id": "treeviewer",
-        "type": "project",
-        "props": {
-            "name": "Tree Viewer",
-            "tags": [
-                "js",
-                "css"
-            ],
-            "content": "Find the deployed viewer here. While working with tree data structures (rendering and patching them), I was compelled to build an interactive tree viewer/explorer where one could zoom into different levels of the tree selectively. This is very much work in progress and looking to make it more performance to handle larger trees.",
-            "thumbnail": "data/thumbnails/treeviewer-thumbnail.png"
-        },
-        "children": [
-            {
-                "id": "data/images/treeviewer-image.png",
-                "type": "image",
-                "props": {
-                    "name": "",
-                    "tags": [],
-                    "content": ""
-                },
-                "children": []
-            }
-        ]
-    },
-    {
-        "id": "scaffoldcity",
-        "type": "project",
-        "props": {
-            "name": "Scaffold City",
-            "tags": [
-                "bartlett",
-                "c#",
-                "unity"
-            ],
-            "content": "Presentation",
-            "thumbnail": "data/thumbnails/scaffoldcity-thumbnail.png"
-        },
-        "children": [
-            {
-                "id": "scaffoldcity-presentation",
-                "type": "pdf",
-                "props": {
-                    "name": "",
-                    "tags": [],
-                    "content": "Presentation"
-                },
-                "children": []
+{
+    "id": "marco-juliani-portfolio", 
+    "type": "root",
+    "props":{},
+    "children": [
+        {
+            "id": "proceduralmassing",
+            "type": "project",
+            "props": {
+                "name": "Procedural Massing",
+                "tags": [
+                    "c#",
+                    "hypar"
+                ],
+                "content": "Have a play over at Hypar: https://hypar.io/workflows/0c29a4f5-4e8e-4f55-8101-14eafb8a2c8e.",
+                "thumbnail": "data/thumbnails/proceduralmassing-thumbnail.png"
             },
-            {
-                "id": "scaffoldcity-01.gif",
-                "type": "image",
-                "props": {
-                    "name": "",
-                    "tags": [],
-                    "content": ""
-                },
-                "children": []
-            },
-            {
-                "id": "scaffoldcity-02.gif",
-                "type": "image",
-                "props": {
-                    "name": "",
-                    "tags": [],
-                    "content": ""
-                },
-                "children": []
-            }
-        ]
-    },
-    {
-        "id": "skyline",
-        "type": "project",
-        "props": {
-            "name": "Skyline Generator",
-            "tags": [
-                "js",
-                "css"
-            ],
-            "content": "Find the deployed viewer here.",
-            "thumbnail": "data/thumbnails/skyline-thumbnail.png"
+            "children": [
+                {
+                    "src": "data/images/proceduralmassing-01.jpeg",
+                    "type": "image",
+                    "props": {},
+                    "children": []
+                }
+            ]
         },
-        "children": [
-            {
-                "id": "data/images/skyline-image.png",
-                "type": "image",
-                "props": {
-                    "name": "",
-                    "tags": [],
-                    "content": ""
+        {
+            "id": "springplan",
+            "type": "project",
+            "props": {
+                "name": "Spring-Based Plan",
+                "tags": [
+                    "c#",
+                    "bartlett",
+                    "gh3d"
+                ],
+                "content": "Have a play over at Hypar: https://hypar.io/workflows/0c29a4f5-4e8e-4f55-8101-14eafb8a2c8e.",
+                "thumbnail": "data/thumbnails/springplan-thumbnail.jpeg"
+            },
+            "children": [
+                {
+                    "src": "data/images/springplan-01.gif",
+                    "type": "image",
+                    "props": {},
+                    "children": []
+                }
+            ]
+        },
+        {
+            "id": "treeviewer",
+            "type": "project",
+            "props": {
+                "name": "Tree Viewer",
+                "tags": [
+                    "js",
+                    "css"
+                ],
+                "content": "Find the deployed viewer here. While working with tree data structures (rendering and patching them), I was compelled to build an interactive tree viewer/explorer where one could zoom into different levels of the tree selectively. This is very much work in progress and looking to make it more performance to handle larger trees.",
+                "thumbnail": "data/thumbnails/treeviewer-thumbnail.png"
+            },
+            "children": [
+                {
+                    "src": "data/images/treeviewer-image.png",
+                    "type": "image",
+                    "props": {},
+                    "children": []
+                }
+            ]
+        },
+        {
+            "id": "scaffoldcity",
+            "type": "project",
+            "props": {
+                "name": "Scaffold City",
+                "tags": [
+                    "bartlett",
+                    "c#",
+                    "unity"
+                ],
+                "content": "Presentation",
+                "thumbnail": "data/thumbnails/scaffoldcity-thumbnail.png"
+            },
+            "children": [
+                {
+                    "id": "scaffoldcity-presentation",
+                    "type": "pdf",
+                    "props": {
+                        "content": "Presentation"
+                    },
+                    "children": []
                 },
-                "children": []
-            }
-        ]
-    }
-]
+                {
+                    "src": "scaffoldcity-01.gif",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/scaffoldcity-01.gif"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "scaffoldcity-02.gif",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/scaffoldcity-02.gif"
+                    },
+                    "children": []
+                }
+            ]
+        },
+        {
+            "id": "skyline",
+            "type": "project",
+            "props": {
+                "name": "Skyline Generator",
+                "tags": [
+                    "js",
+                    "css"
+                ],
+                "content": "Find the deployed viewer here.",
+                "thumbnail": "data/thumbnails/skyline-thumbnail.png"
+            },
+            "children": [
+                {
+                    "id": "skyline-image",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/skyline-image.png"
+                    },
+                    "children": []
+                }
+            ]
+        }
+    ]
+}

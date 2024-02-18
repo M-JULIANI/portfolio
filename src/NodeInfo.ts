@@ -1,8 +1,9 @@
 export interface NodeInfo {
     id: string;
-    name: string;
     type: string;
-    props?: {
+
+    props: {
+        src?: string;
         name?: string;
         tags?: string[];
         content?: string;
