@@ -131,6 +131,137 @@
                     "children": []
                 }
             ]
+        },
+        {
+            "id": "autocheckers",
+            "type": "project",
+            "props": {
+                "name": "Autonomouse Checkers",
+                "tags": [
+                    "c#",
+                    "unity",
+                    "bartlett"
+                ],
+                "content": "Presentation.",
+                "thumbnail": "data/thumbnails/autocheckers.png"
+            }
+        },
+        {
+            "id": "erosion",
+            "type": "project",
+            "props": {
+                "name": "Erosion Game",
+                "tags": [
+                    "unity",
+                    "c#",
+                    "bartlett"
+                ],
+                "content": "Presentation.",
+                "thumbnail": "data/thumbnails/erosion-thumbnail.jpeg"
+            }
+        },
+        {
+            "id": "hfz",
+            "type": "project",
+            "props": {
+                "name": "HFZ",
+                "tags": [
+                    "gh3d",
+                    "wb",
+                    "flux"
+                ],
+                "content": "Presentation.",
+                "thumbnail": "data/thumbnails/hfz-thumbnail.png"
+            }
+        },
+        {
+            "id": "gridlocked",
+            "type": "project",
+            "props": {
+                "name": "Grid-locked",
+                "tags": [
+                    "unity",
+                    "c#",
+                    "ios"
+                ],
+                "content": "Download from AppStore here if you're on iPhone or iPad. Set out to build a simple 2.5D game for iOS. During the covid lockdowns, I decided it would be fun to learn the pipeline to take a built game from Unity, through to publishing it in the AppStore. I had fun implementing the simply dynamics I had in mind, including the animations, the level progression, and even got around to implementing basic ads. The initial implementation was choking in terms of performance, so I ended up buying Game Programming Patterns, where I picked up a few design patterns to keep performance in check.",
+                "thumbnail": "data/thumbnails/gridlocked-thumb.png"
+            },
+            "children": [
+                {
+                    "id": "gridlocked-01",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/gridlocked-01.png"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "gridlocked-02",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/gridlocked-02.png"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "gridlocked-03",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/gridlocked-03.png"
+                    },
+                    "children": []
+                }
+            ]
+        },
+        {
+            "id": "abstractimagelearning",
+            "type": "project",
+            "props": {
+                "name": "Abstract Image Learning",
+                "tags": [
+                    "python",
+                    "pix2pix",
+                    "pytorch"
+                ],
+                "content": "Download from AppStore here if you're on iPhone or iPad. Set out to build a simple 2.5D game for iOS. During the covid lockdowns, I decided it would be fun to learn the pipeline to take a built game from Unity, through to publishing it in the AppStore. I had fun implementing the simply dynamics I had in mind, including the animations, the level progression, and even got around to implementing basic ads. The initial implementation was choking in terms of performance, so I ended up buying Game Programming Patterns, where I picked up a few design patterns to keep performance in check.",
+                "thumbnail": "data/thumbnails/cganexperiments.jpeg"
+            },
+            "children": [
+                {
+                    "id": "abstractlearning-01",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/abstractlearning-01.gif"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "abstractlearning-02",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/abstractlearning-02.gif"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "abstractlearning-03",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/abstractlearning-03.jpeg"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "abstractlearning-04",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/abstractlearning-04.jpeg"
+                    },
+                    "children": []
+                }
+            ]
         }
+
     ]
 }

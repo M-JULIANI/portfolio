@@ -25,7 +25,7 @@ const ProjectCard: React.FC<{ node: NodeInfo, windowState: WindowState, navigate
       const distanceY = Math.abs(mouseY - rect.top - halfHeight);
       const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
       const overallDiagonal = Math.sqrt(windowState.width * windowState.width + windowState.height * windowState.height);
-      const scaledDistance = 225 * (1 + (distance / overallDiagonal));
+      const scaledDistance = 50 * (( overallDiagonal / distance));
       setDistance(scaledDistance);
     }
   }, [mouseX, mouseY])
@@ -39,7 +39,9 @@ const ProjectCard: React.FC<{ node: NodeInfo, windowState: WindowState, navigate
         onMouseOut={() => setMouseOver(false)}
         onClick={() => navigate(`/portfolio/${id}`)}
         sx={{
-          height: distance,
+          height:distance,
+          maxHeight: 300,
+          width: '100%',
           background: 'white',
           borderRadius: '17px',
           cursor: 'pointer',
@@ -53,7 +55,8 @@ const ProjectCard: React.FC<{ node: NodeInfo, windowState: WindowState, navigate
       >
         <Box
           sx={{
-            filter: `blur(${distance / 200}px)`,
+            // filter: `blur(${distance / 200}px)`,
+            //maxHeight: '400px',
             width: '100%',
             height: '100%',
             display: 'grid',
@@ -61,14 +64,14 @@ const ProjectCard: React.FC<{ node: NodeInfo, windowState: WindowState, navigate
             justifyContent: 'center',
             position: 'relative',
             overflow: 'hidden',
-            '&:hover': {
-              filter: `blur(0px)`,
-            }
+            // '&:hover': {
+            //   filter: `blur(0px)`,
+            // }
           }}
         >
           <>
             {thumbnail && thumbnail !== '' ? (
-              <LayoutImage node={node} width={distance * 1.25} />
+              <LayoutImage node={node} width={Math.min(distance * 1.55, 300)} />
             ) : null}
             {mouseOver ?
               <Box
