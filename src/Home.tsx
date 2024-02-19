@@ -63,7 +63,7 @@ export const Home: React.FC<{ node: NodeInfo | null }> = ({ node }) => {
     if (node == null) return null;
     return (
         <Layout node={node}>
-                <Grid container={true} columns={calculatedColumns} sx={{ py: '8px' }} spacing={'24px'}>
+                <Grid container={true} columns={calculatedColumns}>
                     {node.children.map((child) => <ProjectCard
                         key={child.id}
                         node={child}

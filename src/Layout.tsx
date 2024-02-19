@@ -64,6 +64,7 @@ export const Layout: React.FC<{ node: NodeInfo | null, children: JSX.Element }> 
                     '& .MuiDrawer-paper': {
                         boxSizing: 'border-box',
                         height: `${drawerHeight}px`,
+                        overflow: 'hidden',
                     },
                 }}
                 variant="permanent"
@@ -93,7 +94,7 @@ export const Layout: React.FC<{ node: NodeInfo | null, children: JSX.Element }> 
                 </Grid>
 
             </Drawer>
-            {<Box sx={{ py: '16px', top: `${drawerHeight}px`, position: 'relative' }}>
+            {<Box sx={{ top: `${drawerHeight}px`, position: 'relative', alignItems: 'center', justifyItems:'center'}}>
                 {children}
             </Box>}
         </>

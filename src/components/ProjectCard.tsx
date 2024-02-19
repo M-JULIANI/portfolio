@@ -5,20 +5,11 @@ import { LayoutImage } from './LayoutImage';
 import Chip from '@mui/material-next/Chip';
 import { WindowState } from '../Home';
 
-
-// Assuming NodeInfo is correctly defined to include name, tags, thumbnail, and src
 const ProjectCard: React.FC<{ node: NodeInfo, windowState: WindowState, navigate: (path: string) => void }> = ({ node, windowState, navigate }) => {
-  // Destructure the properties directly from the node object
   const { id } = node;
   const { name, tags, thumbnail, src } = node.props;
   const [mouseOver, setMouseOver] = useState(false);
   const [distance, setDistance] = useState(0);
-
-  console.log({ name, tags, thumbnail, src })
-  useEffect(() => {
-    console.log({ mouseOver })
-  }, [mouseOver])
-  console.log({ mouseOver })
 
   const { mouseX, mouseY } = windowState;
 
@@ -41,17 +32,14 @@ const ProjectCard: React.FC<{ node: NodeInfo, windowState: WindowState, navigate
 
 
   return (
-    <Grid ref={gridRef} item={true} xs={1} key={node.id} data-testid="project-card" width={windowState.width}
-      sx={{ display: 'flex', alignConte: 'center', justifyContent: 'center', alignItems: 'center' }}>
+    <Grid ref={gridRef} item={true} xs={1} key={node.id} data-testid="project-card" width={windowState.width - 100}
+      sx={{ display: 'flex', alignContent: 'center', justifyContent: 'center', alignItems: 'center' }}>
       <Box
         onMouseOver={() => setMouseOver(true)}
         onMouseOut={() => setMouseOver(false)}
-        // onHover={() => {}}
         onClick={() => navigate(`/portfolio/${id}`)}
         sx={{
           height: distance,
-          minHeight: 300,
-          minWidth: 208,
           background: 'white',
           borderRadius: '17px',
           cursor: 'pointer',
@@ -65,7 +53,7 @@ const ProjectCard: React.FC<{ node: NodeInfo, windowState: WindowState, navigate
       >
         <Box
           sx={{
-            filter: `linear(${distance / 40}px)`,
+            filter: `blur(${distance / 200}px)`,
             width: '100%',
             height: '100%',
             display: 'grid',
@@ -81,21 +69,15 @@ const ProjectCard: React.FC<{ node: NodeInfo, windowState: WindowState, navigate
           <>
             {thumbnail && thumbnail !== '' ? (
               <LayoutImage node={node} width={distance * 1.25} />
-            ) : (
-              <img
-                src={'NADA'}
-                alt={'NADA'}
-                style={{ width: '100%', height: '110px', objectFit: 'cover' }}
-              />
-            )}
+            ) : null}
             {mouseOver ?
               <Box
                 sx={{
-                  position: 'absolute', // Position the text box absolutely
-                  bottom: 0, // Position it at the bottom
-                  width: '100%', // Make it span the full width
+                  position: 'absolute',
+                  bottom: 0,
+                  width: '100%',
                   p: '16px',
-                  background: 'rgba(255,  255,  255,  1.0)', // Add a background to make the text readable
+                  background: 'rgba(255,  255,  255,  1.0)',
                 }}
               >
                 <Grid sx={{
@@ -136,7 +118,6 @@ const ProjectCard: React.FC<{ node: NodeInfo, windowState: WindowState, navigate
               : null}
           </>
         </Box>
-
       </Box>
     </Grid>
   );
