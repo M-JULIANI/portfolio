@@ -1,7 +1,9 @@
 {
     "id": "marco-juliani-portfolio", 
     "type": "root",
-    "props":{},
+    "props":{
+        "thumbnail": "data/images/mj-logo.png"
+    },
     "children": [
         {
             "id": "proceduralmassing",

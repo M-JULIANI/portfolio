@@ -4,8 +4,10 @@
     background-repeat:no-repeat;
     background-size:cover;
     background-position: cover;
+    align-self: center;
+    justify-self: center;
     /* background-color : white; */
-    filter: contrast(1.4) saturate(0.5) brightness(1);
+    /* filter: blur(1px); */
     /* transition: 150ms; */
     object-fit: cover;
     /* box-shadow: inset -4px -3px 20px 0px #00000017; */

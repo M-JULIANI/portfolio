@@ -27,12 +27,13 @@ const ProjectCard: React.FC<{ node: NodeInfo, windowState: WindowState, navigate
     const gridElement = gridRef.current;
     if (gridElement) {
       const rect = gridElement.getBoundingClientRect();
-      const distanceX = Math.abs(mouseX - rect.left);
-      const distanceY = Math.abs(mouseY - rect.top);
+      const halfWidth = rect.width * 0.5;
+      const halfHeight = rect.height * 0.5;
+      const distanceX = Math.abs(mouseX - rect.left - halfWidth);
+      const distanceY = Math.abs(mouseY - rect.top - halfHeight);
       const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
       const overallDiagonal = Math.sqrt(windowState.width * windowState.width + windowState.height * windowState.height);
       const scaledDistance =  225 *  (1+(distance / overallDiagonal));
-      console.log({scaledDistance})
       setDistance(scaledDistance);
     }
   }, [mouseX, mouseY])
@@ -45,7 +46,7 @@ const ProjectCard: React.FC<{ node: NodeInfo, windowState: WindowState, navigate
         onMouseOver={() => setMouseOver(true)}
         onMouseOut={() => setMouseOver(false)}
         // onHover={() => {}}
-        onClick={() => navigate(`portfolio/${name}`)}
+        onClick={() => navigate(`/portfolio/${name}`)}
         sx={{
           height:  distance,
           minHeight: 300,
@@ -63,13 +64,17 @@ const ProjectCard: React.FC<{ node: NodeInfo, windowState: WindowState, navigate
       >
         <Box
           sx={{
+            filter: `linear(${distance/40}px)`,
             width: '100%',
             height: '100%',
             display: 'grid',
             alignItems: 'center',
             justifyContent: 'center',
-            position: 'relative', // Make sure the position is relative
-            overflow: 'hidden', // Add overflow hidden to contain the absolute positioned text
+            position: 'relative',
+            overflow: 'hidden', 
+            '&:hover':{
+              filter: `blur(0px)`,
+            }
           }}
         >
           <>
@@ -114,6 +119,8 @@ const ProjectCard: React.FC<{ node: NodeInfo, windowState: WindowState, navigate
                     {tags?.map(x => {
                       return <Chip label={x} size='small' variant='elevated'
                         sx={{
+                          fontFamily: 'Space Mono',
+                          color: '#747474',
                           backgroundColor: 'white',
                           marginRight: '10px',
                           maxWidth: '80px',
