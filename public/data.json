@@ -261,6 +261,213 @@
                     "children": []
                 }
             ]
+        },
+        {
+            "id": "downunder",
+            "type": "project",
+            "props": {
+                "name": "Office Down Under",
+                "tags": [
+                    "gh3d",
+                    "wb"
+                ],
+                "content": "Download from AppStore here if you're on iPhone or iPad. Set out to build a simple 2.5D game for iOS. During the covid lockdowns, I decided it would be fun to learn the pipeline to take a built game from Unity, through to publishing it in the AppStore. I had fun implementing the simply dynamics I had in mind, including the animations, the level progression, and even got around to implementing basic ads. The initial implementation was choking in terms of performance, so I ended up buying Game Programming Patterns, where I picked up a few design patterns to keep performance in check.",
+                "thumbnail": "data/thumbnails/downunder.jpeg"
+            },
+            "children": [
+                {
+                    "id": "downunder-01",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/downunder-01.jpeg"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "downunder-02",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/downunder-02.jpeg"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "downunder-03",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/downunder-03.jpeg"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "downunder-04",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/downunder-04.jpeg"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "downunder-05",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/downunder-05.jpeg"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "downunder-06",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/downunder-06.jpeg"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "downunder-07",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/downunder-07.gif"
+                    },
+                    "children": []
+                }
+            ]
+        },
+        {
+            "id": "tower",
+            "type": "project",
+            "props": {
+                "name": "Tower a la carte",
+                "tags": [
+                    "gh3d",
+                    "wb"
+                ],
+                "content": "Download from AppStore here if you're on iPhone or iPad. Set out to build a simple 2.5D game for iOS. During the covid lockdowns, I decided it would be fun to learn the pipeline to take a built game from Unity, through to publishing it in the AppStore. I had fun implementing the simply dynamics I had in mind, including the animations, the level progression, and even got around to implementing basic ads. The initial implementation was choking in terms of performance, so I ended up buying Game Programming Patterns, where I picked up a few design patterns to keep performance in check.",
+                "thumbnail": "data/thumbnails/tower-thumb.jpeg"
+            },
+            "children": [
+                {
+                    "id": "tower-01",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/tower-01.jpeg"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "tower-02",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/tower-02.jpeg"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "tower-03",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/tower-03.jpeg"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "tower-04",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/tower-04.jpeg"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "tower-05",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/tower-05.jpeg"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "tower-06",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/tower-06.jpeg"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "tower-07",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/tower-07.jpeg"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "tower-08",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/tower-08.jpeg"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "tower-09",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/tower-09.jpeg"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "tower-11",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/tower-11.jpeg"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "tower-12",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/tower-12.jpeg"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "tower-13",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/tower-13.jpeg"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "tower-14",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/tower-14.jpeg"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "tower-16",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/tower-16.jpeg"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "tower-17",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/tower-17.jpeg"
+                    },
+                    "children": []
+                }
+
+            ]
         }
 
     ]
