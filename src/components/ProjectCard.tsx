@@ -9,7 +9,8 @@ import { WindowState } from '../Home';
 // Assuming NodeInfo is correctly defined to include name, tags, thumbnail, and src
 const ProjectCard: React.FC<{ node: NodeInfo, windowState: WindowState, navigate: (path: string) => void }> = ({ node, windowState, navigate }) => {
   // Destructure the properties directly from the node object
-  const { name, tags, thumbnail, src, content } = node.props;
+  const { id } = node;
+  const { name, tags, thumbnail, src } = node.props;
   const [mouseOver, setMouseOver] = useState(false);
   const [distance, setDistance] = useState(0);
 
@@ -19,11 +20,11 @@ const ProjectCard: React.FC<{ node: NodeInfo, windowState: WindowState, navigate
   }, [mouseOver])
   console.log({ mouseOver })
 
-  const {mouseX, mouseY} = windowState;
+  const { mouseX, mouseY } = windowState;
 
   const gridRef = useRef<HTMLDivElement | null>(null);
 
-  useEffect(()=>{
+  useEffect(() => {
     const gridElement = gridRef.current;
     if (gridElement) {
       const rect = gridElement.getBoundingClientRect();
@@ -33,7 +34,7 @@ const ProjectCard: React.FC<{ node: NodeInfo, windowState: WindowState, navigate
       const distanceY = Math.abs(mouseY - rect.top - halfHeight);
       const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
       const overallDiagonal = Math.sqrt(windowState.width * windowState.width + windowState.height * windowState.height);
-      const scaledDistance =  225 *  (1+(distance / overallDiagonal));
+      const scaledDistance = 225 * (1 + (distance / overallDiagonal));
       setDistance(scaledDistance);
     }
   }, [mouseX, mouseY])
@@ -41,14 +42,14 @@ const ProjectCard: React.FC<{ node: NodeInfo, windowState: WindowState, navigate
 
   return (
     <Grid ref={gridRef} item={true} xs={1} key={node.id} data-testid="project-card" width={windowState.width}
-    sx={{display: 'flex', alignConte: 'center', justifyContent: 'center', alignItems: 'center'}}>
+      sx={{ display: 'flex', alignConte: 'center', justifyContent: 'center', alignItems: 'center' }}>
       <Box
         onMouseOver={() => setMouseOver(true)}
         onMouseOut={() => setMouseOver(false)}
         // onHover={() => {}}
-        onClick={() => navigate(`/portfolio/${name}`)}
+        onClick={() => navigate(`/portfolio/${id}`)}
         sx={{
-          height:  distance,
+          height: distance,
           minHeight: 300,
           minWidth: 208,
           background: 'white',
@@ -64,15 +65,15 @@ const ProjectCard: React.FC<{ node: NodeInfo, windowState: WindowState, navigate
       >
         <Box
           sx={{
-            filter: `linear(${distance/40}px)`,
+            filter: `linear(${distance / 40}px)`,
             width: '100%',
             height: '100%',
             display: 'grid',
             alignItems: 'center',
             justifyContent: 'center',
             position: 'relative',
-            overflow: 'hidden', 
-            '&:hover':{
+            overflow: 'hidden',
+            '&:hover': {
               filter: `blur(0px)`,
             }
           }}
@@ -115,7 +116,7 @@ const ProjectCard: React.FC<{ node: NodeInfo, windowState: WindowState, navigate
                   >
                     {name}
                   </Typography>
-                  <Box sx={{ display: 'flex', paddingTop: '8px'}}>
+                  <Box sx={{ display: 'flex', paddingTop: '8px' }}>
                     {tags?.map(x => {
                       return <Chip label={x} size='small' variant='elevated'
                         sx={{

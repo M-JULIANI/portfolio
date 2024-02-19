@@ -2,7 +2,8 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import { ButtonStyle, DrawerElementsStyle, MenuItemInfo } from './Home';
+import { ButtonStyle, DrawerElementsStyle } from './styles';
+import { MenuItemInfo } from './Layout';
 
 type MenuProps = {
     menuItems: MenuItemInfo[];

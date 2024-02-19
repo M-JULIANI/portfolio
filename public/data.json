@@ -30,7 +30,7 @@
             "id": "springplan",
             "type": "project",
             "props": {
-                "name": "Spring-Based Plan",
+                "name": "Spring Plan",
                 "tags": [
                     "c#",
                     "bartlett",
