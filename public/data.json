@@ -58,7 +58,7 @@
                     "css"
                 ],
                 "content": "Find the deployed viewer here. While working with tree data structures (rendering and patching them), I was compelled to build an interactive tree viewer/explorer where one could zoom into different levels of the tree selectively. This is very much work in progress and looking to make it more performance to handle larger trees.",
-                "thumbnail": "data/thumbnails/treeviewer-thumbnail.png"
+                "thumbnail": "data/thumbnails/treeviewer-thumb.png"
             },
             "children": [
                 {

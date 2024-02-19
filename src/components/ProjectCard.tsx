@@ -41,6 +41,7 @@ const ProjectCard: React.FC<{ node: NodeInfo, windowState: WindowState, navigate
         sx={{
           height:distance,
           maxHeight: 300,
+          // minHeight: 175,
           width: '100%',
           background: 'white',
           borderRadius: '17px',
@@ -71,7 +72,7 @@ const ProjectCard: React.FC<{ node: NodeInfo, windowState: WindowState, navigate
         >
           <>
             {thumbnail && thumbnail !== '' ? (
-              <LayoutImage node={node} width={Math.min(distance * 1.55, 300)} />
+              <LayoutImage node={node} width={350} />
             ) : null}
             {mouseOver ?
               <Box
