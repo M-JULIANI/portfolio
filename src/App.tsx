@@ -33,7 +33,7 @@ function App() {
     <Router>
       <Routes>
         <Route path={`/portfolio`} element={<Home node={data} />} />
-        <Route path={`/portfolio/projects/:id`} element={<ProjectPage />} />
+        <Route path={`/portfolio/:id`} element={<ProjectPage node={data} />} />
       </Routes>
     </Router>
   );

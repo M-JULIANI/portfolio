@@ -1,30 +1,20 @@
 import * as React from 'react';
 import './LayoutImage.css';
 import { NodeInfo } from '../NodeInfo';
+import ImageModal from './ImageModal';
 
 export interface LayoutImageProps {
     node: NodeInfo;
     width: number;
+    isThumbnail: boolean;
 }
 
 export const LayoutImage: React.FC<LayoutImageProps> = (props: LayoutImageProps) => {
 
-    const { node, width} = props;
+    const [openModal, setModalOpen] = React.useState(false);
+    const { node, width, isThumbnail} = props;
 
-    const src = React.useMemo(() => { return node.props?.thumbnail || '' }, [node])
-
-    // const path = React.useMemo(() => {
-
-    //     //const ext = width <= 300 ? '_i' : width <= 600  || !isNodeLeaf(node)  ? '_m' : '';
-
-    //     if (src) {
-    //         const paths = src.split(".");
-    //         const placeholder = paths[0] + paths[1];
-    //         return placeholder;
-    //     } else {
-    //         return '';
-    //     }
-    // }, [src, width]);
+    const src = React.useMemo(() => { return isThumbnail ? node.props?.thumbnail || '' : node.props?.src || '' }, [node, isThumbnail])
 
     return (
             <div

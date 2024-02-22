@@ -8,6 +8,7 @@ export interface NodeInfo {
         tags?: string[];
         content?: string;
         thumbnail?: string;
+        links?: any[];
     }
     children: NodeInfo[];
 }

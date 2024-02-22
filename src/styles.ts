@@ -1,6 +1,6 @@
 export const DrawerElementsStyle = {
     fontFamily: 'Space Mono',
-    fontSize: 14
+    fontSize: 16
 }
 
 export const ButtonStyle = {

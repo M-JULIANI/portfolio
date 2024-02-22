@@ -1,5 +1,5 @@
 import { Box, Button, Grid, Typography } from '@mui/material';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { NodeInfo } from '../NodeInfo';
 import { LayoutImage } from './LayoutImage';
 import Chip from '@mui/material-next/Chip';
@@ -9,13 +9,12 @@ const ProjectCard: React.FC<{ node: NodeInfo, windowState: WindowState, navigate
   const { id } = node;
   const { name, tags, thumbnail, src } = node.props;
   const [mouseOver, setMouseOver] = useState(false);
-  const [distance, setDistance] = useState(0);
 
   const { mouseX, mouseY } = windowState;
 
   const gridRef = useRef<HTMLDivElement | null>(null);
 
-  useEffect(() => {
+  const distance = useMemo(() => {
     const gridElement = gridRef.current;
     if (gridElement) {
       const rect = gridElement.getBoundingClientRect();
@@ -26,9 +25,10 @@ const ProjectCard: React.FC<{ node: NodeInfo, windowState: WindowState, navigate
       const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
       const overallDiagonal = Math.sqrt(windowState.width * windowState.width + windowState.height * windowState.height);
       const scaledDistance = 50 * (( overallDiagonal / distance));
-      setDistance(scaledDistance);
+      return scaledDistance;
     }
-  }, [mouseX, mouseY])
+    return 200;
+  }, [mouseX, mouseY, gridRef])
 
 
   return (
@@ -39,9 +39,9 @@ const ProjectCard: React.FC<{ node: NodeInfo, windowState: WindowState, navigate
         onMouseOut={() => setMouseOver(false)}
         onClick={() => navigate(`/portfolio/${id}`)}
         sx={{
-          height:distance,
-          maxHeight: 300,
-          // minHeight: 175,
+          height: distance,
+          maxHeight: 400,
+          minHeight: 100,
           width: '100%',
           background: 'white',
           borderRadius: '17px',
@@ -72,7 +72,7 @@ const ProjectCard: React.FC<{ node: NodeInfo, windowState: WindowState, navigate
         >
           <>
             {thumbnail && thumbnail !== '' ? (
-              <LayoutImage node={node} width={350} />
+              <LayoutImage node={node} width={350} isThumbnail={true} />
             ) : null}
             {mouseOver ?
               <Box
@@ -84,14 +84,14 @@ const ProjectCard: React.FC<{ node: NodeInfo, windowState: WindowState, navigate
                   background: 'rgba(255,  255,  255,  1.0)',
                 }}
               >
-                <Grid sx={{
+                             <Grid sx={{
                   display: 'grid',
                 }}>
                   <Typography
                     color={'black'}
                     sx={{
                       fontFamily: 'Space Mono',
-                      fontSize: 10,
+                      fontSize: 12,
                       overflow: 'hidden',
                       textOverflow: 'ellipsis',
                       display: '-webkit-box',
@@ -111,13 +111,14 @@ const ProjectCard: React.FC<{ node: NodeInfo, windowState: WindowState, navigate
                           backgroundColor: 'white',
                           marginRight: '10px',
                           maxWidth: '80px',
-                          fontSize: '10px',
+                          fontSize: '12px',
                         }} />
                     })
                     }
                   </Box>
                 </Grid>
 
+    
               </Box>
               : null}
           </>

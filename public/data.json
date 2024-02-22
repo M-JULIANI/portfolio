@@ -1,7 +1,7 @@
 {
-    "id": "marco-juliani-portfolio", 
+    "id": "marco-juliani-portfolio",
     "type": "root",
-    "props":{
+    "props": {
         "thumbnail": "data/images/mj-logo.png"
     },
     "children": [
@@ -14,14 +14,47 @@
                     "c#",
                     "hypar"
                 ],
-                "content": "Have a play over at Hypar: https://hypar.io/workflows/0c29a4f5-4e8e-4f55-8101-14eafb8a2c8e.",
-                "thumbnail": "data/thumbnails/proceduralmassing-thumbnail.png"
+                "content": "Procedural massing functions chained together: 1) One to generate orthagonal massings of variable heights, 2) Another to place a unit mix inside of floor plates within a building.",
+                "links": [
+                    {
+                        "key": "Hypar Workflow",
+                        "value": "https://hypar.io/workflows/0c29a4f5-4e8e-4f55-8101-14eafb8a2c8e"
+                    },
+                    {
+                        "key": "Procedural Mass repo",
+                        "value": "https://github.com/M-JULIANI/MJ_ProceduralMass"
+                    },
+                    {
+                        "key": "Procedural apartments repo",
+                        "value": "https://github.com/M-JULIANI/MJ_ProceduralApartmentPlacer"
+                    }
+
+                ],
+                "thumbnail": "data/images/proceduralmassing-02.png"
             },
             "children": [
                 {
-                    "src": "data/images/proceduralmassing-01.jpeg",
+                    "id": "proceduralmassing-01",
                     "type": "image",
-                    "props": {},
+                    "props": {
+                        "src": "data/images/proceduralmassing-01.jpeg"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "proceduralmassing-02",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/proceduralmassing-02.png"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "proceduralmassing-03",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/proceduralmassing-03.png"
+                    },
                     "children": []
                 }
             ]
@@ -36,16 +69,38 @@
                     "bartlett",
                     "gh3d"
                 ],
-                "content": "Have a play over at Hypar: https://hypar.io/workflows/0c29a4f5-4e8e-4f55-8101-14eafb8a2c8e.",
-                "thumbnail": "data/thumbnails/springplan-thumbnail.jpeg"
+                "links": {
+                    "key": "Presentation",
+                    "value": "assets/springplan-presentation.pdfs"
+                },
+                "content": "This project was an exploration into using spring systems to dynamically model floor plan elements relative to their adjacency multipliers. Hooke's Law of an ideal spring was used to do so.",
+                "thumbnail": "data/thumbnails/springplan-thumbnail.jpg"
             },
             "children": [
                 {
-                    "src": "data/images/springplan-01.gif",
+                    "src": "springplan-01",
                     "type": "image",
-                    "props": {},
+                    "props": {
+                        "src": "data/images/springplan-01.gif"
+                    },
                     "children": []
+                },
+                {
+                    "src": "springplan-02",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/springplan-02.jpeg"
+                    },
+                    "children": []
+                },
+                {
+                    "src": "springplan-03",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/springplan-03.jpg"
+                    }
                 }
+                   
             ]
         },
         {
@@ -57,14 +112,30 @@
                     "js",
                     "css"
                 ],
-                "content": "Find the deployed viewer here. While working with tree data structures (rendering and patching them), I was compelled to build an interactive tree viewer/explorer where one could zoom into different levels of the tree selectively. This is very much work in progress and looking to make it more performance to handle larger trees.",
-                "thumbnail": "data/thumbnails/treeviewer-thumb.png"
+                "content": "Find the deployed viewer in the line above. While working with tree data structures (rendering and patching them), I was compelled to build an interactive tree viewer/explorer where one could zoom into different levels of the tree selectively. This is very much work in progress and looking to make it more performance to handle larger trees.",
+                "thumbnail": "data/images/treeviewer-01.png",
+                "links": [
+                    {
+                        "key": "Deployed app",
+                        "value": "https://m-juliani.github.io/tree-viewer/"
+                    }
+                ]
             },
             "children": [
                 {
-                    "src": "data/images/treeviewer-image.png",
+                    "id": "treeviewer-image",
                     "type": "image",
-                    "props": {},
+                    "props": {
+                        "src": "data/images/treeviewer-01.png"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "treeviewer-image",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/treeviewer-02.png"
+                    },
                     "children": []
                 }
             ]
@@ -79,18 +150,16 @@
                     "c#",
                     "unity"
                 ],
-                "content": "Presentation",
+                "content": "This project was an exploration into automating a responsive 'fleet' of elements into following high level commands. The scenario is that you as the player run a scaffolding company and have high level control over what projects in the city to pursue at any given time. However you are constrained by the fact that jobs take time, and the size of your fleet is limited. Thus the game is about opportunity cost, and about having your fleet pursue the 'right' targets.",
+                "links": [
+                    {
+                        "key": "Presentation",
+                        "value": "assets/scaffoldcity-presentation.pdf"
+                    }
+                ],
                 "thumbnail": "data/thumbnails/scaffoldcity-thumbnail.png"
             },
             "children": [
-                {
-                    "id": "scaffoldcity-presentation",
-                    "type": "pdf",
-                    "props": {
-                        "content": "Presentation"
-                    },
-                    "children": []
-                },
                 {
                     "src": "scaffoldcity-01.gif",
                     "type": "image",
@@ -106,6 +175,22 @@
                         "src": "data/images/scaffoldcity-02.gif"
                     },
                     "children": []
+                },
+                {
+                    "id": "scaffoldcity-03",
+                    "type": "embed",
+                    "props": {
+                        "src": "https://www.youtube.com/embed/183zPI-0PjM"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "scaffoldcity-04",
+                    "type": "embed",
+                    "props": {
+                        "src": "https://www.youtube.com/embed/2qwiaRBkBDM"
+                    },
+                    "children": []
                 }
             ]
         },
@@ -118,8 +203,14 @@
                     "js",
                     "css"
                 ],
-                "content": "Find the deployed viewer here.",
-                "thumbnail": "data/thumbnails/skyline-thumbnail.png"
+                "content": "Find deployed version in line above. A simple 2D skyline generator that plays with color blending as well as gradual building layer composition.",
+                "thumbnail": "data/thumbnails/skyline-thumbnail.png",
+                "links": [
+                    {
+                        "key": "Deployed app",
+                        "value": "https://m-juliani.github.io/skyline-generator/"
+                    }
+                ]
             },
             "children": [
                 {
@@ -129,6 +220,86 @@
                         "src": "data/images/skyline-image.png"
                     },
                     "children": []
+                },
+                {
+                    "id": "skyline-image-0012",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/skyline-0012.png"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "skyline-image-0013",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/skyline-0013.png"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "skyline-image-0014",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/skyline-0014.png"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "skyline-image-0015",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/skyline-0015.png"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "skyline-image-0016",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/skyline-0016.png"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "skyline-image-0017",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/skyline-0017.png"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "skyline-image-0018",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/skyline-0018.png"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "skyline-image-0019",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/skyline-0019.png"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "skyline-image-0020",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/skyline-0020.png"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "skyline-image-0022",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/skyline-0022.png"
+                    },
+                    "children": []
                 }
             ]
         },
@@ -136,15 +307,39 @@
             "id": "autocheckers",
             "type": "project",
             "props": {
-                "name": "Autonomouse Checkers",
+                "name": "Autonomous Checkers",
                 "tags": [
                     "c#",
                     "unity",
                     "bartlett"
                 ],
-                "content": "Presentation.",
+                "content": "This project was a naive implementation of a 3D checker solver. Two teams of agents are pitted against each other with a set of heuristics that guarantees that one team wins.",
+                "links": [
+                    {
+                        "key": "Presentation",
+                        "value": "assets/autocheckers-pres.pdf"
+                    }
+                ],
                 "thumbnail": "data/thumbnails/autocheckers.png"
-            }
+            },
+            "children": [
+                {
+                    "id": "autocheckers-01",
+                    "type": "embed",
+                    "props": {
+                        "src": "https://www.youtube.com/embed/gimwSGrKmuk"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "autocheckers-02",
+                    "type": "embed",
+                    "props": {
+                        "src": "https://www.youtube.com/embed/VHsyMJkOZp8"
+                    },
+                    "children": []
+                }
+            ]
         },
         {
             "id": "erosion",
@@ -156,9 +351,75 @@
                     "c#",
                     "bartlett"
                 ],
-                "content": "Presentation.",
+                "content": "",
                 "thumbnail": "data/thumbnails/erosion-thumbnail.jpeg"
-            }
+            },
+            "children": [
+                {
+                    "id": "erosion-video",
+                    "type": "video",
+                    "props": {
+                        "src": "data/images/erosiongame.mp4"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "erosion-01",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/erosion-01.jpg"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "erosion-03",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/erosion-03.jpg"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "erosion-04",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/erosion-04.jpg"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "erosion-05",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/erosion-05.jpg"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "erosion-07",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/erosion-07.jpg"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "erosion-08",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/erosion-08.jpg"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "erosion-09",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/erosion-09.jpg"
+                    },
+                    "children": []
+                }
+            ]
         },
         {
             "id": "hfz",
@@ -170,9 +431,67 @@
                     "wb",
                     "flux"
                 ],
-                "content": "Presentation.",
+                "content": "Dual tower scheme built next to Highline in NYC. I was one among many team members to work on the architect of record team. My main involvement was around contributions to the automation of facade generation.",
                 "thumbnail": "data/thumbnails/hfz-thumbnail.png"
-            }
+            },
+            "children": [
+                {
+                    "id": "hfz-01.png",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/hfz-01.png"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "hfz-03.png",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/hfz-03.png"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "hfz-04.png",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/hfz-04.png"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "hfz-05.png",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/hfz-05.png"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "hfz-06.png",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/hfz-06.png"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "hfz-07.png",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/hfz-07.png"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "hfz-08.png",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/hfz-08.png"
+                    },
+                    "children": []
+                }
+            ]
         },
         {
             "id": "gridlocked",
@@ -184,8 +503,12 @@
                     "c#",
                     "ios"
                 ],
-                "content": "Download from AppStore here if you're on iPhone or iPad. Set out to build a simple 2.5D game for iOS. During the covid lockdowns, I decided it would be fun to learn the pipeline to take a built game from Unity, through to publishing it in the AppStore. I had fun implementing the simply dynamics I had in mind, including the animations, the level progression, and even got around to implementing basic ads. The initial implementation was choking in terms of performance, so I ended up buying Game Programming Patterns, where I picked up a few design patterns to keep performance in check.",
-                "thumbnail": "data/thumbnails/gridlocked-thumb.png"
+                "content": "Download from AppStore in link above if you're on iPhone or iPad. I set out to build a simple 2.5D game for iOS. During the covid lockdowns, I decided it would be fun to learn the pipeline to take a built game from Unity, through to publishing it in the AppStore. I had fun implementing the simply dynamics I had in mind, including the animations, the level progression, and even got around to implementing basic ads. The initial implementation was choking in terms of performance, so I ended up buying Game Programming Patterns, where I picked up a few design patterns to keep performance in check.",
+                "thumbnail": "data/thumbnails/gridlocked-thumb.png",
+                "links": [{
+                    "key": "AppStore link",
+                    "value": "https://apps.apple.com/gb/app/grid-locked/id1622273128"
+                }]
             },
             "children": [
                 {
@@ -224,8 +547,14 @@
                     "pix2pix",
                     "pytorch"
                 ],
-                "content": "Download from AppStore here if you're on iPhone or iPad. Set out to build a simple 2.5D game for iOS. During the covid lockdowns, I decided it would be fun to learn the pipeline to take a built game from Unity, through to publishing it in the AppStore. I had fun implementing the simply dynamics I had in mind, including the animations, the level progression, and even got around to implementing basic ads. The initial implementation was choking in terms of performance, so I ended up buying Game Programming Patterns, where I picked up a few design patterns to keep performance in check.",
-                "thumbnail": "data/thumbnails/cganexperiments.jpeg"
+                "content": "Generative Adversarial Networks (GANs) are well known to map distributions of image datasets that have similar underlying structure, but little investigation has gone into the question of how well such frameworks perform when trained on abstract-encoded data. This thesis seeks to answer how well such a framework performs when trained on ‘abstract-encoded’ data as compared to the standard ‘shared image structure’ use case. We predict that because of the learned loss and thus learned mapping capability of conditional GANS(cGANs), abstract-encoded-trained models will produce highly workable results. To test this, we benchmark the various metric errors across training (network and user defined) fora standard implementation and compare them with that of several abstract-encoded implementations. We then prove that the abstract-encoded data performs reasonably well and discuss why that is. We then proceed to describe why abstract representations ofimage structures might be useful in general. This research hopes to raise interest and encourage further investigation into the pattern detection capabilities of deep learning models when presented with abstract-encoded information.",
+                "thumbnail": "data/thumbnails/cganexperiments.jpeg",
+                "links": [
+                    {
+                        "key": "Paper",
+                        "value": "https://www.academia.edu/45579700/Abstract_Image_Learning"
+                    }
+                ]
             },
             "children": [
                 {
@@ -271,7 +600,7 @@
                     "gh3d",
                     "wb"
                 ],
-                "content": "Download from AppStore here if you're on iPhone or iPad. Set out to build a simple 2.5D game for iOS. During the covid lockdowns, I decided it would be fun to learn the pipeline to take a built game from Unity, through to publishing it in the AppStore. I had fun implementing the simply dynamics I had in mind, including the animations, the level progression, and even got around to implementing basic ads. The initial implementation was choking in terms of performance, so I ended up buying Game Programming Patterns, where I picked up a few design patterns to keep performance in check.",
+                "content": "Competition for urban HQ. Parametric tooling and automation was used to arrive at facade expression as well as building's response to urban context. Team members: Marco Juliani, Matt Boker, David Brown, Alex Zee.",
                 "thumbnail": "data/thumbnails/downunder.jpeg"
             },
             "children": [
@@ -279,7 +608,8 @@
                     "id": "downunder-01",
                     "type": "image",
                     "props": {
-                        "src": "data/images/downunder-01.jpeg"
+                        "src": "data/images/downunder-01.jpeg",
+                        "content": "asd"
                     },
                     "children": []
                 },
@@ -287,7 +617,7 @@
                     "id": "downunder-02",
                     "type": "image",
                     "props": {
-                        "src": "data/images/downunder-02.jpeg"
+                        "src": "data/images/downunder-02.jpg"
                     },
                     "children": []
                 },
@@ -342,7 +672,7 @@
                     "gh3d",
                     "wb"
                 ],
-                "content": "Download from AppStore here if you're on iPhone or iPad. Set out to build a simple 2.5D game for iOS. During the covid lockdowns, I decided it would be fun to learn the pipeline to take a built game from Unity, through to publishing it in the AppStore. I had fun implementing the simply dynamics I had in mind, including the animations, the level progression, and even got around to implementing basic ads. The initial implementation was choking in terms of performance, so I ended up buying Game Programming Patterns, where I picked up a few design patterns to keep performance in check.",
+                "content": "Tower competition where parametric tooling and automation was deployed to arrive at a highly intentional design as well as a streamlined way to represent the building via parametric drawing. Team members: Marco Juliani, Matt Boker, David Brown, Kat Cayetano, Alex Zee.",
                 "thumbnail": "data/thumbnails/tower-thumb.jpeg"
             },
             "children": [
@@ -466,9 +796,7 @@
                     },
                     "children": []
                 }
-
             ]
         }
-
     ]
 }
