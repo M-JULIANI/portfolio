@@ -5,14 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Layout } from "./Layout";
 import ProjectItem from "./components/ProjectItem";
 import { ButtonStyle } from "./styles";
-
-
-export type WindowState = {
-    width: number;
-    height: number;
-    mouseX: number,
-    mouseY: number;
-}
+import { WindowState } from "./Home";
 
 function debounce(func: any) {
     var timer: any;
@@ -77,11 +70,9 @@ export const ProjectPage: React.FC<{ node: NodeInfo | null }> = ({ node }) => {
     }, [threeCols, twoCols, oneCol, projectNode]);
 
     if (projectNode === undefined) return null;
-
-    console.log(projectNode.props?.links)
     return (
         <Layout node={node}>
-            <Box sx={{ display: 'grid', justifyItems: 'center', justifyContent: 'center', alignItems: 'center', }}>
+            <Grid  container={true} sx={{ display: 'grid', justifyItems: 'center', justifyContent: 'center', alignItems: 'center'}}>
                 <Typography
                     variant="h4"
                     sx={{
@@ -92,7 +83,7 @@ export const ProjectPage: React.FC<{ node: NodeInfo | null }> = ({ node }) => {
                 </Typography>
                 {projectNode.props?.links?.length &&
 
-                <Grid sx={{display: 'flex', p: '24px'}}>
+                <Grid sx={{display: 'flex'}}>
                    { projectNode.props.links.map(link => {
                         return (<Button sx={{ ...ButtonStyle, 
                             display: 'grid', 
@@ -131,14 +122,14 @@ export const ProjectPage: React.FC<{ node: NodeInfo | null }> = ({ node }) => {
                     }}>
                     {projectNode.props.content}
                 </Typography>
-                <Grid container={true} columns={calculatedColumns} sx={{ display: 'flex', justifyItems: 'stretch', justifyContent: 'stretch', width: '100%' }}>
+                <Grid container={true} columns={calculatedColumns} sx={{ display: 'flex', alignItems: 'center', justifyItems: 'center', justifyContent: 'center', width: '100%' }}>
                     {projectNode.children?.map((child) => <ProjectItem
                         key={child.id}
                         node={child}
                         windowState={windowState}
                         navigate={navigate} />)}
                 </Grid>
-            </Box>
+            </Grid>
             {/* </Grid> */}
         </Layout>
     );

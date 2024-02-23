@@ -34,7 +34,7 @@ export const About: React.FC<{ node: NodeInfo | null }> = ({ node }) => {
 
     if (node == null) return null;
     const about = node?.children?.find(x => x.type === 'image') || {} as NodeInfo;
-    const width = oneCol || twoCols ? windowState.width * 0.8 : windowState.width * 0.4;
+    const width = oneCol || twoCols ? windowState.width * 0.8 : windowState.width * 0.3;
 
     const buttonSize = '30px';
     const items = [

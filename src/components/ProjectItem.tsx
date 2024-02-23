@@ -37,9 +37,10 @@ const {type} = node;
     <Grid ref={gridRef} item={true} xs={1} key={node.id} data-testid="project-item" width={windowState.width - 100}
       sx={{ display: 'flex', alignContent: 'center', justifyContent: 'center', alignItems: 'center' }}>
       <Box
+        onMouseLeave={()=>setModalOn(false)}
         onClick={() => setModalOn(true)}
         sx={{
-          width: distance,
+          width: modalOn ? '500px': distance,
           background: 'white',
           borderRadius: '17px',
           cursor: 'pointer',
@@ -72,7 +73,6 @@ const {type} = node;
                      {type && type === 'video' ? (
               <LayoutVideo node={node} width={DEFAULT_WIDTH}/>
             ) : null}
-            {modalOn && <ImageModal node={node} windowState={windowState}/>}
         </Box>
       </Box>
     </Grid>
