@@ -1,5 +1,5 @@
-import { Box, Button, Grid, Typography } from '@mui/material';
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { Box, Grid, Typography } from '@mui/material';
+import React, { useMemo, useRef, useState } from 'react';
 import { NodeInfo } from '../NodeInfo';
 import { LayoutImage } from './LayoutImage';
 import Chip from '@mui/material-next/Chip';

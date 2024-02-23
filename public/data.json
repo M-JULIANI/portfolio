@@ -69,10 +69,10 @@
                     "bartlett",
                     "gh3d"
                 ],
-                "links": {
+                "links": [{
                     "key": "Presentation",
-                    "value": "assets/springplan-presentation.pdfs"
-                },
+                    "value": "assets/springplan-presentation.pdf"
+                }],
                 "content": "This project was an exploration into using spring systems to dynamically model floor plan elements relative to their adjacency multipliers. Hooke's Law of an ideal spring was used to do so.",
                 "thumbnail": "data/thumbnails/springplan-thumbnail.jpg"
             },
@@ -797,6 +797,15 @@
                     "children": []
                 }
             ]
+        },
+        {
+            "id": "mj-portrait",
+            "type": "image",
+            "props": {
+                "src": "data/images/mj-portrait.jpg",
+                "content": "Born and raised in Quito, Ecuador. Always on the lookout for challenges/ projects/ ideas of varied breadth and depth. A firm believer in play: giving clever absurdity a chance when thinking/ experimenting/ arguing/ speculating."
+            },
+            "children": []
         }
     ]
 }

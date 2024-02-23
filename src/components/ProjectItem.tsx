@@ -7,6 +7,7 @@ import {ImageModal} from './ImageModal';
 import { LayoutIFrame } from './LayoutIFrame';
 import { LayoutVideo } from './LayoutVideo';
 
+const DEFAULT_WIDTH = 600;
 const ProjectItem: React.FC<{ node: NodeInfo, windowState: WindowState, navigate: (path: string) => void }> = ({ node, windowState }) => {
   
 const {type} = node;
@@ -63,13 +64,13 @@ const {type} = node;
           }}
         >
             {src && src !== '' && type === 'image' ? (
-              <LayoutImage node={node} width={600} isThumbnail={false}/>
+              <LayoutImage node={node} width={DEFAULT_WIDTH} isThumbnail={false}/>
             ) : null}
             {type && type === 'embed' ? (
-              <LayoutIFrame node={node} width={600}/>
+              <LayoutIFrame node={node} width={DEFAULT_WIDTH}/>
             ) : null}
                      {type && type === 'video' ? (
-              <LayoutVideo node={node} width={600}/>
+              <LayoutVideo node={node} width={DEFAULT_WIDTH}/>
             ) : null}
             {modalOn && <ImageModal node={node}/>}
         </Box>

@@ -4,8 +4,7 @@ import { NodeInfo } from './NodeInfo';
 import { Home } from './Home';
 import { Route, Routes, BrowserRouter as Router } from 'react-router-dom';
 import { ProjectPage } from './ProjectPage';
-
-//const data: TreeNode = sampleData;
+import { About } from './About';
 
 function App() {
 
@@ -32,6 +31,7 @@ function App() {
   return (
     <Router>
       <Routes>
+        <Route path={`/portfolio/about`} element={<About node={data}/>} />
         <Route path={`/portfolio`} element={<Home node={data} />} />
         <Route path={`/portfolio/:id`} element={<ProjectPage node={data} />} />
       </Routes>

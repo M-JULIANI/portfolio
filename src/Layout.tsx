@@ -5,8 +5,9 @@ import { LayoutImage } from "./components/LayoutImage";
 import { NodeInfo } from "./NodeInfo";
 import { ButtonStyle, DrawerElementsStyle } from "./styles";
 import { BasicMenu } from "./Menu";
+import { type } from "os";
 
-export const openCV = () => window.open('./assets/Marco-Juliani-CV-Jan2024.pdf', 'mywindow');
+export const openCV = () => window.open('assets/Marco-Juliani-CV-Jan2024.pdf', '_blank');
 
 export const openPlanBee = () => window.open('https://www.food4rhino.com/en/app/planbee', '_blank');
 export const openGithub = () => window.open('https://github.com/M-JULIANI', '_blank');
@@ -14,6 +15,7 @@ export const openGithub = () => window.open('https://github.com/M-JULIANI', '_bl
 export type MenuItemInfo = {
     label: string;
     action: () => void;
+    type: 'page' | 'link';
 }
 
 const initMenuItems = (navigate: (path: string) => void, handleClose?: () => void): MenuItemInfo[] => [
@@ -22,6 +24,7 @@ const initMenuItems = (navigate: (path: string) => void, handleClose?: () => voi
         action: () => {
             navigate('/portfolio/about');
         },
+        type: 'page'
     },
     {
         label: 'CV',
@@ -29,6 +32,7 @@ const initMenuItems = (navigate: (path: string) => void, handleClose?: () => voi
             openCV();
             handleClose ? handleClose() : null;
         },
+        type: 'link'
     },
     {
         label: 'Github',
@@ -36,6 +40,7 @@ const initMenuItems = (navigate: (path: string) => void, handleClose?: () => voi
             openGithub();
             handleClose ? handleClose() : null;
         },
+        type: 'link'
     },
     {
         label: 'Planbee',
@@ -43,10 +48,11 @@ const initMenuItems = (navigate: (path: string) => void, handleClose?: () => voi
             openPlanBee();
             handleClose ? handleClose() : null;
         },
+        type: 'link'
     },
 ];
 
-export const Layout: React.FC<{ node: NodeInfo | null, children: JSX.Element }> = ({ node, children }) => {
+export const Layout: React.FC<{ node: NodeInfo | null, children: JSX.Element, offsetFactor?: number }> = ({ node, children, offsetFactor }) => {
     const navigate = useNavigate();
     const theme = useTheme();
     const oneCol = useMediaQuery(theme.breakpoints.between(200, 488));
@@ -97,7 +103,7 @@ export const Layout: React.FC<{ node: NodeInfo | null, children: JSX.Element }> 
                 </Grid>
 
             </Drawer>
-            {<Box sx={{ top: `${drawerHeight}px`, position: 'relative', alignItems: 'center', justifyItems:'center'}}>
+            {<Box sx={{ top: `${drawerHeight * (offsetFactor ?? 1)}px`, position: 'relative', alignItems: 'center', justifyItems:'center', display: 'flex'}}>
                 {children}
             </Box>}
         </>

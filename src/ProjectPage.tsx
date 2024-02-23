@@ -27,6 +27,7 @@ export type ProjectParams = {
 };
 
 const TEXT_MAX_WIDTH = 600;
+const MOVE_BUFFER = 50;
 export const ProjectPage: React.FC<{ node: NodeInfo | null }> = ({ node }) => {
     const navigate = useNavigate();
     const { id } = useParams<ProjectParams>();
@@ -51,6 +52,9 @@ export const ProjectPage: React.FC<{ node: NodeInfo | null }> = ({ node }) => {
 
     useEffect(() => {
         const handleMouseMove = (event: any) => {
+
+            if (Math.abs(event.clientX - windowState.mouseX) < MOVE_BUFFER) return;
+            if (Math.abs(event.clientY - windowState.mouseY) < MOVE_BUFFER) return;
             setWindowState(s => {
                 return { ...s, mouseX: event.clientX, mouseY: event.clientY }
             });
