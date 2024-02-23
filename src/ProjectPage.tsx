@@ -104,8 +104,9 @@ export const ProjectPage: React.FC<{ node: NodeInfo | null }> = ({ node }) => {
                             borderRadius: '8px',
                             borderStyle: 'solid',
                             '&:hover':{
-                                ...ButtonStyle,
-                                border: '0px'
+                                color: 'white',
+                                backgroundColor: '#d4d4d4',
+                                borderColor: '#d4d4d4',
                             }
                          }} 
                         onClick={() => window.open(`${link.value}`, '_blank')}>

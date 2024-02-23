@@ -1,7 +1,6 @@
 import * as React from 'react';
 import './LayoutImage.css';
 import { NodeInfo } from '../NodeInfo';
-// import ImageModal from './ImageModal';
 
 export interface LayoutIFrameProps {
     node: NodeInfo;
@@ -9,8 +8,6 @@ export interface LayoutIFrameProps {
 }
 
 export const LayoutIFrame: React.FC<LayoutIFrameProps> = (props: LayoutIFrameProps) => {
-
-    const [openModal, setModalOpen] = React.useState(false);
     const { node, width } = props;
 
     const src = React.useMemo(() => { return node.props.src }, [node])

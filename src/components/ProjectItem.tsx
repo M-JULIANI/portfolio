@@ -72,7 +72,7 @@ const {type} = node;
                      {type && type === 'video' ? (
               <LayoutVideo node={node} width={DEFAULT_WIDTH}/>
             ) : null}
-            {modalOn && <ImageModal node={node}/>}
+            {modalOn && <ImageModal node={node} windowState={windowState}/>}
         </Box>
       </Box>
     </Grid>

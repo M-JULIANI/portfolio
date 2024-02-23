@@ -1,0 +1,4 @@
+- [ ] fix image modal
+- [x] fix MJ to have similar style to other buttons (wont fix)
+- [x] fix strange hover behavior over chips
+- deploy

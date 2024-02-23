@@ -39,19 +39,19 @@ export const About: React.FC<{ node: NodeInfo | null }> = ({ node }) => {
     const buttonSize = '30px';
     const items = [
         {
-            icon: <LinkedIn sx={{width: buttonSize, height: buttonSize}} />,
+            icon: <LinkedIn sx={{ width: buttonSize, height: buttonSize }} />,
             src: 'https://www.linkedin.com/in/marco-juliani-6a09a953'
         },
         {
-            icon: <Twitter sx={{width: buttonSize, height: buttonSize}} />,
+            icon: <Twitter sx={{ width: buttonSize, height: buttonSize }} />,
             src: 'https://twitter.com/_m_juliani'
         },
         {
-            icon: <GitHub sx={{width: buttonSize, height:buttonSize }}/>,
+            icon: <GitHub sx={{ width: buttonSize, height: buttonSize }} />,
             src: 'https://github.com/M-JULIANI'
         },
         {
-            icon: <Instagram sx={{width: buttonSize, height:buttonSize }}/>,
+            icon: <Instagram sx={{ width: buttonSize, height: buttonSize }} />,
             src: 'https://www.instagram.com/_mjuliani/?hl=en'
         },
     ]
@@ -61,7 +61,9 @@ export const About: React.FC<{ node: NodeInfo | null }> = ({ node }) => {
                 <Grid item xs={1} sx={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                     <Box sx={{
                         borderRadius: '17px',
-                        overflow: 'hidden'
+                        overflow: 'hidden',
+                        transition: 'all 0.3s cubic-bezier(.25,.8,.25,1)',
+                        boxShadow: '-2px -1.5px  10px  0px #00000040',
                     }}>
                         <PortraitImage node={about} width={width} height={width} />
                     </Box>
@@ -85,6 +87,6 @@ export const About: React.FC<{ node: NodeInfo | null }> = ({ node }) => {
     );
 }
 
-const handleOpen = (src: string) =>{
+const handleOpen = (src: string) => {
     window.open(src, '_blank');
 }
