@@ -5,8 +5,6 @@ import { Home } from './Home';
 import { Route, Routes, BrowserRouter as Router } from 'react-router-dom';
 import { ProjectPage } from './ProjectPage';
 import { About } from './About';
-import { useTracking } from './useTracking';
-import { GA_MEASUREMENT_ID, initializeGA } from './google-analytics';
 
 function App() {
 
@@ -29,9 +27,6 @@ function App() {
     fetchData();
   }, []);
 
-  //googlee analytics
-  const gtag = initializeGA();
-  useTracking(gtag, GA_MEASUREMENT_ID);
 
   return (
       <Routes>
