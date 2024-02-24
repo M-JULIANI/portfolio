@@ -436,14 +436,6 @@
             },
             "children": [
                 {
-                    "id": "hfz-01.png",
-                    "type": "image",
-                    "props": {
-                        "src": "data/images/hfz-01.png"
-                    },
-                    "children": []
-                },
-                {
                     "id": "hfz-03.png",
                     "type": "image",
                     "props": {
