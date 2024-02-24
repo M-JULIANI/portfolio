@@ -4,5 +4,6 @@
 - [x] animate profile pic?
 - [x] navigation from phone: <Home> clicking/ hovering
 - [x] navigation in project page
-- [ ] add GA
-- [ ] deploy
+- [x] add GA
+- [x] deploy
+- [ ] write some nice words in the about me section
