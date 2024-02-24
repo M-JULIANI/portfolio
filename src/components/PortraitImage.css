@@ -7,5 +7,5 @@
     align-self: center;
     justify-self: center;
     object-fit: cover;
-    filter: contrast(1.2) saturate(0.5) brightness(1);
+    filter: contrast(1.2) saturate(0.5) brightness(1.25);
 }

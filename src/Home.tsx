@@ -21,7 +21,7 @@ export function debounce(func: any) {
     };
 }
 
-const MOVE_BUFFER = 50;
+export const MOVE_BUFFER = 50;
 export const Home: React.FC<{ node: NodeInfo | null }> = ({ node }) => {
     const navigate = useNavigate();
     const theme = useTheme();
