@@ -127,7 +127,8 @@ export const ProjectPage: React.FC<{ node: NodeInfo | null }> = ({ node }) => {
                         key={child.id}
                         node={child}
                         windowState={windowState}
-                        navigate={navigate} />)}
+                        navigate={navigate}
+                        singleColumn={calculatedColumns === 1} />)}
                 </Grid>
             </Grid>
             {/* </Grid> */}

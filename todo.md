@@ -2,5 +2,7 @@
 - [x] fix MJ to have similar style to other buttons (wont fix)
 - [x] fix strange hover behavior over chips
 - [x] animate profile pic?
+- [x] navigation from phone: <Home> clicking/ hovering
+- [x] navigation in project page
 - [ ] add GA
 - [ ] deploy

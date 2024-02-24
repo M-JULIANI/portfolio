@@ -1,9 +1,10 @@
-import { Box, Grid, Typography } from '@mui/material';
+import { Box, Button, Grid, Typography } from '@mui/material';
 import React, { useMemo, useRef, useState } from 'react';
 import { NodeInfo } from '../NodeInfo';
 import { LayoutImage } from './LayoutImage';
 import Chip from '@mui/material-next/Chip';
 import { WindowState } from '../Home';
+import { ButtonStyle } from '../styles';
 
 const ProjectCard: React.FC<{ node: NodeInfo, windowState: WindowState, navigate: (path: string) => void, singleColumn: Boolean }> = ({ node, windowState, navigate, singleColumn }) => {
   const { id } = node;
@@ -57,7 +58,7 @@ const ProjectCard: React.FC<{ node: NodeInfo, windowState: WindowState, navigate
       >
         <Box
           sx={{
-            // filter: `blur(${distance / 200}px)`,
+            // filter: `blur(${4}px)`,
             //maxHeight: '400px',
             width: '100%',
             height: '100%',
@@ -67,7 +68,7 @@ const ProjectCard: React.FC<{ node: NodeInfo, windowState: WindowState, navigate
             position: 'relative',
             overflow: 'hidden',
             // '&:hover': {
-            //   filter: `blur(0px)`,
+            //   filter: 'none',
             // }
           }}
         >
@@ -75,6 +76,45 @@ const ProjectCard: React.FC<{ node: NodeInfo, windowState: WindowState, navigate
             {thumbnail && thumbnail !== '' ? (
               <LayoutImage node={node} width={350} isThumbnail={true} />
             ) : null}
+            {mouseOver && singleColumn ?
+              <Box
+                sx={{
+                  position: 'absolute',
+                  top: 0,
+                  width: '100%',
+                  p: '16px',
+                  background: 'rgba(255,  255,  255,  1.0)',
+                }}
+              >
+                <Grid sx={{
+                  display: 'grid',
+                  alignItems: 'center',
+                  justifyContent: 'stretch',
+                  
+                }}>
+                  <Button sx={{...ButtonStyle, width: '100%', height: '100%'}} onClick={() => navigate(`/portfolio/${id}`)}>
+                    <Typography
+                      color={'black'}
+                      sx={{
+                        fontFamily: 'Space Mono',
+                        fontSize: 12,
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                        display: '-webkit-box',
+                        wordBreak: 'break-word',
+                        WebkitLineClamp: '1',
+                      }}
+                      data-testid={'project-name'}
+                    >
+                      Open
+                    </Typography>
+                  </Button>
+
+                </Grid>
+
+
+              </Box>
+              : null}
             {mouseOver ?
               <Box
                 sx={{

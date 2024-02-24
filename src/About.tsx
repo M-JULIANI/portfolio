@@ -69,9 +69,8 @@ export const About: React.FC<{ node: NodeInfo | null }> = ({ node }) => {
                         <PortraitImage node={about} width={width} height={width} />
                     </Box>
                 </Grid>
-                <Grid item xs={1} sx={{ display: 'flex', justifyItems: 'center', justifyContent: 'center', alignItems: 'center', alignContent: 'center' }}>
-                    <Box sx={{ display: 'grid', justifyContent: 'center', alignItems: 'center' }}>
-                        <Typography variant="body1" sx={{ width: '80%', padding: '48px', fontFamily: 'Roboto' }}>{about.props.content || ''}</Typography>
+                <Grid item xs={1} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                    <Box sx={{ display: 'grid', justifyContent: 'center', alignItems: 'center', width: '100%'}}>
                         <Typography variant="body1" sx={{ width: '80%', padding: '48px', fontFamily: 'Roboto' }}>{about.props.content || ''}</Typography>
                         <Box sx={{ display: 'flex', width: '100%', alignItems: 'center', justifyContent: 'center' }}>
                             {items.map(x => {

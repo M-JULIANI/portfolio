@@ -8,7 +8,7 @@ import { LayoutIFrame } from './LayoutIFrame';
 import { LayoutVideo } from './LayoutVideo';
 
 const DEFAULT_WIDTH = 600;
-const ProjectItem: React.FC<{ node: NodeInfo, windowState: WindowState, navigate: (path: string) => void }> = ({ node, windowState }) => {
+const ProjectItem: React.FC<{ node: NodeInfo, windowState: WindowState, navigate: (path: string) => void, singleColumn: Boolean }> = ({ node, windowState, singleColumn }) => {
 
     const { type } = node;
     const { src } = node.props;
@@ -40,7 +40,7 @@ const ProjectItem: React.FC<{ node: NodeInfo, windowState: WindowState, navigate
                 onMouseLeave={() => setModalOn(false)}
                 onClick={() => setModalOn(true)}
                 sx={{
-                    width: modalOn ? '500px' : distance,
+                    width: singleColumn ? `${Math.max(distance * 2.5, 175)}px` : distance,
                     background: 'white',
                     borderRadius: '17px',
                     cursor: 'pointer',
