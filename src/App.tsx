@@ -29,11 +29,13 @@ function App() {
 
 
   return (
+    <Router>
       <Routes>
-        <Route path={`/portfolio/about`} element={<About node={data}/>} />
+        <Route path={`/portfolio/about`} element={<About node={data} />} />
         <Route path={`/portfolio`} element={<Home node={data} />} />
         <Route path={`/portfolio/:id`} element={<ProjectPage node={data} />} />
       </Routes>
+    </Router>
   );
 }
 
