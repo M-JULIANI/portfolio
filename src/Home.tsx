@@ -82,6 +82,7 @@ export const Home: React.FC<{ node: NodeInfo | null }> = ({ node }) => {
                             node={child}
                             windowState={windowState}
                             navigate={navigate}
+                            singleColumn={calculatedColumns===1}
                         />
                     ))}
             </Grid>

@@ -5,7 +5,7 @@ import { LayoutImage } from './LayoutImage';
 import Chip from '@mui/material-next/Chip';
 import { WindowState } from '../Home';
 
-const ProjectCard: React.FC<{ node: NodeInfo, windowState: WindowState, navigate: (path: string) => void }> = ({ node, windowState, navigate }) => {
+const ProjectCard: React.FC<{ node: NodeInfo, windowState: WindowState, navigate: (path: string) => void, singleColumn: Boolean }> = ({ node, windowState, navigate, singleColumn }) => {
   const { id } = node;
   const { name, tags, thumbnail } = node.props;
   const [mouseOver, setMouseOver] = useState(false);
@@ -24,20 +24,21 @@ const ProjectCard: React.FC<{ node: NodeInfo, windowState: WindowState, navigate
       const distanceY = Math.abs(mouseY - rect.top - halfHeight);
       const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
       const overallDiagonal = Math.sqrt(windowState.width * windowState.width + windowState.height * windowState.height);
-      const scaledDistance = 50 * (( overallDiagonal / distance));
+      const scaledDistance = 50 * ((overallDiagonal / distance));
       return scaledDistance;
     }
     return 200;
   }, [mouseX, mouseY, gridRef])
 
 
+
   return (
     <Grid ref={gridRef} item={true} xs={1} key={node.id} data-testid="project-card" width={windowState.width - 100}
       sx={{ display: 'flex', alignContent: 'center', justifyContent: 'center', alignItems: 'center' }}>
       <Box
-        onMouseOver={() => setMouseOver(true)}
-        onMouseOut={() => setMouseOver(false)}
-        onClick={() => navigate(`/portfolio/${id}`)}
+        onMouseOver={() => singleColumn ? null : setMouseOver(true)}
+        onMouseOut={() => singleColumn ? mouseOver ? setMouseOver(false) : null : setMouseOver(false)}
+        onClick={() => singleColumn ? setMouseOver(true) : navigate(`/portfolio/${id}`)}
         sx={{
           height: distance,
           maxHeight: 400,
@@ -84,7 +85,7 @@ const ProjectCard: React.FC<{ node: NodeInfo, windowState: WindowState, navigate
                   background: 'rgba(255,  255,  255,  1.0)',
                 }}
               >
-                             <Grid sx={{
+                <Grid sx={{
                   display: 'grid',
                 }}>
                   <Typography
@@ -118,7 +119,7 @@ const ProjectCard: React.FC<{ node: NodeInfo, windowState: WindowState, navigate
                   </Box>
                 </Grid>
 
-    
+
               </Box>
               : null}
           </>
