@@ -7,7 +7,7 @@ import { WindowState } from '../Home';
 
 const ProjectCard: React.FC<{ node: NodeInfo, windowState: WindowState, navigate: (path: string) => void }> = ({ node, windowState, navigate }) => {
   const { id } = node;
-  const { name, tags, thumbnail, src } = node.props;
+  const { name, tags, thumbnail } = node.props;
   const [mouseOver, setMouseOver] = useState(false);
 
   const { mouseX, mouseY } = windowState;

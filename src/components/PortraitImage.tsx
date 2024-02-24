@@ -1,7 +1,6 @@
 import * as React from 'react';
 import './PortraitImage.css';
 import { NodeInfo } from '../NodeInfo';
-import { height } from '@mui/system';
 
 export interface PortraitImageProps {
     node: NodeInfo;

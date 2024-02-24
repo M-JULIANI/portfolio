@@ -1,4 +1,4 @@
-import { Box, Button, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
+import { Button, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { NodeInfo } from "./NodeInfo";
 import { useNavigate, useParams } from 'react-router-dom';
