@@ -55,11 +55,14 @@ export const About: React.FC<{ node: NodeInfo | null }> = ({ node }) => {
             icon: <Instagram sx={{ width: buttonSize, height: buttonSize }} />,
             src: 'https://www.instagram.com/_mjuliani/?hl=en'
         },
-    ]
+    ];
+
+    const paragraphs = (about?.props?.content || '').split(/(?:\n\n|  )/);
+
     return (
         <Layout node={node}>
             <Grid container={true} columns={oneCol || twoCols ? 1 : 2} sx={{ width: '100%', height: '100%', paddingBottom: '48px', paddingTop: '24px' }}>
-                <Grid  item xs={1} sx={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <Grid item xs={1} sx={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                     <Box sx={{
                         borderRadius: '17px',
                         overflow: 'hidden',
@@ -70,8 +73,22 @@ export const About: React.FC<{ node: NodeInfo | null }> = ({ node }) => {
                     </Box>
                 </Grid>
                 <Grid item xs={1} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                    <Box sx={{ display: 'grid', justifyContent: 'center', alignItems: 'center', width: '100%'}}>
-                        <Typography variant="body1" sx={{ width: '80%', padding: '48px', fontFamily: 'Roboto' }}>{about.props.content || ''}</Typography>
+                    <Box sx={{ display: 'grid', justifyContent: 'center', alignItems: 'center', width: '100%' }}>
+                        <div style={{ paddingTop: '48px', padding: '48px 12px', fontFamily: 'Roboto' }}>
+                            {paragraphs.map((paragraph, index) => (
+                                <Typography
+                                    key={index}
+                                    variant="body1"
+                                    sx={{
+                                        width: '100%',
+                                        marginBottom: '16px',
+                                        wordWrap: 'break-word',
+                                    }}
+                                >
+                                    {paragraph}
+                                </Typography>
+                            ))}
+                        </div>
                         <Box sx={{ display: 'flex', width: '100%', alignItems: 'center', justifyContent: 'center' }}>
                             {items.map(x => {
                                 return <Button sx={{ ...ButtonStyle }} onClick={() => handleOpen(x.src)}>

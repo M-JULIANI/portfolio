@@ -70,9 +70,11 @@ export const ProjectPage: React.FC<{ node: NodeInfo | null }> = ({ node }) => {
     }, [threeCols, twoCols, oneCol, projectNode]);
 
     if (projectNode === undefined) return null;
+
+    const paragraphs = (projectNode.props.content || '').split(/(?:\n\n|  )/);
     return (
         <Layout node={node}>
-            <Grid  container={true} sx={{ display: 'grid', justifyItems: 'center', justifyContent: 'center', alignItems: 'center'}}>
+            <Grid container={true} sx={{ display: 'grid', justifyItems: 'center', justifyContent: 'center', alignItems: 'center' }}>
                 <Typography
                     variant="h4"
                     sx={{
@@ -83,45 +85,55 @@ export const ProjectPage: React.FC<{ node: NodeInfo | null }> = ({ node }) => {
                 </Typography>
                 {projectNode.props?.links?.length &&
 
-                <Grid sx={{display: 'flex'}}>
-                   { projectNode.props.links.map(link => {
-                        return (<Button sx={{ ...ButtonStyle, 
-                            display: 'grid', 
-                            alignContent: 'center',
-                            alignItems: 'center', 
-                            margin: '8px',
-                            borderColor: 'black',
-                            border: '2px',
-                            borderRadius: '8px',
-                            borderStyle: 'solid',
-                            '&:hover':{
-                                color: 'white',
-                                backgroundColor: '#d4d4d4',
-                                borderColor: '#d4d4d4',
-                            }
-                         }} 
-                        onClick={() => window.open(`${link.value}`, '_blank')}>
-                            <Typography
-                                sx={{
-                                    maxWidth: TEXT_MAX_WIDTH,
-                                    fontSize: '12px',
-                                    fontFamily: 'Space Mono',
-                                    fontWeight: 'bold'
-                                }}>
-                                {link.key}
-                            </Typography>
-                        </Button>)
-                    })}
+                    <Grid sx={{ display: 'flex' }}>
+                        {projectNode.props.links.map(link => {
+                            return (<Button sx={{
+                                ...ButtonStyle,
+                                display: 'grid',
+                                alignContent: 'center',
+                                alignItems: 'center',
+                                margin: '8px',
+                                borderColor: 'black',
+                                border: '2px',
+                                borderRadius: '8px',
+                                borderStyle: 'solid',
+                                '&:hover': {
+                                    color: 'white',
+                                    backgroundColor: '#d4d4d4',
+                                    borderColor: '#d4d4d4',
+                                }
+                            }}
+                                onClick={() => window.open(`${link.value}`, '_blank')}>
+                                <Typography
+                                    sx={{
+                                        maxWidth: TEXT_MAX_WIDTH,
+                                        fontSize: '12px',
+                                        fontFamily: 'Space Mono',
+                                        fontWeight: 'bold'
+                                    }}>
+                                    {link.key}
+                                </Typography>
+                            </Button>)
+                        })}
                     </Grid>
                 }
-                <Typography
-                    variant="body1"
-                    sx={{
-                        maxWidth: TEXT_MAX_WIDTH,
-                        fontFamily: 'Roboto', paddingBottom: '86px'
-                    }}>
-                    {projectNode.props.content}
-                </Typography>
+                <div style={{ padding: '48px 12px', fontFamily: 'Roboto', justifyContent: 'center', justifyItems: 'center'}}>
+                    {paragraphs.map((paragraph, index) => (
+                        <Typography
+                            key={index}
+                            variant="body1"
+                            sx={{
+                                width: '100%',
+                                maxWidth: TEXT_MAX_WIDTH,
+                                marginBottom: '16px',
+                                wordWrap: 'break-word',
+                                justifyContent: 'center',
+                            }}
+                        >
+                            {paragraph}
+                        </Typography>
+                    ))}
+                </div>
                 <Grid container={true} columns={calculatedColumns} sx={{ display: 'flex', alignItems: 'center', justifyItems: 'center', justifyContent: 'center', width: '100%' }}>
                     {projectNode.children?.map((child) => <ProjectItem
                         key={child.id}

@@ -6,6 +6,6 @@
 - [x] add GA
 - [x] deploy
 - [x] try fixing scrolling weirdness
-- [ ] write some nice words in the about me section
+- [x] write some nice words in the about me section
 - [x] fix client router issue
 - [ ] fix image modal
