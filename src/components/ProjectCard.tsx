@@ -110,7 +110,7 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
                   width: '100%',
                   height: '100%'
                 }}>
-                  <Button sx={{ ...ButtonStyle, width: '100%', height: '100%', display: 'grid', justifyContent: 'center', alignItems: 'center' }} onClick={() => navigate(`/portfolio/${id}`)}>
+                  <Button sx={{ ...ButtonStyle, width: '100%', height: '100%', display: 'grid', justifyContent: 'center', alignItems: 'center' }} onClick={() => navigate(`/${id}`)}>
                     <Typography
                       color={'white'}
                       sx={{
