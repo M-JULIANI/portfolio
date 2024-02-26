@@ -61,9 +61,9 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
       <Box
         onMouseOver={() => singleColumn ? null : setMouseOver(true)}
         onMouseOut={() => singleColumn ? mouseOver ? setMouseOver(false) : null : setMouseOver(false)}
-        onClick={() => singleColumn ? clickSingleColumn() : navigate(`/portfolio/${id}`)}
+        onClick={() => singleColumn ? clickSingleColumn() : navigate(`/${id}`)}
         sx={{
-          height: distance,
+          height: singleColumn? 400 : distance,
           maxHeight: 400,
           minHeight: 100,
           width: '100%',

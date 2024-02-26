@@ -22,7 +22,7 @@ const initMenuItems = (navigate: (path: string) => void, handleClose?: () => voi
     {
         label: 'About',
         action: () => {
-            navigate('/portfolio/about');
+            navigate('/about');
         },
         type: 'page'
     },
@@ -83,7 +83,7 @@ export const Layout: React.FC<{ node: NodeInfo | null, children: JSX.Element, of
                         alignContent: 'center',
                         alignItems: 'center'
                     }}>
-                        <Button sx={{...ButtonStyle, width: 150, height: 150}} onClick={()=> navigate('/portfolio/')}>
+                        <Button sx={{...ButtonStyle, width: 150, height: 150}} onClick={()=> navigate('/')}>
                         <LayoutImage node={node} width={100} isThumbnail={true}/>
                         </Button>
 
