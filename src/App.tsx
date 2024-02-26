@@ -31,9 +31,9 @@ function App() {
   return (
     <Router basename='/portfolio'>
       <Routes>
-        <Route path={`/portfolio/about`} element={<About node={data} />} />
-        <Route path={`/portfolio`} element={<Home node={data} />} />
-        <Route path={`/portfolio/:id`} element={<ProjectPage node={data} />} />
+        <Route path={`/about`} element={<About node={data} />} />
+        <Route path={`/`} element={<Home node={data} />} />
+        <Route path={`/:id`} element={<ProjectPage node={data} />} />
       </Routes>
     </Router>
   );
