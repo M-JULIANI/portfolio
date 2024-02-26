@@ -3,6 +3,10 @@ export const DrawerElementsStyle = {
     fontSize: 16
 }
 
+export const CardColor = '#fafafa';
+
+export const DarkGrayCard = '#4a4a4a';
+
 export const ButtonStyle = {
     color: 'black',
     '&:hover': {

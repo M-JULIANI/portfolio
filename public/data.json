@@ -6,104 +6,6 @@
     },
     "children": [
         {
-            "id": "proceduralmassing",
-            "type": "project",
-            "props": {
-                "name": "Procedural Massing",
-                "tags": [
-                    "c#",
-                    "hypar"
-                ],
-                "content": "Procedural massing functions chained together: 1) One to generate orthagonal massings of variable heights, 2) Another to place a unit mix inside of floor plates within a building.",
-                "links": [
-                    {
-                        "key": "Hypar Workflow",
-                        "value": "https://hypar.io/workflows/0c29a4f5-4e8e-4f55-8101-14eafb8a2c8e"
-                    },
-                    {
-                        "key": "Procedural Mass repo",
-                        "value": "https://github.com/M-JULIANI/MJ_ProceduralMass"
-                    },
-                    {
-                        "key": "Procedural apartments repo",
-                        "value": "https://github.com/M-JULIANI/MJ_ProceduralApartmentPlacer"
-                    }
-
-                ],
-                "thumbnail": "data/images/proceduralmassing-02.png"
-            },
-            "children": [
-                {
-                    "id": "proceduralmassing-01",
-                    "type": "image",
-                    "props": {
-                        "src": "data/images/proceduralmassing-01.jpeg"
-                    },
-                    "children": []
-                },
-                {
-                    "id": "proceduralmassing-02",
-                    "type": "image",
-                    "props": {
-                        "src": "data/images/proceduralmassing-02.png"
-                    },
-                    "children": []
-                },
-                {
-                    "id": "proceduralmassing-03",
-                    "type": "image",
-                    "props": {
-                        "src": "data/images/proceduralmassing-03.png"
-                    },
-                    "children": []
-                }
-            ]
-        },
-        {
-            "id": "springplan",
-            "type": "project",
-            "props": {
-                "name": "Spring Plan",
-                "tags": [
-                    "c#",
-                    "bartlett",
-                    "gh3d"
-                ],
-                "links": [{
-                    "key": "Presentation",
-                    "value": "assets/springplan-presentation.pdf"
-                }],
-                "content": "This project was an exploration into using spring systems to dynamically model floor plan elements relative to their adjacency multipliers. Hooke's Law of an ideal spring was used to do so.",
-                "thumbnail": "data/thumbnails/springplan-thumbnail.jpg"
-            },
-            "children": [
-                {
-                    "src": "springplan-01",
-                    "type": "image",
-                    "props": {
-                        "src": "data/images/springplan-01.gif"
-                    },
-                    "children": []
-                },
-                {
-                    "src": "springplan-02",
-                    "type": "image",
-                    "props": {
-                        "src": "data/images/springplan-02.jpeg"
-                    },
-                    "children": []
-                },
-                {
-                    "src": "springplan-03",
-                    "type": "image",
-                    "props": {
-                        "src": "data/images/springplan-03.jpg"
-                    }
-                }
-                   
-            ]
-        },
-        {
             "id": "treeviewer",
             "type": "project",
             "props": {
@@ -123,7 +25,7 @@
             },
             "children": [
                 {
-                    "id": "treeviewer-image",
+                    "id": "treeviewer-01",
                     "type": "image",
                     "props": {
                         "src": "data/images/treeviewer-01.png"
@@ -131,64 +33,10 @@
                     "children": []
                 },
                 {
-                    "id": "treeviewer-image",
+                    "id": "treeviewer-02",
                     "type": "image",
                     "props": {
                         "src": "data/images/treeviewer-02.png"
-                    },
-                    "children": []
-                }
-            ]
-        },
-        {
-            "id": "scaffoldcity",
-            "type": "project",
-            "props": {
-                "name": "Scaffold City",
-                "tags": [
-                    "bartlett",
-                    "c#",
-                    "unity"
-                ],
-                "content": "This project was an exploration into automating a responsive 'fleet' of elements into following high level commands. The scenario is that you as the player run a scaffolding company and have high level control over what projects in the city to pursue at any given time. However you are constrained by the fact that jobs take time, and the size of your fleet is limited. Thus the game is about opportunity cost, and about having your fleet pursue the 'right' targets.",
-                "links": [
-                    {
-                        "key": "Presentation",
-                        "value": "assets/scaffoldcity-presentation.pdf"
-                    }
-                ],
-                "thumbnail": "data/thumbnails/scaffoldcity-thumbnail.png"
-            },
-            "children": [
-                {
-                    "src": "scaffoldcity-01.gif",
-                    "type": "image",
-                    "props": {
-                        "src": "data/images/scaffoldcity-01.gif"
-                    },
-                    "children": []
-                },
-                {
-                    "id": "scaffoldcity-02.gif",
-                    "type": "image",
-                    "props": {
-                        "src": "data/images/scaffoldcity-02.gif"
-                    },
-                    "children": []
-                },
-                {
-                    "id": "scaffoldcity-03",
-                    "type": "embed",
-                    "props": {
-                        "src": "https://www.youtube.com/embed/183zPI-0PjM"
-                    },
-                    "children": []
-                },
-                {
-                    "id": "scaffoldcity-04",
-                    "type": "embed",
-                    "props": {
-                        "src": "https://www.youtube.com/embed/2qwiaRBkBDM"
                     },
                     "children": []
                 }
@@ -298,6 +146,258 @@
                     "type": "image",
                     "props": {
                         "src": "data/images/skyline-0022.png"
+                    },
+                    "children": []
+                }
+            ]
+        },
+        {
+            "id": "proceduralmassing",
+            "type": "project",
+            "props": {
+                "name": "Procedural Massing",
+                "tags": [
+                    "c#",
+                    "hypar"
+                ],
+                "content": "Procedural massing functions chained together: 1) One to generate orthagonal massings of variable heights, 2) Another to place a unit mix inside of floor plates within a building.",
+                "links": [
+                    {
+                        "key": "Hypar Workflow",
+                        "value": "https://hypar.io/workflows/0c29a4f5-4e8e-4f55-8101-14eafb8a2c8e"
+                    },
+                    {
+                        "key": "Procedural Mass repo",
+                        "value": "https://github.com/M-JULIANI/MJ_ProceduralMass"
+                    },
+                    {
+                        "key": "Procedural apartments repo",
+                        "value": "https://github.com/M-JULIANI/MJ_ProceduralApartmentPlacer"
+                    }
+                ],
+                "thumbnail": "data/images/proceduralmassing-02.png"
+            },
+            "children": [
+                {
+                    "id": "proceduralmassing-01",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/proceduralmassing-01.jpeg"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "proceduralmassing-02",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/proceduralmassing-02.png"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "proceduralmassing-03",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/proceduralmassing-03.png"
+                    },
+                    "children": []
+                }
+            ]
+        },
+        {
+            "id": "springplan",
+            "type": "project",
+            "props": {
+                "name": "Spring Plan",
+                "tags": [
+                    "c#",
+                    "bartlett",
+                    "gh3d"
+                ],
+                "links": [
+                    {
+                        "key": "Presentation",
+                        "value": "assets/springplan-presentation.pdf"
+                    }
+                ],
+                "content": "This project was an exploration into using spring systems to dynamically model floor plan elements relative to their adjacency multipliers. Hooke's Law of an ideal spring was used to do so.",
+                "thumbnail": "data/thumbnails/springplan-thumbnail.jpg"
+            },
+            "children": [
+                {
+                    "src": "springplan-01",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/springplan-01.gif"
+                    },
+                    "children": []
+                },
+                {
+                    "src": "springplan-02",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/springplan-02.jpeg"
+                    },
+                    "children": []
+                },
+                {
+                    "src": "springplan-03",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/springplan-03.jpg"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "gridlocked",
+            "type": "project",
+            "props": {
+                "name": "Grid-locked",
+                "tags": [
+                    "unity",
+                    "c#",
+                    "ios"
+                ],
+                "content": "Download from AppStore in link above if you're on iPhone or iPad. I set out to build a simple 2.5D game for iOS. During the covid lockdowns, I decided it would be fun to learn the pipeline to take a built game from Unity, through to publishing it in the AppStore. I had fun implementing the simply dynamics I had in mind, including the animations, the level progression, and even got around to implementing basic ads. The initial implementation was choking in terms of performance, so I ended up buying Game Programming Patterns, where I picked up a few design patterns to keep performance in check.",
+                "thumbnail": "data/thumbnails/gridlocked-thumb.png",
+                "links": [
+                    {
+                        "key": "AppStore link",
+                        "value": "https://apps.apple.com/gb/app/grid-locked/id1622273128"
+                    }
+                ]
+            },
+            "children": [
+                {
+                    "id": "gridlocked-01",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/gridlocked-01.png"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "gridlocked-02",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/gridlocked-02.png"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "gridlocked-03",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/gridlocked-03.png"
+                    },
+                    "children": []
+                }
+            ]
+        },
+        {
+            "id": "scaffoldcity",
+            "type": "project",
+            "props": {
+                "name": "Scaffold City",
+                "tags": [
+                    "bartlett",
+                    "c#",
+                    "unity"
+                ],
+                "content": "This project was an exploration into automating a responsive 'fleet' of elements into following high level commands. The scenario is that you as the player run a scaffolding company and have high level control over what projects in the city to pursue at any given time. However you are constrained by the fact that jobs take time, and the size of your fleet is limited. Thus the game is about opportunity cost, and about having your fleet pursue the 'right' targets.",
+                "links": [
+                    {
+                        "key": "Presentation",
+                        "value": "assets/scaffoldcity-presentation.pdf"
+                    }
+                ],
+                "thumbnail": "data/thumbnails/scaffoldcity-thumbnail.png"
+            },
+            "children": [
+                {
+                    "src": "scaffoldcity-01.gif",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/scaffoldcity-01.gif"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "scaffoldcity-02.gif",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/scaffoldcity-02.gif"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "scaffoldcity-03",
+                    "type": "embed",
+                    "props": {
+                        "src": "https://www.youtube.com/embed/183zPI-0PjM"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "scaffoldcity-04",
+                    "type": "embed",
+                    "props": {
+                        "src": "https://www.youtube.com/embed/2qwiaRBkBDM"
+                    },
+                    "children": []
+                }
+            ]
+        },
+        {
+            "id": "abstractimagelearning",
+            "type": "project",
+            "props": {
+                "name": "Abstract Image Learning",
+                "tags": [
+                    "python",
+                    "pix2pix",
+                    "pytorch"
+                ],
+                "content": "Generative Adversarial Networks (GANs) are well known to map distributions of image datasets that have similar underlying structure, but little investigation has gone into the question of how well such frameworks perform when trained on abstract-encoded data. This thesis seeks to answer how well such a framework performs when trained on ‘abstract-encoded’ data as compared to the standard ‘shared image structure’ use case. We predict that because of the learned loss and thus learned mapping capability of conditional GANS(cGANs), abstract-encoded-trained models will produce highly workable results. To test this, we benchmark the various metric errors across training (network and user defined) fora standard implementation and compare them with that of several abstract-encoded implementations. We then prove that the abstract-encoded data performs reasonably well and discuss why that is. We then proceed to describe why abstract representations ofimage structures might be useful in general. This research hopes to raise interest and encourage further investigation into the pattern detection capabilities of deep learning models when presented with abstract-encoded information.",
+                "thumbnail": "data/thumbnails/cganexperiments.jpeg",
+                "links": [
+                    {
+                        "key": "Paper",
+                        "value": "https://www.academia.edu/45579700/Abstract_Image_Learning"
+                    }
+                ]
+            },
+            "children": [
+                {
+                    "id": "abstractlearning-01",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/abstractlearning-01.gif"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "abstractlearning-02",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/abstractlearning-02.gif"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "abstractlearning-03",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/abstractlearning-03.jpeg"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "abstractlearning-04",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/abstractlearning-04.jpeg"
                     },
                     "children": []
                 }
@@ -486,104 +586,6 @@
             ]
         },
         {
-            "id": "gridlocked",
-            "type": "project",
-            "props": {
-                "name": "Grid-locked",
-                "tags": [
-                    "unity",
-                    "c#",
-                    "ios"
-                ],
-                "content": "Download from AppStore in link above if you're on iPhone or iPad. I set out to build a simple 2.5D game for iOS. During the covid lockdowns, I decided it would be fun to learn the pipeline to take a built game from Unity, through to publishing it in the AppStore. I had fun implementing the simply dynamics I had in mind, including the animations, the level progression, and even got around to implementing basic ads. The initial implementation was choking in terms of performance, so I ended up buying Game Programming Patterns, where I picked up a few design patterns to keep performance in check.",
-                "thumbnail": "data/thumbnails/gridlocked-thumb.png",
-                "links": [{
-                    "key": "AppStore link",
-                    "value": "https://apps.apple.com/gb/app/grid-locked/id1622273128"
-                }]
-            },
-            "children": [
-                {
-                    "id": "gridlocked-01",
-                    "type": "image",
-                    "props": {
-                        "src": "data/images/gridlocked-01.png"
-                    },
-                    "children": []
-                },
-                {
-                    "id": "gridlocked-02",
-                    "type": "image",
-                    "props": {
-                        "src": "data/images/gridlocked-02.png"
-                    },
-                    "children": []
-                },
-                {
-                    "id": "gridlocked-03",
-                    "type": "image",
-                    "props": {
-                        "src": "data/images/gridlocked-03.png"
-                    },
-                    "children": []
-                }
-            ]
-        },
-        {
-            "id": "abstractimagelearning",
-            "type": "project",
-            "props": {
-                "name": "Abstract Image Learning",
-                "tags": [
-                    "python",
-                    "pix2pix",
-                    "pytorch"
-                ],
-                "content": "Generative Adversarial Networks (GANs) are well known to map distributions of image datasets that have similar underlying structure, but little investigation has gone into the question of how well such frameworks perform when trained on abstract-encoded data. This thesis seeks to answer how well such a framework performs when trained on ‘abstract-encoded’ data as compared to the standard ‘shared image structure’ use case. We predict that because of the learned loss and thus learned mapping capability of conditional GANS(cGANs), abstract-encoded-trained models will produce highly workable results. To test this, we benchmark the various metric errors across training (network and user defined) fora standard implementation and compare them with that of several abstract-encoded implementations. We then prove that the abstract-encoded data performs reasonably well and discuss why that is. We then proceed to describe why abstract representations ofimage structures might be useful in general. This research hopes to raise interest and encourage further investigation into the pattern detection capabilities of deep learning models when presented with abstract-encoded information.",
-                "thumbnail": "data/thumbnails/cganexperiments.jpeg",
-                "links": [
-                    {
-                        "key": "Paper",
-                        "value": "https://www.academia.edu/45579700/Abstract_Image_Learning"
-                    }
-                ]
-            },
-            "children": [
-                {
-                    "id": "abstractlearning-01",
-                    "type": "image",
-                    "props": {
-                        "src": "data/images/abstractlearning-01.gif"
-                    },
-                    "children": []
-                },
-                {
-                    "id": "abstractlearning-02",
-                    "type": "image",
-                    "props": {
-                        "src": "data/images/abstractlearning-02.gif"
-                    },
-                    "children": []
-                },
-                {
-                    "id": "abstractlearning-03",
-                    "type": "image",
-                    "props": {
-                        "src": "data/images/abstractlearning-03.jpeg"
-                    },
-                    "children": []
-                },
-                {
-                    "id": "abstractlearning-04",
-                    "type": "image",
-                    "props": {
-                        "src": "data/images/abstractlearning-04.jpeg"
-                    },
-                    "children": []
-                }
-            ]
-        },
-        {
             "id": "downunder",
             "type": "project",
             "props": {
@@ -594,7 +596,7 @@
                 ],
                 "content": "Competition for urban HQ. Parametric tooling and automation was used to arrive at facade expression as well as building's response to urban context. Team members: Marco Juliani, Matt Boker, David Brown, Alex Zee.",
                 "thumbnail": "data/thumbnails/downunder.jpeg"
-            },
+            }, 
             "children": [
                 {
                     "id": "downunder-01",

@@ -5,6 +5,7 @@
 - [x] navigation in project page
 - [x] add GA
 - [x] deploy
+- [x] try fixing scrolling weirdness
 - [ ] write some nice words in the about me section
 - [ ] fix client router issue
 - [ ] fix image modal

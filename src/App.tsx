@@ -29,7 +29,7 @@ function App() {
 
 
   return (
-    <Router>
+    <Router basename='/portfolio'>
       <Routes>
         <Route path={`/portfolio/about`} element={<About node={data} />} />
         <Route path={`/portfolio`} element={<Home node={data} />} />
