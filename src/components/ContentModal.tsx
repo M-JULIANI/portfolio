@@ -2,23 +2,26 @@ import { Box, Dialog, IconButton } from "@mui/material";
 import React from 'react';
 import { NodeInfo } from "../NodeInfo";
 import CloseIcon from '@mui/icons-material/Close';
+import {WindowState} from '../Home';
 
 type ContentModalProps = {
     selectedNode: NodeInfo;
     setSelectedNode: React.Dispatch<React.SetStateAction<NodeInfo | null>>;
+    windowState: WindowState;
 }
 
-export const ContentModal: React.FC<ContentModalProps> = ({selectedNode, setSelectedNode}) => {
+export const ContentModal: React.FC<ContentModalProps> = ({selectedNode, setSelectedNode, windowState}) => {
     const nodeType = selectedNode.type;
-    console.log({nodeType})
     return (
         <Dialog
             sx={{
-                width: '100%', height: '100%', maxWidth: '100vw',
+                width: '100%', height: 'auto', maxWidth: '100vw',
                 display: 'grid',
-                backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0  0  4  4'%3E%3Cpath d='M-1,1 l2,-2 M0,4 l4,-4 M3,5 l2,-2' style='stroke:gray; stroke-width:1'/%3E%3C/svg%3E")`,
-                backgroundSize: '6px  6px',
+                backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0  0  4  4'%3E%3Cpath d='M-1,1 l2,-2 M0,4 l4,-4 M3,5 l2,-2' style='stroke:gray; stroke-width:1'/%3E%3C/svg%3E")`,
+                backgroundSize: '8px 8px',
                 backgroundRepeat: 'repeat',
+                // alignItems: 'center',
+                // justifyContent: 'center',
             }}
             open={selectedNode != null}
             onClose={() => setSelectedNode(null)}
@@ -26,14 +29,14 @@ export const ContentModal: React.FC<ContentModalProps> = ({selectedNode, setSele
         >
             <CustomDialogTitle onClose={() => setSelectedNode(null)} />
             {nodeType === 'image' && <img width={'100%'} height={'auto'} src={selectedNode?.props?.src || ''} />}
-            {nodeType === 'embed' && <iframe width={'100%'} height={'auto'} src={selectedNode?.props?.src || ''} allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"/>}
+            {nodeType === 'embed' && <iframe width={windowState.width * 0.75} height={'auto'} src={selectedNode?.props?.src || ''} allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"/>}
             {nodeType === 'video' && <video src={selectedNode?.props?.src || ''} autoPlay={true} loop={true} muted={true} width={'100%'} height={'auto'}/>}
         </Dialog>
     )
 };
 
 const CustomDialogTitle = ({ onClose }) => (
-    <Box style={{ display: 'flex', justifyContent: 'end', alignItems: 'center' }}>
+    <Box style={{  position: 'absolute', top: 0, right: 0 }}>
         {onClose ? (
             <IconButton aria-label="close" onClick={onClose}>
                 <CloseIcon />

@@ -147,7 +147,7 @@ export const ProjectPage: React.FC<{ node: NodeInfo | null }> = ({ node }) => {
                         setSelectedNode={setSelectedNode} />)}
                 </Grid>
                 {selectedNode &&
-                    <ContentModal selectedNode={selectedNode} setSelectedNode={setSelectedNode} />
+                    <ContentModal selectedNode={selectedNode} setSelectedNode={setSelectedNode} windowState={windowState} />
                 }
             </Grid>
             {/* </Grid> */}

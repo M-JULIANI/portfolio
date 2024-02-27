@@ -11,7 +11,7 @@ export interface LayoutImageProps {
 export const LayoutImage: React.FC<LayoutImageProps> = (props: LayoutImageProps) => {
     const { node, width, isThumbnail} = props;
 
-    const src = React.useMemo(() => { return isThumbnail ? node.props?.thumbnail || '' : node.props?.src || '' }, [node, isThumbnail])
+    const src = React.useMemo(() => { return isThumbnail ? node.props?.thumbnail || '' : node.props?.preview ? node.props?.preview || '' : node.props?.src || '' }, [node, isThumbnail])
 
     return (
             <div

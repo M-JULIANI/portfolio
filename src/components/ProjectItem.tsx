@@ -1,10 +1,11 @@
-import { Box, Grid } from '@mui/material';
+import { Box, Button, Grid, Typography } from '@mui/material';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { NodeInfo } from '../NodeInfo';
 import { LayoutImage } from './LayoutImage';
 import { WindowState } from '../Home';
 import { LayoutIFrame } from './LayoutIFrame';
 import { LayoutVideo } from './LayoutVideo';
+import { ButtonStyle, DarkGrayCard } from '../styles';
 
 const DEFAULT_WIDTH = 600;
 const ProjectItem: React.FC<{ node: NodeInfo, windowState: WindowState, navigate: (path: string) => void, singleColumn: Boolean, setSelectedNode: React.Dispatch<React.SetStateAction<NodeInfo | null>> }> = ({ node, windowState, singleColumn, setSelectedNode }) => {
@@ -33,9 +34,9 @@ const ProjectItem: React.FC<{ node: NodeInfo, windowState: WindowState, navigate
 
     useEffect(() => {
         if (mouseHover && singleColumn) {
-          gridRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            gridRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
-      }, [mouseHover, singleColumn])
+    }, [mouseHover, singleColumn])
 
 
     return (
@@ -44,7 +45,8 @@ const ProjectItem: React.FC<{ node: NodeInfo, windowState: WindowState, navigate
             <Box
                 onMouseLeave={() => {
                     // setModalOn(false); 
-                    setMouseHover(false)}}
+                    setMouseHover(false)
+                }}
                 onClick={() => singleColumn ? setMouseHover(true) : setSelectedNode(node)}
                 sx={{
                     width: singleColumn ? `${Math.max(distance * 1.5, 175)}px` : distance,
@@ -61,7 +63,7 @@ const ProjectItem: React.FC<{ node: NodeInfo, windowState: WindowState, navigate
             >
                 <Box
                     sx={{
-                        width: singleColumn ? 400 : '100%',
+                        width: '100%',
                         height: '100%',
                         display: 'grid',
                         alignItems: 'center',
@@ -72,14 +74,38 @@ const ProjectItem: React.FC<{ node: NodeInfo, windowState: WindowState, navigate
                     }}
                 >
                     {src && src !== '' && type === 'image' ? (
-                        <LayoutImage node={node} width={singleColumn? 400 : DEFAULT_WIDTH} isThumbnail={false} />
+                        <LayoutImage node={node} width={singleColumn ? 400 : DEFAULT_WIDTH} isThumbnail={false} />
                     ) : null}
                     {type && type === 'embed' ? (
-                        <LayoutIFrame node={node} width={singleColumn? 400 : DEFAULT_WIDTH} />
+                        <LayoutIFrame node={node} width={singleColumn ? 400 : DEFAULT_WIDTH} />
                     ) : null}
                     {type && type === 'video' ? (
-                        <LayoutVideo node={node} width={singleColumn? 400 : DEFAULT_WIDTH} />
+                        <LayoutVideo node={node} width={singleColumn ? 400 : DEFAULT_WIDTH} />
                     ) : null}
+                    {mouseHover && singleColumn ?
+                        <Box
+                            sx={{
+                                position: 'absolute',
+                                top: 0,
+                                width: '100%',
+                                background: DarkGrayCard,
+                                display: 'grid'
+                            }}
+                        >
+                            <Button sx={{ ...ButtonStyle, height: '100%', display: 'grid', justifyContent: 'center' }} onClick={() => setSelectedNode(node)}>
+                                <Typography
+                                    color={'white'}
+                                    sx={{
+                                        fontFamily: 'Space Mono',
+                                        fontSize: 16,
+                                    }}
+                                    data-testid={'project-name'}
+                                >
+                                    Open
+                                </Typography>
+                            </Button>
+                        </Box>
+                        : null}
                 </Box>
             </Box>
         </Grid>
