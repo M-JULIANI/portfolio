@@ -359,7 +359,7 @@
                     "pix2pix",
                     "pytorch"
                 ],
-                "content": "Generative Adversarial Networks (GANs) are well known to map distributions of image datasets that have similar underlying structure, but little investigation has gone into the question of how well such frameworks perform when trained on abstract-encoded data. This thesis seeks to answer how well such a framework performs when trained on ‘abstract-encoded’ data as compared to the standard ‘shared image structure’ use case. We predict that because of the learned loss and thus learned mapping capability of conditional GANS(cGANs), abstract-encoded-trained models will produce highly workable results. To test this, we benchmark the various metric errors across training (network and user defined) fora standard implementation and compare them with that of several abstract-encoded implementations. We then prove that the abstract-encoded data performs reasonably well and discuss why that is. We then proceed to describe why abstract representations ofimage structures might be useful in general. This research hopes to raise interest and encourage further investigation into the pattern detection capabilities of deep learning models when presented with abstract-encoded information.",
+                "content": "Generative Adversarial Networks (GANs) are well known to map distributions of image datasets that have similar underlying structure, but little investigation has gone into the question of how well such frameworks perform when trained on abstract-encoded data.\n\n This thesis seeks to answer how well such a framework performs when trained on ‘abstract-encoded’ data as compared to the standard ‘shared image structure’ use case. We predict that because of the learned loss and thus learned mapping capability of conditional GANS(cGANs), abstract-encoded-trained models will produce highly workable results.\n\n To test this, we benchmark the various metric errors across training (network and user defined) fora standard implementation and compare them with that of several abstract-encoded implementations. We then prove that the abstract-encoded data performs reasonably well and discuss why that is. We then proceed to describe why abstract representations ofimage structures might be useful in general.\n\nThis research hopes to raise interest and encourage further investigation into the pattern detection capabilities of deep learning models when presented with abstract-encoded information.",
                 "thumbnail": "data/thumbnails/cganexperiments.jpeg",
                 "links": [
                     {
@@ -596,7 +596,7 @@
                 ],
                 "content": "Competition for urban HQ. Parametric tooling and automation was used to arrive at facade expression as well as building's response to urban context. Team members: Marco Juliani, Matt Boker, David Brown, Alex Zee.",
                 "thumbnail": "data/thumbnails/downunder.jpeg"
-            }, 
+            },
             "children": [
                 {
                     "id": "downunder-01",
@@ -797,7 +797,7 @@
             "type": "image",
             "props": {
                 "src": "data/images/mj-portrait.jpg",
-                "content": "I'm an Ecuadorian / American architect turned software developer. While working 5 years as an architect at international firms based in SF and NYC, I developed technical skills in visual and text based programming. This led to me taking 1 year off to pursue a Master's degree at UCL Bartlett, where I was able to take a deeper dive into the world of programming and its applications to architecture and design. Since then I've worked as a full-time software developer at architecture practices as well as design + construction startups focusing on building design automation algorithms and interactive web applications."
+                "content": "I'm an Ecuadorian / American architect turned software developer. While working 5 years as an architect at international firms based in SF and NYC, I developed technical skills in visual and text based programming.\n\n This led to me taking 1 year off to pursue a Master's degree at UCL Bartlett, where I was able to take a deeper dive into programming and its applications to architecture and design. Since then I've worked as a full-time software developer at architecture practices as well as startups focusing on building design automation algorithms and interactive web applications. \n\n In my free time I can be found playing & watching soccer (Arsenal probably), riding bicycles, reading books, hanging out with friends, or teaching myself something new about web development."
             },
             "children": []
         }
