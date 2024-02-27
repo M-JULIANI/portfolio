@@ -8,4 +8,4 @@
 - [x] try fixing scrolling weirdness
 - [x] write some nice words in the about me section
 - [x] fix client router issue
-- [ ] fix image modal
+- [x] fix image modal

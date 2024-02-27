@@ -20,8 +20,6 @@ export const ContentModal: React.FC<ContentModalProps> = ({selectedNode, setSele
                 backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0  0  4  4'%3E%3Cpath d='M-1,1 l2,-2 M0,4 l4,-4 M3,5 l2,-2' style='stroke:gray; stroke-width:1'/%3E%3C/svg%3E")`,
                 backgroundSize: '8px 8px',
                 backgroundRepeat: 'repeat',
-                // alignItems: 'center',
-                // justifyContent: 'center',
             }}
             open={selectedNode != null}
             onClose={() => setSelectedNode(null)}
