@@ -13,7 +13,7 @@ export const LayoutVideo: React.FC<LayoutVideoProps> = (props: LayoutVideoProps)
     const src = React.useMemo(() => { return node.props?.src || '' }, [node])
 
     return (
-            <video src={src} autoPlay={true} loop={true} muted={true} width={width} height={width}>
+            <video src={src} autoPlay={true} loop={true} muted={true} width={'auto'} height={width}>
             </video>
     )
 }

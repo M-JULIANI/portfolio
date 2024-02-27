@@ -1,4 +1,4 @@
-import { Button, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
+import { Button, Dialog, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { NodeInfo } from "./NodeInfo";
 import { useNavigate, useParams } from 'react-router-dom';
@@ -6,6 +6,7 @@ import { Layout } from "./Layout";
 import ProjectItem from "./components/ProjectItem";
 import { ButtonStyle } from "./styles";
 import { WindowState } from "./Home";
+import { ContentModal } from "./components/ContentModal";
 
 function debounce(func: any) {
     var timer: any;
@@ -34,6 +35,8 @@ export const ProjectPage: React.FC<{ node: NodeInfo | null }> = ({ node }) => {
         mouseX: 0,
         mouseY: 0,
     });
+
+    const [selectedNode, setSelectedNode] = useState<NodeInfo | null>(null);
 
 
     const handleResize = debounce(() => {
@@ -117,7 +120,7 @@ export const ProjectPage: React.FC<{ node: NodeInfo | null }> = ({ node }) => {
                         })}
                     </Grid>
                 }
-                <div style={{ padding: '48px 12px', fontFamily: 'Roboto', justifyContent: 'center', justifyItems: 'center'}}>
+                <div style={{ padding: '48px 12px', fontFamily: 'Roboto', justifyContent: 'center', justifyItems: 'center' }}>
                     {paragraphs.map((paragraph, index) => (
                         <Typography
                             key={index}
@@ -134,16 +137,20 @@ export const ProjectPage: React.FC<{ node: NodeInfo | null }> = ({ node }) => {
                         </Typography>
                     ))}
                 </div>
-                <Grid container={true} columns={calculatedColumns} sx={{ display: 'flex', alignItems: 'center', justifyItems: 'center', justifyContent: 'center', width: '100%' }}>
+                <Grid container={true} columns={calculatedColumns} sx={{ display: 'flex', alignItems: 'center', justifyItems: 'center', justifyContent: 'center', width: '100%', paddingBottom: '48px' }}>
                     {projectNode.children?.map((child) => <ProjectItem
                         key={child.id}
                         node={child}
                         windowState={windowState}
                         navigate={navigate}
-                        singleColumn={calculatedColumns === 1} />)}
+                        singleColumn={calculatedColumns === 1}
+                        setSelectedNode={setSelectedNode} />)}
                 </Grid>
+                {selectedNode &&
+                    <ContentModal selectedNode={selectedNode} setSelectedNode={setSelectedNode} />
+                }
             </Grid>
             {/* </Grid> */}
-        </Layout>
+        </Layout >
     );
 }

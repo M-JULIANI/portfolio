@@ -7,11 +7,10 @@ import { LayoutIFrame } from './LayoutIFrame';
 import { LayoutVideo } from './LayoutVideo';
 
 const DEFAULT_WIDTH = 600;
-const ProjectItem: React.FC<{ node: NodeInfo, windowState: WindowState, navigate: (path: string) => void, singleColumn: Boolean }> = ({ node, windowState, singleColumn }) => {
+const ProjectItem: React.FC<{ node: NodeInfo, windowState: WindowState, navigate: (path: string) => void, singleColumn: Boolean, setSelectedNode: React.Dispatch<React.SetStateAction<NodeInfo | null>> }> = ({ node, windowState, singleColumn, setSelectedNode }) => {
 
     const { type } = node;
     const { src } = node.props;
-    const [modalOn, setModalOn] = useState(false);
     const [mouseHover, setMouseHover] = useState(false);
     const { mouseX, mouseY } = windowState;
     const gridRef = useRef<HTMLDivElement | null>(null);
@@ -44,9 +43,9 @@ const ProjectItem: React.FC<{ node: NodeInfo, windowState: WindowState, navigate
             sx={{ display: 'flex', alignContent: 'center', justifyContent: 'center', alignItems: 'center' }}>
             <Box
                 onMouseLeave={() => {
-                    setModalOn(false); 
+                    // setModalOn(false); 
                     setMouseHover(false)}}
-                onClick={() => singleColumn ? setMouseHover(true) : setModalOn(true)}
+                onClick={() => singleColumn ? setMouseHover(true) : setSelectedNode(node)}
                 sx={{
                     width: singleColumn ? `${Math.max(distance * 1.5, 175)}px` : distance,
                     background: 'white',
