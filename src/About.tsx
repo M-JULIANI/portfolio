@@ -62,19 +62,21 @@ export const About: React.FC<{ node: NodeInfo | null }> = ({ node }) => {
     return (
         <Layout node={node}>
             <Grid container={true} columns={oneCol || twoCols ? 1 : 2} sx={{ width: '100%', height: '100%', paddingBottom: '48px', paddingTop: '24px' }}>
-                <Grid item xs={1} sx={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <Grid item xs={1} sx={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
                     <Box sx={{
                         borderRadius: '17px',
                         overflow: 'hidden',
                         transition: 'all 0.3s cubic-bezier(.25,.8,.25,1)',
-                        boxShadow: '-2px -1.5px  10px  0px #00000040'
+                        boxShadow: '-2px -1.5px  10px  0px #00000040',
+                        display: 'flex',
+                        alignItems: 'center'
                     }}>
                         <PortraitImage node={about} width={width} height={width} />
                     </Box>
                 </Grid>
-                <Grid item xs={1} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                    <Box sx={{ display: 'grid', justifyContent: 'center', alignItems: 'center', width: '100%' }}>
-                        <div style={{ paddingTop: '48px', padding: '48px 12px', fontFamily: 'Roboto' }}>
+                <Grid item xs={1} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                    <Box sx={{ display: 'grid', justifyContent: 'center', alignItems: 'center', width: '100%', padding: '28px' }}>
+                        <div style={{padding: '48px 12px', fontFamily: 'Roboto' }}>
                             {paragraphs.map((paragraph, index) => (
                                 <Typography
                                     key={index}

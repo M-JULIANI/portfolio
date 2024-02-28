@@ -9,3 +9,4 @@
 - [x] write some nice words in the about me section
 - [x] fix client router issue
 - [x] fix image modal
+- [x] spacing of about section
