@@ -7,7 +7,7 @@ import { ButtonStyle, DrawerElementsStyle } from "./styles";
 import { BasicMenu } from "./Menu";
 import { type } from "os";
 
-export const openCV = () => window.open('assets/Marco-Juliani-CV-Jan2024.pdf', '_blank');
+export const openCV = () => window.open('assets/Marco-Juliani-Resume-2024.pdf', '_blank');
 
 export const openPlanBee = () => window.open('https://www.food4rhino.com/en/app/planbee', '_blank');
 export const openGithub = () => window.open('https://github.com/M-JULIANI', '_blank');
