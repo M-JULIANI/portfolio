@@ -21,10 +21,6 @@
                     {
                         "key": "Tweet",
                         "value": "https://x.com/_m_juliani/status/1695891693336252874"
-                    },
-                    {
-                        "key": "Tweet 2",
-                        "value": "https://x.com/_m_juliani/status/1690767014279688192"
                     }
                 ]
             },
@@ -49,7 +45,15 @@
                     "id": "fluidplan-03",
                     "type": "image",
                     "props": {
-                        "src": "data/images/fluid-plan3.gif"
+                        "src": "data/images/fluid-plan-edit.gif"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "fluidplan-04",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/fluid-plan-adjacencies.gif"
                     },
                     "children": []
                 }
@@ -61,7 +65,7 @@
             "props": {
                 "name": "Tree Viewer",
                 "tags": [
-                    "js",
+                    "ts",
                     "css"
                 ],
                 "content": "Find the deployed viewer in the line above. While working with tree data structures (rendering and patching them), I was compelled to build an interactive tree viewer/explorer where one could zoom into different levels of the tree selectively. This is very much work in progress and looking to make it more performance to handle larger trees.",
@@ -99,7 +103,8 @@
                 "name": "Skyline Generator",
                 "tags": [
                     "js",
-                    "css"
+                    "css",
+                    "canvas-sketch"
                 ],
                 "content": "Find deployed version in line above. A simple 2D skyline generator that plays with color blending as well as gradual building layer composition.",
                 "thumbnail": "data/thumbnails/skyline-thumbnail.png",
