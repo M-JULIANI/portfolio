@@ -6,6 +6,55 @@
     },
     "children": [
         {
+            "id": "fluid-plan",
+            "type": "project",
+            "props": {
+                "name": "Fluid Plan",
+                "tags": [
+                    "r3f",
+                    "ts"
+                ],
+                "content": "'Fluid Plan' is an evolving experiment exploring the automation of spatial configurations. Early experiments using GA's to 'optimally' subdivide eventually gave way to exploring interactive reconfigurability: moving one space, could lead to 'fluid' behavior/ displacement of another space reacting to the disturance.\n\n The implementation required treating each space as an aggregation of cells, which reconfigure themselves based on connectivity information: low connectivity cells, when displaced/ overlapped, get rearranged to fill in locations next to other lowly-connected cells that aren't displaced. The project has been put on the shelf for now, but will come back!",
+                "thumbnail": "data/thumbnails/fluidplan-thumb.png",
+                "links": [
+                    {
+                        "key": "Tweet",
+                        "value": "https://x.com/_m_juliani/status/1695891693336252874"
+                    },
+                    {
+                        "key": "Tweet 2",
+                        "value": "https://x.com/_m_juliani/status/1690767014279688192"
+                    }
+                ]
+            },
+            "children": [
+                {
+                    "id": "fluidplan-01",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/fluid-plan-subdiv-inspo.gif"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "fluidplan-02",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/fluid-cells-test.gif"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "fluidplan-03",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/fluid-plan3.gif"
+                    },
+                    "children": []
+                }
+            ]
+        },
+        {
             "id": "treeviewer",
             "type": "project",
             "props": {
