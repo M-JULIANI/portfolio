@@ -60,116 +60,6 @@
             ]
         },
         {
-            "id": "skyline",
-            "type": "project",
-            "props": {
-                "name": "Skyline Generator",
-                "tags": [
-                    "js",
-                    "css",
-                    "canvas-sketch"
-                ],
-                "content": "Find deployed version in line above. A simple 2D skyline generator that plays with color blending as well as gradual building layer composition.",
-                "thumbnail": "data/thumbnails/skyline-thumbnail.png",
-                "links": [
-                    {
-                        "key": "Deployed app",
-                        "value": "https://m-juliani.github.io/skyline-generator/"
-                    }
-                ]
-            },
-            "children": [
-                {
-                    "id": "skyline-image",
-                    "type": "image",
-                    "props": {
-                        "src": "data/images/skyline-image.png"
-                    },
-                    "children": []
-                },
-                {
-                    "id": "skyline-image-0012",
-                    "type": "image",
-                    "props": {
-                        "src": "data/images/skyline-0012.png"
-                    },
-                    "children": []
-                },
-                {
-                    "id": "skyline-image-0013",
-                    "type": "image",
-                    "props": {
-                        "src": "data/images/skyline-0013.png"
-                    },
-                    "children": []
-                },
-                {
-                    "id": "skyline-image-0014",
-                    "type": "image",
-                    "props": {
-                        "src": "data/images/skyline-0014.png"
-                    },
-                    "children": []
-                },
-                {
-                    "id": "skyline-image-0015",
-                    "type": "image",
-                    "props": {
-                        "src": "data/images/skyline-0015.png"
-                    },
-                    "children": []
-                },
-                {
-                    "id": "skyline-image-0016",
-                    "type": "image",
-                    "props": {
-                        "src": "data/images/skyline-0016.png"
-                    },
-                    "children": []
-                },
-                {
-                    "id": "skyline-image-0017",
-                    "type": "image",
-                    "props": {
-                        "src": "data/images/skyline-0017.png"
-                    },
-                    "children": []
-                },
-                {
-                    "id": "skyline-image-0018",
-                    "type": "image",
-                    "props": {
-                        "src": "data/images/skyline-0018.png"
-                    },
-                    "children": []
-                },
-                {
-                    "id": "skyline-image-0019",
-                    "type": "image",
-                    "props": {
-                        "src": "data/images/skyline-0019.png"
-                    },
-                    "children": []
-                },
-                {
-                    "id": "skyline-image-0020",
-                    "type": "image",
-                    "props": {
-                        "src": "data/images/skyline-0020.png"
-                    },
-                    "children": []
-                },
-                {
-                    "id": "skyline-image-0022",
-                    "type": "image",
-                    "props": {
-                        "src": "data/images/skyline-0022.png"
-                    },
-                    "children": []
-                }
-            ]
-        },
-        {
             "id": "proceduralmassing",
             "type": "project",
             "props": {
@@ -324,6 +214,116 @@
                     "props": {
                         "src": "data/images/springplan-03.jpg"
                     }
+                }
+            ]
+        },
+        {
+            "id": "skyline",
+            "type": "project",
+            "props": {
+                "name": "Skyline Generator",
+                "tags": [
+                    "js",
+                    "css",
+                    "canvas-sketch"
+                ],
+                "content": "Find deployed version in line above. A simple 2D skyline generator that plays with color blending as well as gradual building layer composition.",
+                "thumbnail": "data/thumbnails/skyline-thumbnail.png",
+                "links": [
+                    {
+                        "key": "Deployed app",
+                        "value": "https://m-juliani.github.io/skyline-generator/"
+                    }
+                ]
+            },
+            "children": [
+                {
+                    "id": "skyline-image",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/skyline-image.png"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "skyline-image-0012",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/skyline-0012.png"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "skyline-image-0013",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/skyline-0013.png"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "skyline-image-0014",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/skyline-0014.png"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "skyline-image-0015",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/skyline-0015.png"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "skyline-image-0016",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/skyline-0016.png"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "skyline-image-0017",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/skyline-0017.png"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "skyline-image-0018",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/skyline-0018.png"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "skyline-image-0019",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/skyline-0019.png"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "skyline-image-0020",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/skyline-0020.png"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "skyline-image-0022",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/skyline-0022.png"
+                    },
+                    "children": []
                 }
             ]
         },
