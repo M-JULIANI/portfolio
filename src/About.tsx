@@ -1,7 +1,7 @@
 import { Box, Button, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect } from "react";
 import { PortraitImage } from "./components/PortraitImage";
-import { debounce, MOVE_BUFFER } from "./Home";
+import { debounce } from "./constants";
 import { Layout } from "./Layout";
 import { NodeInfo } from "./NodeInfo";
 import { LinkedIn, Twitter, Instagram, GitHub } from "@mui/icons-material";
