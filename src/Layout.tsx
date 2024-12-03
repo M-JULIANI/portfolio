@@ -42,14 +42,6 @@ const initMenuItems = (navigate: (path: string) => void, handleClose?: () => voi
     },
     type: "link",
   },
-  {
-    label: "Planbee",
-    action: () => {
-      openPlanBee();
-      handleClose ? handleClose() : null;
-    },
-    type: "link",
-  },
 ];
 
 export const Layout: React.FC<{ node: NodeInfo | null; children: JSX.Element; offsetFactor?: number }> = ({
