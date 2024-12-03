@@ -17,11 +17,19 @@ jobs:
         with:
           node-version: "20"
 
+      - name: Install Yarn
+        run: npm install --global yarn
+
+      - name: Verify Node.js and Yarn
+        run: |
+          node -v
+          yarn -v
+
       - name: Install Dependencies
         run: yarn install
 
       - name: Build
-        run: vite build
+        run: yarn build
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
