@@ -12,6 +12,8 @@ export const openCV = () => window.open("assets/Marco-Juliani-Resume-2024.pdf", 
 export const openPlanBee = () => window.open("https://www.food4rhino.com/en/app/planbee", "_blank");
 export const openGithub = () => window.open("https://github.com/M-JULIANI", "_blank");
 
+export const openBlog = () => {};
+
 export type MenuItemInfo = {
   label: string;
   action: () => void;
@@ -35,9 +37,9 @@ const initMenuItems = (navigate: (path: string) => void, handleClose?: () => voi
     type: "link",
   },
   {
-    label: "Github",
+    label: "Blog",
     action: () => {
-      openGithub();
+      openBlog();
       handleClose ? handleClose() : null;
     },
     type: "link",
@@ -91,7 +93,7 @@ export const Layout: React.FC<{ node: NodeInfo | null; children: JSX.Element; of
             <>
               {menuItems.map((m) => {
                 return (
-                  <Button sx={{ ...ButtonStyle }} onClick={m.action}>
+                  <Button sx={{ ...ButtonStyle }} disabled={m.label === "Blog"} onClick={m.action}>
                     <Typography sx={{ ...DrawerElementsStyle }}>{m.label}</Typography>
                   </Button>
                 );
