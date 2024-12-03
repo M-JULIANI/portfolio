@@ -37,6 +37,14 @@ const initMenuItems = (navigate: (path: string) => void, handleClose?: () => voi
     type: "link",
   },
   {
+    label: "Github",
+    action: () => {
+      openGithub();
+      handleClose ? handleClose() : null;
+    },
+    type: "link",
+  },
+  {
     label: "Blog",
     action: () => {
       openBlog();
