@@ -6,6 +6,7 @@ import { Route, Routes, BrowserRouter as Router, Outlet } from "react-router-dom
 import { ProjectPage } from "./ProjectPage";
 import { About } from "./About";
 import { HomeStateProvider } from "./contexts/windowContext";
+import { ScrollToTop } from "./components/ScrollToTop";
 
 function App() {
   const [data, setData] = useState<NodeInfo | null>(null);
@@ -44,6 +45,7 @@ function App() {
 const HomeLayout = () => {
   return (
     <HomeStateProvider>
+      <ScrollToTop />
       <Outlet />
     </HomeStateProvider>
   );

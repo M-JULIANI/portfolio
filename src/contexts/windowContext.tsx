@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
+import { debounce, MOVE_BUFFER } from "../constants";
 
 export type WindowState = {
   width: number;
@@ -24,10 +25,9 @@ export const useHomeState = (): IHomeContext => {
   return context;
 };
 
+const SMALL_BUFFER = 20;
 // Provider component
-const HomeStateProvider = (props: {
-  children: JSX.Element | JSX.Element[];
-}) => {
+const HomeStateProvider = (props: { children: JSX.Element | JSX.Element[] }) => {
   const [windowState, setWindowState] = useState<WindowState>({
     width: window.innerWidth,
     height: window.innerHeight,
@@ -44,7 +44,20 @@ const HomeStateProvider = (props: {
       }));
     };
 
+    const isTouch = () => {
+      return (
+        "ontouchstart" in window ||
+        navigator.maxTouchPoints > 0 ||
+        // @ts-ignore - Some browsers might not support this
+        navigator.msMaxTouchPoints > 0
+      );
+    };
+
+    // Combined mouse movement logic with buffer
     const handleMouseMove = (event: MouseEvent) => {
+      if (Math.abs(event.clientX - windowState.mouseX) < SMALL_BUFFER) return;
+      if (Math.abs(event.clientY - windowState.mouseY) < SMALL_BUFFER) return;
+
       setWindowState((prev) => ({
         ...prev,
         mouseX: event.clientX,
@@ -53,9 +66,11 @@ const HomeStateProvider = (props: {
     };
 
     window.addEventListener("resize", handleResize);
-    window.addEventListener("mousemove", handleMouseMove);
 
-    handleResize();
+    // Only add mouse tracking for non-touch devices
+    if (!isTouch() && window.matchMedia("(hover: hover)").matches) {
+      window.addEventListener("mousemove", handleMouseMove);
+    }
 
     return () => {
       window.removeEventListener("resize", handleResize);
@@ -64,9 +79,7 @@ const HomeStateProvider = (props: {
   }, []);
 
   return (
-    <HomeStateContext.Provider value={{ windowState, setWindowState }}>
-      {props.children}
-    </HomeStateContext.Provider>
+    <HomeStateContext.Provider value={{ windowState, setWindowState }}>{props.children}</HomeStateContext.Provider>
   );
 };
 
