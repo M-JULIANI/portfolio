@@ -29,7 +29,7 @@ export const About: React.FC<{ node: NodeInfo | null }> = ({ node }) => {
   if (node == null) return null;
 
   const about = node?.children?.find((x) => x.type === "image") || ({} as NodeInfo);
-  const width = oneCol || twoCols ? windowState.width * 0.8 : windowState.width * 0.3;
+  const width = oneCol || twoCols ? windowState.width * 0.8 : windowState.width * 0.2;
 
   const buttonSize = "30px";
   const items = [
@@ -83,7 +83,7 @@ export const About: React.FC<{ node: NodeInfo | null }> = ({ node }) => {
                   variant="body1"
                   sx={{
                     width: "100%",
-                    marginBottom: "16px",
+
                     wordWrap: "break-word",
                   }}
                 >
