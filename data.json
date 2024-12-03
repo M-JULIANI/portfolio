@@ -60,43 +60,6 @@
             ]
         },
         {
-            "id": "treeviewer",
-            "type": "project",
-            "props": {
-                "name": "Tree Viewer",
-                "tags": [
-                    "ts",
-                    "css"
-                ],
-                "content": "Find the deployed viewer in the line above. While working with tree data structures (rendering and patching them), I was compelled to build an interactive tree viewer/explorer where one could zoom into different levels of the tree selectively. This is very much work in progress and looking to make it more performance to handle larger trees.",
-                "thumbnail": "data/images/treeviewer-01.png",
-                "links": [
-                    {
-                        "key": "Deployed app",
-                        "value": "https://m-juliani.github.io/tree-viewer/"
-                    }
-                ]
-            },
-            "children": [
-                {
-                    "id": "treeviewer-01",
-                    "type": "image",
-                    "props": {
-                        "src": "data/images/treeviewer-01.png"
-                    },
-                    "children": []
-                },
-                {
-                    "id": "treeviewer-02",
-                    "type": "image",
-                    "props": {
-                        "src": "data/images/treeviewer-02.png"
-                    },
-                    "children": []
-                }
-            ]
-        },
-        {
             "id": "skyline",
             "type": "project",
             "props": {
@@ -260,6 +223,66 @@
             ]
         },
         {
+            "id": "planbee",
+            "type": "project",
+            "props": {
+                "name": "PlanBee",
+                "tags": [
+                    "c#",
+                    "space-planning",
+                    "gh3d"
+                ],
+                "links": [
+                    {
+                        "key": "Github",
+                        "value": "https://github.com/M-JULIANI/planbeeGH"
+                    },
+                    {
+                        "key": "food4Rhino",
+                        "value": "https://www.food4rhino.com/en/app/planbee"
+                    },
+                    {
+                        "key": "Intro Presentation",
+                        "value": "assets/intro-planbee.pdf"
+                    }
+                ],
+                "content": "This Grasshopper plugin is a cell-based analysis toolkit to analyze 2D floor plans. It provides methods for analyzing pathfinding, isovists, as well as basic daylight calculations using solar angles. In addition to this it implements Kohonen Self Organizing Maps to visualize the features of a floorplan.",
+                "thumbnail": "data/thumbnails/planbee-thumb.jpg"
+            },
+            "children": [
+                {
+                    "src": "pb-01",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/pb-iso-stack.png"
+                    },
+                    "children": []
+                },
+                {
+                    "src": "pb-02",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/pb-gif-01.gif"
+                    },
+                    "children": []
+                },
+                {
+                    "src": "pb-03",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/pb-som-action.gif"
+                    }
+                },
+                {
+                    "src": "pb-04",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/pb-pathfinding.gif"
+                    }
+                }
+            ]
+        },
+        {
             "id": "springplan",
             "type": "project",
             "props": {
@@ -301,6 +324,43 @@
                     "props": {
                         "src": "data/images/springplan-03.jpg"
                     }
+                }
+            ]
+        },
+        {
+            "id": "treeviewer",
+            "type": "project",
+            "props": {
+                "name": "Tree Viewer",
+                "tags": [
+                    "ts",
+                    "css"
+                ],
+                "content": "Find the deployed viewer in the line above. While working with tree data structures (rendering and patching them), I was compelled to build an interactive tree viewer/explorer where one could zoom into different levels of the tree selectively. This is very much work in progress and looking to make it more performance to handle larger trees.",
+                "thumbnail": "data/images/treeviewer-01.png",
+                "links": [
+                    {
+                        "key": "Deployed app",
+                        "value": "https://m-juliani.github.io/tree-viewer/"
+                    }
+                ]
+            },
+            "children": [
+                {
+                    "id": "treeviewer-01",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/treeviewer-01.png"
+                    },
+                    "children": []
+                },
+                {
+                    "id": "treeviewer-02",
+                    "type": "image",
+                    "props": {
+                        "src": "data/images/treeviewer-02.png"
+                    },
+                    "children": []
                 }
             ]
         },
