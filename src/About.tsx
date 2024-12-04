@@ -50,7 +50,7 @@ export const About: React.FC<{ node: NodeInfo | null }> = ({ node }) => {
   const paragraphs = (about?.props?.content || "").split(/(?:\n\n|  )/);
 
   return (
-    <Layout node={node} offsetFactor={oneCol || twoCols ? 0.75 : 0.25}>
+    <Layout node={node} offsetFactor={oneCol || twoCols ? 1.0 : 0.5}>
       <Grid
         container={true}
         columns={oneCol || twoCols ? 1 : 2}
