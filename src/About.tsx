@@ -4,7 +4,7 @@ import { PortraitImage } from "./components/PortraitImage";
 import { debounce } from "./constants";
 import { Layout } from "./Layout";
 import { NodeInfo } from "./NodeInfo";
-import { LinkedIn, Twitter, Instagram, GitHub } from "@mui/icons-material";
+import { LinkedIn, Twitter, GitHub } from "@mui/icons-material";
 import { ButtonStyle } from "./styles";
 import { useHomeState } from "./contexts/windowContext";
 
@@ -44,10 +44,6 @@ export const About: React.FC<{ node: NodeInfo | null }> = ({ node }) => {
     {
       icon: <GitHub sx={{ width: buttonSize, height: buttonSize }} />,
       src: "https://github.com/M-JULIANI",
-    },
-    {
-      icon: <Instagram sx={{ width: buttonSize, height: buttonSize }} />,
-      src: "https://www.instagram.com/_mjuliani/?hl=en",
     },
   ];
 
