@@ -5,7 +5,6 @@ import { LayoutImage } from "./components/LayoutImage";
 import { NodeInfo } from "./NodeInfo";
 import { ButtonStyle, DrawerElementsStyle } from "./styles";
 import { BasicMenu } from "./Menu";
-import { type } from "os";
 
 export const openCV = () => window.open("assets/Marco-Juliani-Resume-2024.pdf", "_blank");
 

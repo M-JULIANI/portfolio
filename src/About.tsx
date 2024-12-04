@@ -29,7 +29,7 @@ export const About: React.FC<{ node: NodeInfo | null }> = ({ node }) => {
   if (node == null) return null;
 
   const about = node?.children?.find((x) => x.type === "image") || ({} as NodeInfo);
-  const width = oneCol || twoCols ? windowState.width * 0.8 : windowState.width * 0.2;
+  const width = oneCol || twoCols ? windowState.width * 0.75 : windowState.width * 0.3;
 
   const buttonSize = "30px";
   const items = [
@@ -50,7 +50,7 @@ export const About: React.FC<{ node: NodeInfo | null }> = ({ node }) => {
   const paragraphs = (about?.props?.content || "").split(/(?:\n\n|  )/);
 
   return (
-    <Layout node={node}>
+    <Layout node={node} offsetFactor={oneCol || twoCols ? 0.75 : 0.25}>
       <Grid
         container={true}
         columns={oneCol || twoCols ? 1 : 2}
@@ -79,8 +79,8 @@ export const About: React.FC<{ node: NodeInfo | null }> = ({ node }) => {
                   variant="body1"
                   sx={{
                     width: "100%",
-
                     wordWrap: "break-word",
+                    marginBottom: "1rem",
                   }}
                 >
                   {paragraph}
