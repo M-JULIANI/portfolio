@@ -10,3 +10,4 @@
 - [x] fix client router issue
 - [x] fix image modal
 - [x] spacing of about section
+- [x] add blog link
