@@ -47,7 +47,6 @@ export const BasicMenu: React.FC<MenuProps> = ({ menuItems }) => {
                 handleClose();
                 m.action();
               }}
-              disabled={m.label === "Blog"}
             >
               {m.label}
             </MenuItem>
