@@ -1,4 +1,3 @@
-import "./App.css";
 import { useEffect, useState } from "react";
 import { NodeInfo } from "./NodeInfo";
 import { Home } from "./Home";
