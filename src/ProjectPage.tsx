@@ -1,10 +1,9 @@
-import { Button, Dialog, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
+import { useMediaQuery, useTheme } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { NodeInfo } from "./NodeInfo";
 import { useNavigate, useParams } from "react-router-dom";
 import { Layout } from "./Layout";
 import ProjectItem from "./components/ProjectItem";
-import { ButtonStyle } from "./styles";
 import { WindowState } from "./contexts/windowContext";
 import { ContentModal } from "./components/ContentModal";
 
@@ -20,7 +19,6 @@ export type ProjectParams = {
   id: string;
 };
 
-const TEXT_MAX_WIDTH = 600;
 const MOVE_BUFFER = 50;
 export const ProjectPage: React.FC<{ node: NodeInfo | null }> = ({ node }) => {
   const navigate = useNavigate();
@@ -75,87 +73,27 @@ export const ProjectPage: React.FC<{ node: NodeInfo | null }> = ({ node }) => {
   const paragraphs = (projectNode.props.content || "").split(/(?:\n\n|  )/);
   return (
     <Layout node={node}>
-      <Grid
-        container={true}
-        sx={{ display: "grid", justifyItems: "center", justifyContent: "center", alignItems: "center" }}
-      >
-        <Typography
-          variant="h4"
-          sx={{
-            maxWidth: TEXT_MAX_WIDTH,
-            fontFamily: "Roboto",
-            p: "12px",
-          }}
-        >
-          {projectNode.props.name}
-        </Typography>
+      <div className="flex flex-col items-center justify-center w-full pb-4">
+        <h4 className="text-2xl font-roboto p-3 max-w-[600px]">{projectNode.props.name}</h4>
         {projectNode.props?.links?.length && (
-          <Grid sx={{ display: "flex" }}>
+          <div className="flex">
             {projectNode.props.links.map((link) => {
               return (
-                <Button
-                  sx={{
-                    ...ButtonStyle,
-                    display: "grid",
-                    alignContent: "center",
-                    alignItems: "center",
-                    margin: "8px",
-                    borderColor: "black",
-                    border: "2px",
-                    borderRadius: "8px",
-                    borderStyle: "solid",
-                    "&:hover": {
-                      color: "white",
-                      backgroundColor: "#d4d4d4",
-                      borderColor: "#d4d4d4",
-                    },
-                  }}
-                  onClick={() => window.open(`${link.value}`, "_blank")}
-                >
-                  <Typography
-                    sx={{
-                      maxWidth: TEXT_MAX_WIDTH,
-                      fontSize: "12px",
-                      fontFamily: "Space Mono",
-                      fontWeight: "bold",
-                    }}
-                  >
-                    {link.key}
-                  </Typography>
-                </Button>
+                <button onDoubleClick={() => () => window.open(`${link.value}`, "_blank")} className="link-button">
+                  {link.key}
+                </button>
               );
             })}
-          </Grid>
+          </div>
         )}
         <div style={{ padding: "48px 12px", fontFamily: "Roboto", justifyContent: "center", justifyItems: "center" }}>
           {paragraphs.map((paragraph, index) => (
-            <Typography
-              key={index}
-              variant="body1"
-              sx={{
-                width: "100%",
-                maxWidth: TEXT_MAX_WIDTH,
-                marginBottom: "16px",
-                wordWrap: "break-word",
-                justifyContent: "center",
-              }}
-            >
+            <div key={index} className="paragraph-content">
               {paragraph}
-            </Typography>
+            </div>
           ))}
         </div>
-        <Grid
-          container={true}
-          columns={calculatedColumns}
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyItems: "center",
-            justifyContent: "center",
-            width: "100%",
-            paddingBottom: "48px",
-          }}
-        >
+        <div className="flex flex-row items-center justify-center align-center w-full pb-4">
           {projectNode.children?.map((child) => (
             <ProjectItem
               key={child.id}
@@ -165,10 +103,9 @@ export const ProjectPage: React.FC<{ node: NodeInfo | null }> = ({ node }) => {
               setSelectedNode={setSelectedNode}
             />
           ))}
-        </Grid>
+        </div>
         {selectedNode && <ContentModal selectedNode={selectedNode} setSelectedNode={setSelectedNode} />}
-      </Grid>
-      {/* </Grid> */}
+      </div>
     </Layout>
   );
 };

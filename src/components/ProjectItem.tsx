@@ -11,7 +11,7 @@ const DEFAULT_WIDTH = 600;
 const ProjectItem: React.FC<{
   node: NodeInfo;
   navigate: (path: string) => void;
-  singleColumn: Boolean;
+  singleColumn: boolean;
   setSelectedNode: React.Dispatch<React.SetStateAction<NodeInfo | null>>;
 }> = ({ node, singleColumn, setSelectedNode }) => {
   const { windowState } = useHomeState();
@@ -46,14 +46,13 @@ const ProjectItem: React.FC<{
   }, [mouseHover, singleColumn]);
 
   return (
-    <Grid
+    <div
       ref={gridRef}
-      item={true}
       xs={1}
       key={node.id}
       data-testid="project-item"
-      width={windowState.width - 100}
-      sx={{ display: "flex", alignContent: "center", justifyContent: "center", alignItems: "center" }}
+      className="flex items-center justify-center align-center"
+      style={{ width: `${windowState.width - 100}px` }}
     >
       <Box
         onMouseLeave={() => {
@@ -119,7 +118,7 @@ const ProjectItem: React.FC<{
           ) : null}
         </Box>
       </Box>
-    </Grid>
+    </div>
   );
 };
 

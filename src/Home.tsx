@@ -1,4 +1,3 @@
-import { Grid } from "@mui/material";
 import React from "react";
 import ProjectCard from "./components/ProjectCard";
 import { NodeInfo } from "./NodeInfo";
@@ -25,12 +24,22 @@ export const Home: React.FC<{ node: NodeInfo | null }> = ({ node }) => {
   if (node == null) return null;
   return (
     <Layout node={node} offsetFactor={0.5}>
-      <Grid container={true} style={{ height: `calc(100vh - 100px)` }} columns={calculatedColumns}>
+      <div
+        className={`grid m-4 h-[calc(100vh-100px)] ${
+          calculatedColumns === 1
+            ? "grid-cols-1"
+            : calculatedColumns === 2
+            ? "grid-cols-2"
+            : calculatedColumns === 3
+            ? "grid-cols-3"
+            : "grid-cols-4"
+        }`}
+      >
         {projects &&
           projects.map((child) => (
             <ProjectCard key={child.id} node={child} navigate={navigate} singleColumn={calculatedColumns === 1} />
           ))}
-      </Grid>
+      </div>
     </Layout>
   );
 };

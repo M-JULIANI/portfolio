@@ -1,15 +1,14 @@
-import { Box, Button, Grid, Typography } from "@mui/material";
+import { Button } from "@mui/material";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { NodeInfo } from "../NodeInfo";
 import { LayoutImage } from "./LayoutImage";
-import Chip from "@mui/material-next/Chip";
 import { useHomeState } from "../contexts/windowContext";
 import { ButtonStyle, CardColor, DarkGrayCard } from "../styles";
 
 interface ProjectCardProps {
   node: NodeInfo;
   navigate: (path: string) => void;
-  singleColumn: Boolean;
+  singleColumn: boolean;
 }
 const ProjectCard: React.FC<ProjectCardProps> = (props) => {
   const { windowState } = useHomeState();
@@ -52,25 +51,22 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
   };
 
   return (
-    <Grid
+    <div
       ref={gridRef}
-      item={true}
-      xs={1}
-      key={node.id}
       data-testid="project-card"
-      width={windowState.width - 100}
-      sx={{
+      style={{
+        width: singleColumn ? windowState.width - 100 : "100%",
         display: "flex",
         alignContent: "center",
         justifyContent: "center",
         alignItems: "center",
       }}
     >
-      <Box
+      <div
         onMouseOver={() => (singleColumn ? null : setMouseOver(true))}
         onMouseOut={() => (singleColumn ? (mouseOver ? setMouseOver(false) : null) : setMouseOver(false))}
         onClick={() => (singleColumn ? clickSingleColumn() : navigate(`/${id}`))}
-        sx={{
+        style={{
           height: singleColumn ? 400 : distance,
           maxHeight: 400,
           minHeight: 100,
@@ -86,8 +82,8 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
           },
         }}
       >
-        <Box
-          sx={{
+        <div
+          style={{
             width: "100%",
             height: "100%",
             display: "grid",
@@ -100,8 +96,8 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
           <>
             {thumbnail && thumbnail !== "" ? <LayoutImage node={node} width={350} isThumbnail={true} /> : null}
             {mouseOver && singleColumn ? (
-              <Box
-                sx={{
+              <div
+                style={{
                   position: "absolute",
                   top: 0,
                   width: "100%",
@@ -109,8 +105,8 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
                   display: "flex",
                 }}
               >
-                <Box
-                  sx={{
+                <div
+                  style={{
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
@@ -129,23 +125,16 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
                     }}
                     onClick={() => navigate(`/${id}`)}
                   >
-                    <Typography
-                      color={"white"}
-                      sx={{
-                        fontFamily: "Space Mono",
-                        fontSize: 16,
-                      }}
-                      data-testid={"project-name"}
-                    >
+                    <span className="text-white font-['Space_Mono'] text-base" data-testid="project-name">
                       Open
-                    </Typography>
+                    </span>
                   </Button>
-                </Box>
-              </Box>
+                </div>
+              </div>
             ) : null}
             {mouseOver ? (
-              <Box
-                sx={{
+              <div
+                style={{
                   position: "absolute",
 
                   bottom: 0,
@@ -154,52 +143,34 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
                   backgroundColor: singleColumn ? DarkGrayCard : CardColor,
                 }}
               >
-                <Grid
-                  sx={{
-                    display: "grid",
-                  }}
-                >
-                  <Typography
-                    color={singleColumn ? "white" : "black"}
-                    sx={{
-                      fontFamily: "Space Mono",
-                      fontSize: 12,
-                      overflow: "hidden",
-                      textOverflow: "ellipsis",
-                      display: "-webkit-box",
-                      wordBreak: "break-word",
-                      WebkitLineClamp: "1",
-                    }}
+                <div className="grid">
+                  <div
+                    className={`${
+                      singleColumn ? "text-white" : "text-black"
+                    } font-space-mono text-xs overflow-hidden text-ellipsis break-words line-clamp-1`}
                     data-testid={"project-name"}
                   >
                     {name}
-                  </Typography>
-                  <Box sx={{ display: "flex", paddingTop: "8px" }}>
+                  </div>
+                  <div style={{ display: "flex", paddingTop: "8px" }}>
                     {tags?.map((x) => {
                       return (
-                        <Chip
-                          label={x}
-                          size="small"
-                          variant="elevated"
-                          sx={{
-                            fontFamily: "Space Mono",
-                            color: "#747474",
-                            backgroundColor: "white",
-                            marginRight: "10px",
-                            maxWidth: "200px",
-                            fontSize: "12px",
-                          }}
-                        />
+                        <span
+                          key={x}
+                          className="inline-flex items-center px-2.5 py-0.5 mr-2.5 rounded-full text-xs font-['Space_Mono'] text-[#747474] bg-white max-w-[200px] truncate"
+                        >
+                          {x}
+                        </span>
                       );
                     })}
-                  </Box>
-                </Grid>
-              </Box>
+                  </div>
+                </div>
+              </div>
             ) : null}
           </>
-        </Box>
-      </Box>
-    </Grid>
+        </div>
+      </div>
+    </div>
   );
 };
 

@@ -39,6 +39,37 @@
     }
   }
 
+  .paragraph-content {
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 1rem;
+    word-wrap: break-word;
+    justify-content: center;
+    font-family: "Roboto", sans-serif;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #4b5563;
+  }
+
+  .link-button {
+    display: grid;
+    place-content: center;
+    place-items: center;
+    @apply m-2 rounded-lg p-2 text-xs;
+    font-family: "Space Mono", sans-serif;
+    border-radius: 0.5rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: black;
+    border: 2px solid #4b5563;
+  }
+
+  .link-button:hover {
+    color: white;
+    background-color: #d4d4d4;
+    border-color: #d4d4d4;
+  }
+
   .card {
     @apply p-8;
   }
