@@ -48,7 +48,6 @@ const ProjectItem: React.FC<{
   return (
     <div
       ref={gridRef}
-      xs={1}
       key={node.id}
       data-testid="project-item"
       className="flex items-center justify-center align-center"
