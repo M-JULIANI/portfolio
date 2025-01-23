@@ -1,19 +1,18 @@
-import { Box, Button, Grid, Typography } from "@mui/material";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { NodeInfo } from "../NodeInfo";
 import { LayoutImage } from "./LayoutImage";
-import Chip from "@mui/material-next/Chip";
 import { useHomeState } from "../contexts/windowContext";
 import { ButtonStyle, CardColor, DarkGrayCard } from "../styles";
+import { Pill } from "./Pill";
 
 interface ProjectCardProps {
   node: NodeInfo;
   navigate: (path: string) => void;
-  singleColumn: Boolean;
 }
 const ProjectCard: React.FC<ProjectCardProps> = (props) => {
   const { windowState } = useHomeState();
-  const { node, singleColumn, navigate } = props;
+  const { singleColumn } = windowState;
+  const { node, navigate } = props;
   const { id } = node;
   const { name, tags, thumbnail } = node.props;
   const [mouseOver, setMouseOver] = useState(false);
@@ -44,7 +43,7 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
       return scaledDistance;
     }
     return 200;
-  }, [mouseX, mouseY, gridRef]);
+  }, [mouseX, mouseY, windowState.width, windowState.height]);
 
   const clickSingleColumn = () => {
     console.log("single column");
@@ -52,25 +51,22 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
   };
 
   return (
-    <Grid
+    <div
       ref={gridRef}
-      item={true}
-      xs={1}
-      key={node.id}
       data-testid="project-card"
-      width={windowState.width - 100}
-      sx={{
+      style={{
+        width: singleColumn ? windowState.width - 150 : "100%",
         display: "flex",
         alignContent: "center",
         justifyContent: "center",
         alignItems: "center",
       }}
     >
-      <Box
+      <div
         onMouseOver={() => (singleColumn ? null : setMouseOver(true))}
         onMouseOut={() => (singleColumn ? (mouseOver ? setMouseOver(false) : null) : setMouseOver(false))}
         onClick={() => (singleColumn ? clickSingleColumn() : navigate(`/${id}`))}
-        sx={{
+        style={{
           height: singleColumn ? 400 : distance,
           maxHeight: 400,
           minHeight: 100,
@@ -86,8 +82,8 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
           },
         }}
       >
-        <Box
-          sx={{
+        <div
+          style={{
             width: "100%",
             height: "100%",
             display: "grid",
@@ -100,8 +96,8 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
           <>
             {thumbnail && thumbnail !== "" ? <LayoutImage node={node} width={350} isThumbnail={true} /> : null}
             {mouseOver && singleColumn ? (
-              <Box
-                sx={{
+              <div
+                style={{
                   position: "absolute",
                   top: 0,
                   width: "100%",
@@ -109,8 +105,8 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
                   display: "flex",
                 }}
               >
-                <Box
-                  sx={{
+                <div
+                  style={{
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
@@ -118,8 +114,8 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
                     height: "100%",
                   }}
                 >
-                  <Button
-                    sx={{
+                  <button
+                    style={{
                       ...ButtonStyle,
                       width: "100%",
                       height: "100%",
@@ -127,79 +123,46 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
                       justifyContent: "center",
                       alignItems: "center",
                     }}
+                    aria-label="open project"
                     onClick={() => navigate(`/${id}`)}
                   >
-                    <Typography
-                      color={"white"}
-                      sx={{
-                        fontFamily: "Space Mono",
-                        fontSize: 16,
-                      }}
-                      data-testid={"project-name"}
-                    >
+                    <span className="text-white font-['Space_Mono'] text-base" data-testid="project-name">
                       Open
-                    </Typography>
-                  </Button>
-                </Box>
-              </Box>
+                    </span>
+                  </button>
+                </div>
+              </div>
             ) : null}
             {mouseOver ? (
-              <Box
-                sx={{
+              <div
+                style={{
                   position: "absolute",
-
                   bottom: 0,
                   width: "100%",
-                  p: "16px",
                   backgroundColor: singleColumn ? DarkGrayCard : CardColor,
                 }}
               >
-                <Grid
-                  sx={{
-                    display: "grid",
-                  }}
-                >
-                  <Typography
-                    color={singleColumn ? "white" : "black"}
-                    sx={{
-                      fontFamily: "Space Mono",
-                      fontSize: 12,
-                      overflow: "hidden",
-                      textOverflow: "ellipsis",
-                      display: "-webkit-box",
-                      wordBreak: "break-word",
-                      WebkitLineClamp: "1",
-                    }}
+                <div className="grid gap-2 p-4">
+                  <div
+                    className={`${
+                      singleColumn ? "text-white" : "text-black"
+                    } font-space-mono text-xs overflow-hidden text-ellipsis flex`}
                     data-testid={"project-name"}
                   >
                     {name}
-                  </Typography>
-                  <Box sx={{ display: "flex", paddingTop: "8px" }}>
+                  </div>
+                  <div className="grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-2">
                     {tags?.map((x) => {
-                      return (
-                        <Chip
-                          label={x}
-                          size="small"
-                          variant="elevated"
-                          sx={{
-                            fontFamily: "Space Mono",
-                            color: "#747474",
-                            backgroundColor: "white",
-                            marginRight: "10px",
-                            maxWidth: "200px",
-                            fontSize: "12px",
-                          }}
-                        />
-                      );
+                      return <Pill tag={x} key={x} />;
                     })}
-                  </Box>
-                </Grid>
-              </Box>
+                  </div>
+                </div>
+              </div>
             ) : null}
           </>
-        </Box>
-      </Box>
-    </Grid>
+        </div>
+      </div>
+    </div>
   );
 };
 

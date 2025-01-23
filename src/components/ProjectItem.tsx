@@ -1,4 +1,3 @@
-import { Box, Button, Grid, Typography } from "@mui/material";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { NodeInfo } from "../NodeInfo";
 import { LayoutImage } from "./LayoutImage";
@@ -11,14 +10,13 @@ const DEFAULT_WIDTH = 600;
 const ProjectItem: React.FC<{
   node: NodeInfo;
   navigate: (path: string) => void;
-  singleColumn: Boolean;
   setSelectedNode: React.Dispatch<React.SetStateAction<NodeInfo | null>>;
-}> = ({ node, singleColumn, setSelectedNode }) => {
+}> = ({ node, setSelectedNode }) => {
   const { windowState } = useHomeState();
   const { type } = node;
   const { src } = node.props;
   const [mouseHover, setMouseHover] = useState(false);
-  const { mouseX, mouseY } = windowState;
+  const { mouseX, mouseY, singleColumn } = windowState;
   const gridRef = useRef<HTMLDivElement | null>(null);
 
   const distance = useMemo(() => {
@@ -46,23 +44,21 @@ const ProjectItem: React.FC<{
   }, [mouseHover, singleColumn]);
 
   return (
-    <Grid
+    <div
       ref={gridRef}
-      item={true}
-      xs={1}
       key={node.id}
       data-testid="project-item"
-      width={windowState.width - 100}
-      sx={{ display: "flex", alignContent: "center", justifyContent: "center", alignItems: "center" }}
+      className="flex items-center justify-center align-center"
+      style={{ width: `${windowState.width - 100}px` }}
     >
-      <Box
+      <div
         onMouseLeave={() => {
           // setModalOn(false);
           setMouseHover(false);
         }}
         onClick={() => (singleColumn ? setMouseHover(true) : setSelectedNode(node))}
-        sx={{
-          width: singleColumn ? `${Math.max(distance * 1.5, 175)}px` : distance,
+        style={{
+          width: singleColumn ? `${Math.min(Math.max(distance * 1.5, 175), 600)}px` : `${Math.min(distance, 600)}px`,
           background: "white",
           borderRadius: "17px",
           cursor: "pointer",
@@ -74,8 +70,8 @@ const ProjectItem: React.FC<{
           },
         }}
       >
-        <Box
-          sx={{
+        <div
+          style={{
             width: "100%",
             height: "100%",
             display: "grid",
@@ -91,8 +87,8 @@ const ProjectItem: React.FC<{
           {type && type === "embed" ? <LayoutIFrame node={node} width={singleColumn ? 400 : DEFAULT_WIDTH} /> : null}
           {type && type === "video" ? <LayoutVideo node={node} width={singleColumn ? 400 : DEFAULT_WIDTH} /> : null}
           {mouseHover && singleColumn ? (
-            <Box
-              sx={{
+            <div
+              style={{
                 position: "absolute",
                 top: 0,
                 width: "100%",
@@ -100,26 +96,19 @@ const ProjectItem: React.FC<{
                 display: "grid",
               }}
             >
-              <Button
-                sx={{ ...ButtonStyle, height: "100%", display: "grid", justifyContent: "center" }}
+              <button
+                style={{ ...ButtonStyle, height: "100%", display: "grid", justifyContent: "center" }}
                 onClick={() => setSelectedNode(node)}
               >
-                <Typography
-                  color={"white"}
-                  sx={{
-                    fontFamily: "Space Mono",
-                    fontSize: 16,
-                  }}
-                  data-testid={"project-name"}
-                >
+                <span className="text-white font-space-mono text-base" data-testid="project-name">
                   Open
-                </Typography>
-              </Button>
-            </Box>
+                </span>
+              </button>
+            </div>
           ) : null}
-        </Box>
-      </Box>
-    </Grid>
+        </div>
+      </div>
+    </div>
   );
 };
 
