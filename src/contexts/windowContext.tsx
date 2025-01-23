@@ -1,11 +1,10 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { debounce, MOVE_BUFFER } from "../constants";
-
 export type WindowState = {
   width: number;
   height: number;
   mouseX: number;
   mouseY: number;
+  singleColumn: boolean;
 };
 
 interface IHomeContext {
@@ -26,6 +25,8 @@ export const useHomeState = (): IHomeContext => {
 };
 
 const SMALL_BUFFER = 20;
+
+const isOneCol = (w: number) => w >= 200 && w < 488;
 // Provider component
 const HomeStateProvider = (props: { children: JSX.Element | JSX.Element[] }) => {
   const [windowState, setWindowState] = useState<WindowState>({
@@ -33,6 +34,7 @@ const HomeStateProvider = (props: { children: JSX.Element | JSX.Element[] }) => 
     height: window.innerHeight,
     mouseX: 0,
     mouseY: 0,
+    singleColumn: false,
   });
 
   useEffect(() => {
@@ -62,6 +64,7 @@ const HomeStateProvider = (props: { children: JSX.Element | JSX.Element[] }) => 
         ...prev,
         mouseX: event.clientX,
         mouseY: event.clientY,
+        singleColumn: isOneCol(window.innerWidth),
       }));
     };
 

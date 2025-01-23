@@ -65,7 +65,7 @@ export const Layout: React.FC<{ node: NodeInfo | null; children: JSX.Element; of
 
   return (
     <>
-      <header className="fixed top-0 left-0 w-full h-[100px] bg-white shadow-md z-50">
+      <header className="fixed top-0 left-0 w-full h-[100px] bg-white shadow-sm z-50">
         <div className="h-full flex justify-evenly items-cente items-center justify-center">
           <button
             className="w-[150px] h-[100px] hover:bg-gray-100 rounded-md transition-colors"
@@ -96,6 +96,7 @@ export const Layout: React.FC<{ node: NodeInfo | null; children: JSX.Element; of
         className="flex items-center justify-center"
         style={{
           position: "relative",
+          width: "100%",
           top: `${drawerHeight * (offsetFactor ?? 1)}px`,
         }}
       >

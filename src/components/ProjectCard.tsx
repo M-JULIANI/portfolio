@@ -1,18 +1,18 @@
-import { Button } from "@mui/material";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { NodeInfo } from "../NodeInfo";
 import { LayoutImage } from "./LayoutImage";
 import { useHomeState } from "../contexts/windowContext";
 import { ButtonStyle, CardColor, DarkGrayCard } from "../styles";
+import { Pill } from "./Pill";
 
 interface ProjectCardProps {
   node: NodeInfo;
   navigate: (path: string) => void;
-  singleColumn: boolean;
 }
 const ProjectCard: React.FC<ProjectCardProps> = (props) => {
   const { windowState } = useHomeState();
-  const { node, singleColumn, navigate } = props;
+  const { singleColumn } = windowState;
+  const { node, navigate } = props;
   const { id } = node;
   const { name, tags, thumbnail } = node.props;
   const [mouseOver, setMouseOver] = useState(false);
@@ -43,7 +43,7 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
       return scaledDistance;
     }
     return 200;
-  }, [mouseX, mouseY, gridRef]);
+  }, [mouseX, mouseY, windowState.width, windowState.height]);
 
   const clickSingleColumn = () => {
     console.log("single column");
@@ -55,7 +55,7 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
       ref={gridRef}
       data-testid="project-card"
       style={{
-        width: singleColumn ? windowState.width - 100 : "100%",
+        width: singleColumn ? windowState.width - 150 : "100%",
         display: "flex",
         alignContent: "center",
         justifyContent: "center",
@@ -114,8 +114,8 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
                     height: "100%",
                   }}
                 >
-                  <Button
-                    sx={{
+                  <button
+                    style={{
                       ...ButtonStyle,
                       width: "100%",
                       height: "100%",
@@ -123,12 +123,13 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
                       justifyContent: "center",
                       alignItems: "center",
                     }}
+                    aria-label="open project"
                     onClick={() => navigate(`/${id}`)}
                   >
                     <span className="text-white font-['Space_Mono'] text-base" data-testid="project-name">
                       Open
                     </span>
-                  </Button>
+                  </button>
                 </div>
               </div>
             ) : null}
@@ -136,32 +137,23 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
               <div
                 style={{
                   position: "absolute",
-
                   bottom: 0,
                   width: "100%",
-                  p: "16px",
                   backgroundColor: singleColumn ? DarkGrayCard : CardColor,
                 }}
               >
-                <div className="grid">
+                <div className="grid gap-2 p-4">
                   <div
                     className={`${
                       singleColumn ? "text-white" : "text-black"
-                    } font-space-mono text-xs overflow-hidden text-ellipsis break-words line-clamp-1`}
+                    } font-space-mono text-xs overflow-hidden text-ellipsis flex`}
                     data-testid={"project-name"}
                   >
                     {name}
                   </div>
-                  <div style={{ display: "flex", paddingTop: "8px" }}>
+                  <div className="grid grid-cols-[repeat(auto-fill,minmax(100px,1fr))] gap-2">
                     {tags?.map((x) => {
-                      return (
-                        <span
-                          key={x}
-                          className="inline-flex items-center px-2.5 py-0.5 mr-2.5 rounded-full text-xs font-['Space_Mono'] text-[#747474] bg-white max-w-[200px] truncate"
-                        >
-                          {x}
-                        </span>
-                      );
+                      return <Pill tag={x} key={x} />;
                     })}
                   </div>
                 </div>
