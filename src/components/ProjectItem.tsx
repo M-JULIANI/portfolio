@@ -58,7 +58,7 @@ const ProjectItem: React.FC<{
         }}
         onClick={() => (singleColumn ? setMouseHover(true) : setSelectedNode(node))}
         style={{
-          width: singleColumn ? `${Math.max(distance * 1.5, 175)}px` : distance,
+          width: singleColumn ? `${Math.min(Math.max(distance * 1.5, 175), 600)}px` : `${Math.min(distance, 600)}px`,
           background: "white",
           borderRadius: "17px",
           cursor: "pointer",

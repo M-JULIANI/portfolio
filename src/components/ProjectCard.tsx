@@ -151,7 +151,7 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
                   >
                     {name}
                   </div>
-                  <div className="grid grid-cols-[repeat(auto-fill,minmax(100px,1fr))] gap-2">
+                  <div className="grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-2">
                     {tags?.map((x) => {
                       return <Pill tag={x} key={x} />;
                     })}
