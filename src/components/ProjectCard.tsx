@@ -8,24 +8,26 @@ import { Pill } from "./Pill";
 interface ProjectCardProps {
   node: NodeInfo;
   navigate: (path: string) => void;
+  isOneCol: boolean;
 }
 const ProjectCard: React.FC<ProjectCardProps> = (props) => {
   const { windowState } = useHomeState();
   const { singleColumn } = windowState;
-  const { node, navigate } = props;
+  const { node, navigate, isOneCol } = props;
   const { id } = node;
   const { name, tags, thumbnail } = node.props;
   const [mouseOver, setMouseOver] = useState(false);
+  const oneColumn = isOneCol || singleColumn;
 
   const { mouseX, mouseY } = windowState;
 
   const gridRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    if (mouseOver && singleColumn) {
+    if (mouseOver && oneColumn) {
       gridRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
     }
-  }, [mouseOver, singleColumn]);
+  }, [mouseOver, oneColumn]);
 
   const distance = useMemo(() => {
     const gridElement = gridRef.current;
@@ -56,7 +58,7 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
       ref={gridRef}
       data-testid="project-card"
       style={{
-        width: singleColumn ? windowState.width - 100 : "100%",
+        width: oneColumn ? windowState.width - 100 : "100%",
         display: "flex",
         alignContent: "center",
         justifyContent: "center",
@@ -64,11 +66,11 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
       }}
     >
       <div
-        onMouseOver={() => (singleColumn ? null : setMouseOver(true))}
-        onMouseOut={() => (singleColumn ? (mouseOver ? setMouseOver(false) : null) : setMouseOver(false))}
-        onClick={() => (singleColumn ? clickSingleColumn() : navigate(`/${id}`))}
+        onMouseOver={() => (oneColumn ? null : setMouseOver(true))}
+        onMouseOut={() => (oneColumn ? (mouseOver ? setMouseOver(false) : null) : setMouseOver(false))}
+        onClick={() => (oneColumn ? clickSingleColumn() : navigate(`/${id}`))}
         style={{
-          height: singleColumn ? 400 : distance,
+          height: oneColumn ? 400 : distance,
           maxHeight: 400,
           minHeight: 100,
           width: "100%",
@@ -96,7 +98,7 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
         >
           <>
             {thumbnail && thumbnail !== "" ? <LayoutImage node={node} width={350} isThumbnail={true} /> : null}
-            {mouseOver && singleColumn ? (
+            {mouseOver && oneColumn ? (
               <div
                 style={{
                   position: "absolute",
@@ -140,13 +142,13 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
                   position: "absolute",
                   bottom: 0,
                   width: "100%",
-                  backgroundColor: singleColumn ? DarkGrayCard : CardColor,
+                  backgroundColor: oneColumn ? DarkGrayCard : CardColor,
                 }}
               >
                 <div className="grid gap-2 p-4">
                   <div
                     className={`${
-                      singleColumn ? "text-white" : "text-black"
+                      oneColumn ? "text-white" : "text-black"
                     } font-space-mono text-xs overflow-hidden text-ellipsis flex`}
                     data-testid={"project-name"}
                   >
