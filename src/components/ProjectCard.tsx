@@ -48,6 +48,7 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
 
   const clickSingleColumn = () => {
     setTouched(true);
+    setMouseOver(true);
     gridRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
   };
 
@@ -65,7 +66,7 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
     >
       <div
         onMouseOver={() => (singleColumn ? null : setMouseOver(true))}
-        onMouseOut={() => setMouseOver(false)}
+        onMouseOut={() => (singleColumn ? (mouseOver ? setMouseOver(false) : null) : setMouseOver(false))}
         onTouchStart={(e) => {
           if (singleColumn) {
             e.preventDefault();
