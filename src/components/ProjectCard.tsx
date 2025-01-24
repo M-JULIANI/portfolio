@@ -73,7 +73,7 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
           maxHeight: 400,
           minHeight: 100,
           width: "100%",
-          background: CardColor,
+          background: singleColumn ? "red" : CardColor,
           borderRadius: "17px",
           cursor: "pointer",
           transition: "all 0.3s cubic-bezier(.25,.8,.25,1)",
