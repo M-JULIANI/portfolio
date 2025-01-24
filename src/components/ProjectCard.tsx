@@ -16,7 +16,6 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
   const { id } = node;
   const { name, tags, thumbnail } = node.props;
   const [mouseOver, setMouseOver] = useState(false);
-  const [touched, setTouched] = useState(false);
 
   const { mouseX, mouseY } = windowState;
 
@@ -47,6 +46,7 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
   }, [mouseX, mouseY, windowState.width, windowState.height]);
 
   const clickSingleColumn = () => {
+    console.log("single column");
     setMouseOver(true);
     gridRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
   };
@@ -66,18 +66,7 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
       <div
         onMouseOver={() => (singleColumn ? null : setMouseOver(true))}
         onMouseOut={() => (singleColumn ? (mouseOver ? setMouseOver(false) : null) : setMouseOver(false))}
-        onTouchStart={() => singleColumn && setTouched(true)}
-        onClick={(e) => {
-          if (singleColumn) {
-            if (!touched) {
-              setTouched(true);
-            } else if (!(e.target as HTMLElement).closest("button")) {
-              navigate(`/${id}`);
-            }
-          } else {
-            navigate(`/${id}`);
-          }
-        }}
+        onClick={() => (singleColumn ? clickSingleColumn() : navigate(`/${id}`))}
         style={{
           height: singleColumn ? 400 : distance,
           maxHeight: 400,
@@ -107,7 +96,7 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
         >
           <>
             {thumbnail && thumbnail !== "" ? <LayoutImage node={node} width={350} isThumbnail={true} /> : null}
-            {touched && singleColumn ? (
+            {mouseOver && singleColumn ? (
               <div
                 style={{
                   position: "absolute",
@@ -135,15 +124,12 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
                       justifyContent: "center",
                       alignItems: "center",
                     }}
-                    aria-label="open project"
                     onClick={(e) => {
                       e.stopPropagation();
                       navigate(`/${id}`);
                     }}
                   >
-                    <span className="text-white font-['Space_Mono'] text-base" data-testid="project-name">
-                      Open
-                    </span>
+                    <span className="text-white font-space-mono text-base">Open</span>
                   </button>
                 </div>
               </div>
