@@ -67,6 +67,7 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
         onMouseOver={() => (singleColumn ? null : setMouseOver(true))}
         onMouseOut={() => (singleColumn ? (mouseOver ? setMouseOver(false) : null) : setMouseOver(false))}
         onClick={() => (singleColumn ? clickSingleColumn() : navigate(`/${id}`))}
+        onTouchStart={() => (singleColumn ? clickSingleColumn() : navigate(`/${id}`))}
         style={{
           height: singleColumn ? 400 : distance,
           maxHeight: 400,
@@ -154,7 +155,7 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
                   </div>
                   <div className="grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-2">
                     {tags?.map((x) => {
-                      return <Pill tag={x} key={x} />;
+                      return <Pill tag={x} />;
                     })}
                   </div>
                 </div>

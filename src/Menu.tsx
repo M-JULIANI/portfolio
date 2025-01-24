@@ -10,7 +10,10 @@ export const BasicMenu: React.FC<MenuProps> = ({ menuItems }) => {
 
   return (
     <div className="relative">
-      <button onClick={() => setIsOpen(!isOpen)} className="px-4 py-2 hover:bg-gray-100 rounded-md transition-colors">
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="px-4 py-2 hover:bg-gray-100 rounded-md transition-colors font-space-mono"
+      >
         Menu
       </button>
 
@@ -20,7 +23,7 @@ export const BasicMenu: React.FC<MenuProps> = ({ menuItems }) => {
             {menuItems.map((m, index) => (
               <button
                 key={index}
-                className="w-full px-4 py-2 text-left text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                className="w-full px-4 py-2 text-left text-gray-700 hover:bg-gray-100 hover:text-gray-900 font-space-mono"
                 onClick={() => {
                   setIsOpen(false);
                   m.action();
