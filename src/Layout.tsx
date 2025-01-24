@@ -58,7 +58,7 @@ export const Layout: React.FC<{ node: NodeInfo | null; children: JSX.Element; of
   const menuItems = initMenuItems(navigate);
 
   // Using window.matchMedia for responsive design
-  const isOneCol = window.matchMedia("(min-width: 200px) and (max-width: 488px)").matches;
+  const isOneCol = window.matchMedia("(min-width: 200px) and (max-width: 640px)").matches;
   const drawerHeight = 100;
 
   if (node == null) return null;

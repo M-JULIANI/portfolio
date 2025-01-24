@@ -26,7 +26,7 @@ export const useHomeState = (): IHomeContext => {
 
 const SMALL_BUFFER = 20;
 
-const isOneCol = (w: number) => w >= 200 && w < 488;
+const isOneCol = (w: number) => w >= 200 && w <= 640;
 // Provider component
 const HomeStateProvider = (props: { children: JSX.Element | JSX.Element[] }) => {
   const [windowState, setWindowState] = useState<WindowState>({
@@ -34,7 +34,7 @@ const HomeStateProvider = (props: { children: JSX.Element | JSX.Element[] }) => 
     height: window.innerHeight,
     mouseX: 0,
     mouseY: 0,
-    singleColumn: false,
+    singleColumn: isOneCol(window.innerWidth),
   });
 
   useEffect(() => {

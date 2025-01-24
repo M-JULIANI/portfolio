@@ -8,26 +8,24 @@ import { Pill } from "./Pill";
 interface ProjectCardProps {
   node: NodeInfo;
   navigate: (path: string) => void;
-  isOneCol: boolean;
 }
 const ProjectCard: React.FC<ProjectCardProps> = (props) => {
   const { windowState } = useHomeState();
   const { singleColumn } = windowState;
-  const { node, navigate, isOneCol } = props;
+  const { node, navigate } = props;
   const { id } = node;
   const { name, tags, thumbnail } = node.props;
   const [mouseOver, setMouseOver] = useState(false);
-  const oneColumn = isOneCol || singleColumn;
 
   const { mouseX, mouseY } = windowState;
 
   const gridRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    if (mouseOver && oneColumn) {
+    if (mouseOver && singleColumn) {
       gridRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
     }
-  }, [mouseOver, oneColumn]);
+  }, [mouseOver, singleColumn]);
 
   const distance = useMemo(() => {
     const gridElement = gridRef.current;
@@ -48,7 +46,6 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
   }, [mouseX, mouseY, windowState.width, windowState.height]);
 
   const clickSingleColumn = () => {
-    console.log("single column");
     setMouseOver(true);
     gridRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
   };
@@ -58,7 +55,7 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
       ref={gridRef}
       data-testid="project-card"
       style={{
-        width: oneColumn ? windowState.width - 100 : "100%",
+        width: singleColumn ? windowState.width - 100 : "100%",
         display: "flex",
         alignContent: "center",
         justifyContent: "center",
@@ -66,11 +63,11 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
       }}
     >
       <div
-        onMouseOver={() => (oneColumn ? null : setMouseOver(true))}
-        onMouseOut={() => (oneColumn ? (mouseOver ? setMouseOver(false) : null) : setMouseOver(false))}
-        onClick={() => (oneColumn ? clickSingleColumn() : navigate(`/${id}`))}
+        onMouseOver={() => (singleColumn ? null : setMouseOver(true))}
+        onMouseOut={() => (singleColumn ? (mouseOver ? setMouseOver(false) : null) : setMouseOver(false))}
+        onClick={() => (singleColumn ? clickSingleColumn() : navigate(`/${id}`))}
         style={{
-          height: oneColumn ? 400 : distance,
+          height: singleColumn ? 400 : distance,
           maxHeight: 400,
           minHeight: 100,
           width: "100%",
@@ -98,7 +95,7 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
         >
           <>
             {thumbnail && thumbnail !== "" ? <LayoutImage node={node} width={350} isThumbnail={true} /> : null}
-            {mouseOver && oneColumn ? (
+            {mouseOver && singleColumn ? (
               <div
                 style={{
                   position: "absolute",
@@ -143,13 +140,13 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
                   position: "absolute",
                   bottom: 0,
                   width: "100%",
-                  backgroundColor: oneColumn ? DarkGrayCard : CardColor,
+                  backgroundColor: singleColumn ? DarkGrayCard : CardColor,
                 }}
               >
                 <div className="grid gap-2 p-4">
                   <div
                     className={`${
-                      oneColumn ? "text-white" : "text-black"
+                      singleColumn ? "text-white" : "text-black"
                     } font-space-mono text-xs overflow-hidden text-ellipsis flex`}
                     data-testid={"project-name"}
                   >
