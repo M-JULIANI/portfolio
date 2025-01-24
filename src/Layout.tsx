@@ -67,10 +67,7 @@ export const Layout: React.FC<{ node: NodeInfo | null; children: JSX.Element; of
     <>
       <header className="fixed top-0 left-0 w-full h-[100px] bg-white shadow-sm z-50">
         <div className="h-full flex justify-evenly items-cente items-center justify-center">
-          <button
-            className="w-[150px] h-[100px] hover:bg-gray-100 rounded-md transition-colors"
-            onClick={() => navigate("/")}
-          >
+          <button className="w-[150px] h-[100px] rounded-md transition-colors" onClick={() => navigate("/")}>
             <LayoutImage node={node} width={80} isThumbnail={true} />
           </button>
 

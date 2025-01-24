@@ -32,7 +32,7 @@ export const ProjectPage: React.FC<{ node: NodeInfo | null }> = ({ node }) => {
   return (
     <Layout node={node}>
       <div className="flex flex-col items-center justify-center w-full pb-4">
-        <h4 className="text-2xl font-roboto p-3 max-w-[600px]">{projectNode.props.name}</h4>
+        <h4 className="text-2xl font-space-mono p-3 max-w-[600px]">{projectNode.props.name}</h4>
         {projectNode.props?.links?.length && (
           <div className="flex">
             {projectNode.props.links.map((link) => {
@@ -44,20 +44,30 @@ export const ProjectPage: React.FC<{ node: NodeInfo | null }> = ({ node }) => {
             })}
           </div>
         )}
-        <div style={{ padding: "48px 12px", fontFamily: "Roboto", justifyContent: "center", justifyItems: "center" }}>
+        <div style={{ padding: "48px 12px", justifyContent: "center", justifyItems: "center" }}>
           {paragraphs.map((paragraph, index) => (
             <div key={index} className="paragraph-content">
               {paragraph}
             </div>
           ))}
         </div>
-        <div className="flex flex-row items-center justify-center align-center w-full pb-4">
+        <ProjectGrid>
           {projectNode.children?.map((child) => (
             <ProjectItem key={child.id} node={child} navigate={navigate} setSelectedNode={setSelectedNode} />
           ))}
-        </div>
+        </ProjectGrid>
         {selectedNode && <ContentModal selectedNode={selectedNode} setSelectedNode={setSelectedNode} />}
       </div>
     </Layout>
+  );
+};
+
+export const ProjectGrid: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  return (
+    <div className="w-full p-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 justify-items-center">
+        {children}
+      </div>
+    </div>
   );
 };

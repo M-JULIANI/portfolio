@@ -45,7 +45,8 @@
     margin-bottom: 1rem;
     word-wrap: break-word;
     justify-content: center;
-    font-family: "Roboto", sans-serif;
+    font-family: "Inter", sans-serif;
+    text-align: justify;
     font-size: 1rem;
     line-height: 1.5;
     color: #4b5563;
@@ -55,12 +56,11 @@
     display: grid;
     place-content: center;
     place-items: center;
-    @apply m-2 rounded-lg p-2 text-xs;
-    font-family: "Space Mono", sans-serif;
+    @apply m-2 rounded-lg px-2 py-1 text-xs;
+    font-family: "Space Mono", monospace;
     border-radius: 0.5rem;
-    text-transform: uppercase;
-    font-weight: bold;
-    color: black;
+    color: #4b5563;
+    border-color: #4b5563;
     border: 2px solid #4b5563;
   }
 

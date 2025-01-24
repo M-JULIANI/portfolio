@@ -20,14 +20,7 @@ export const ContentModal: React.FC<ContentModalProps> = ({ selectedNode, setSel
       className="fixed inset-0 w-screen h-screen p-0 bg-transparent backdrop:bg-black backdrop:bg-opacity-50"
       onClose={() => setSelectedNode(null)}
     >
-      <div
-        className="fixed inset-0 w-full h-full"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0  0  4  4'%3E%3Cpath d='M-1,1 l2,-2 M0,4 l4,-4 M3,5 l2,-2' style='stroke:%23A0A0A0; stroke-width:1'/%3E%3C/svg%3E")`,
-          backgroundSize: "8px 8px",
-          backgroundRepeat: "repeat",
-        }}
-      >
+      <div className="fixed inset-0 w-full h-full bg-black bg-opacity-50">
         <div className="flex items-center justify-center h-full p-4 mt-10">
           <div className="relative max-w-[75vw] max-h-[75vh]">
             <button
