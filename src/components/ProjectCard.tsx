@@ -47,8 +47,6 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
   }, [mouseX, mouseY, windowState.width, windowState.height]);
 
   const clickSingleColumn = () => {
-    console.log("single column");
-    setMouseOver(true);
     setTouched(true);
     gridRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
   };
@@ -114,7 +112,7 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
         >
           <>
             {thumbnail && thumbnail !== "" ? <LayoutImage node={node} width={350} isThumbnail={true} /> : null}
-            {mouseOver && singleColumn ? (
+            {touched && singleColumn ? (
               <div
                 style={{
                   position: "absolute",
