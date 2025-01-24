@@ -10,15 +10,12 @@ export const BasicMenu: React.FC<MenuProps> = ({ menuItems }) => {
 
   return (
     <div className="relative">
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-      >
+      <button onClick={() => setIsOpen(!isOpen)} className="px-4 py-2 hover:bg-gray-100 rounded-md transition-colors">
         Menu
       </button>
 
       {isOpen && (
-        <div className="absolute z-10 w-48 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5">
+        <div className="absolute right-0 z-10 w-48 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5">
           <div className="py-1">
             {menuItems.map((m, index) => (
               <button
