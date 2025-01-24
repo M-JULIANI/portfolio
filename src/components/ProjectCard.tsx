@@ -67,13 +67,12 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
         onMouseOver={() => (singleColumn ? null : setMouseOver(true))}
         onMouseOut={() => (singleColumn ? (mouseOver ? setMouseOver(false) : null) : setMouseOver(false))}
         onClick={() => (singleColumn ? clickSingleColumn() : navigate(`/${id}`))}
-        onTouchStart={() => (singleColumn ? clickSingleColumn() : navigate(`/${id}`))}
         style={{
           height: singleColumn ? 400 : distance,
           maxHeight: 400,
           minHeight: 100,
           width: "100%",
-          background: singleColumn ? "red" : CardColor,
+          background: CardColor,
           borderRadius: "17px",
           cursor: "pointer",
           transition: "all 0.3s cubic-bezier(.25,.8,.25,1)",

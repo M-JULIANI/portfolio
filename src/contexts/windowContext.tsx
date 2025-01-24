@@ -43,6 +43,7 @@ const HomeStateProvider = (props: { children: JSX.Element | JSX.Element[] }) => 
         ...prev,
         width: window.innerWidth,
         height: window.innerHeight,
+        singleColumn: isOneCol(window.innerWidth),
       }));
     };
 

@@ -37,7 +37,7 @@ export const ProjectPage: React.FC<{ node: NodeInfo | null }> = ({ node }) => {
           <div className="flex">
             {projectNode.props.links.map((link) => {
               return (
-                <button onClick={() => window.open(`${link.value}`, "_blank")} className="link-button">
+                <button key={link.key} onClick={() => window.open(`${link.value}`, "_blank")} className="link-button">
                   {link.key}
                 </button>
               );
