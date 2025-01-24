@@ -47,7 +47,6 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
   }, [mouseX, mouseY, windowState.width, windowState.height]);
 
   const clickSingleColumn = () => {
-    setTouched(true);
     setMouseOver(true);
     gridRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
   };
@@ -57,7 +56,7 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
       ref={gridRef}
       data-testid="project-card"
       style={{
-        width: singleColumn ? windowState.width - 150 : "100%",
+        width: singleColumn ? windowState.width - 100 : "100%",
         display: "flex",
         alignContent: "center",
         justifyContent: "center",
@@ -67,18 +66,13 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
       <div
         onMouseOver={() => (singleColumn ? null : setMouseOver(true))}
         onMouseOut={() => (singleColumn ? (mouseOver ? setMouseOver(false) : null) : setMouseOver(false))}
-        onTouchStart={(e) => {
-          if (singleColumn) {
-            e.preventDefault();
-            clickSingleColumn();
-          }
-        }}
+        onTouchStart={() => singleColumn && setTouched(true)}
         onClick={(e) => {
           if (singleColumn) {
-            if (touched) {
-              if (!(e.target as HTMLElement).closest("button")) {
-                navigate(`/${id}`);
-              }
+            if (!touched) {
+              setTouched(true);
+            } else if (!(e.target as HTMLElement).closest("button")) {
+              navigate(`/${id}`);
             }
           } else {
             navigate(`/${id}`);
