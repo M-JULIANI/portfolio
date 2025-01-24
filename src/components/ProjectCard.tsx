@@ -68,15 +68,18 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
       <div
         onMouseOver={() => (singleColumn ? null : setMouseOver(true))}
         onMouseOut={() => setMouseOver(false)}
-        onTouchStart={() => {
+        onTouchStart={(e) => {
           if (singleColumn) {
+            e.preventDefault();
             clickSingleColumn();
           }
         }}
-        onClick={() => {
+        onClick={(e) => {
           if (singleColumn) {
             if (touched) {
-              navigate(`/${id}`);
+              if (!(e.target as HTMLElement).closest("button")) {
+                navigate(`/${id}`);
+              }
             }
           } else {
             navigate(`/${id}`);
@@ -140,7 +143,10 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
                       alignItems: "center",
                     }}
                     aria-label="open project"
-                    onClick={() => navigate(`/${id}`)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      navigate(`/${id}`);
+                    }}
                   >
                     <span className="text-white font-['Space_Mono'] text-base" data-testid="project-name">
                       Open
