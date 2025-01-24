@@ -3,22 +3,12 @@ import { NodeInfo } from "./NodeInfo";
 import { useNavigate, useParams } from "react-router-dom";
 import { Layout } from "./Layout";
 import ProjectItem from "./components/ProjectItem";
-import { WindowState } from "./contexts/windowContext";
 import { ContentModal } from "./components/ContentModal";
-
-function debounce(func: any) {
-  var timer: any;
-  return function (event: any) {
-    if (timer) clearTimeout(timer);
-    timer = setTimeout(func, 500, event);
-  };
-}
 
 export type ProjectParams = {
   id: string;
 };
 
-const MOVE_BUFFER = 50;
 export const ProjectPage: React.FC<{ node: NodeInfo | null }> = ({ node }) => {
   const navigate = useNavigate();
   const { id } = useParams<ProjectParams>();

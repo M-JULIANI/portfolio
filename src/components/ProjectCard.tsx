@@ -97,7 +97,7 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
           }}
         >
           <>
-            {thumbnail && thumbnail !== "" ? <LayoutImage node={node} width={350} isThumbnail={true} /> : null}
+            {thumbnail && thumbnail !== "" ? <LayoutImage node={node} width={400} isThumbnail={true} /> : null}
             {mouseOver && oneColumn ? (
               <div
                 style={{
@@ -120,8 +120,9 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
                   <button
                     style={{
                       ...ButtonStyle,
+
                       width: "100%",
-                      height: "100%",
+                      height: "40px",
                       display: "grid",
                       justifyContent: "center",
                       alignItems: "center",
