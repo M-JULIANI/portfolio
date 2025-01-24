@@ -48,6 +48,7 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
   const clickSingleColumn = () => {
     console.log("single column");
     setMouseOver(true);
+    gridRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
   };
 
   return (
@@ -64,8 +65,18 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
     >
       <div
         onMouseOver={() => (singleColumn ? null : setMouseOver(true))}
-        onMouseOut={() => (singleColumn ? (mouseOver ? setMouseOver(false) : null) : setMouseOver(false))}
-        onClick={() => (singleColumn ? clickSingleColumn() : navigate(`/${id}`))}
+        onMouseOut={() => setMouseOver(false)}
+        onClick={() => {
+          if (singleColumn) {
+            if (mouseOver) {
+              navigate(`/${id}`);
+            } else {
+              clickSingleColumn();
+            }
+          } else {
+            navigate(`/${id}`);
+          }
+        }}
         style={{
           height: singleColumn ? 400 : distance,
           maxHeight: 400,
