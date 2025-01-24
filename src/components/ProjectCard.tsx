@@ -16,6 +16,7 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
   const { id } = node;
   const { name, tags, thumbnail } = node.props;
   const [mouseOver, setMouseOver] = useState(false);
+  const [touched, setTouched] = useState(false);
 
   const { mouseX, mouseY } = windowState;
 
@@ -48,6 +49,7 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
   const clickSingleColumn = () => {
     console.log("single column");
     setMouseOver(true);
+    setTouched(true);
     gridRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
   };
 
@@ -66,12 +68,15 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
       <div
         onMouseOver={() => (singleColumn ? null : setMouseOver(true))}
         onMouseOut={() => setMouseOver(false)}
+        onTouchStart={() => {
+          if (singleColumn) {
+            clickSingleColumn();
+          }
+        }}
         onClick={() => {
           if (singleColumn) {
-            if (mouseOver) {
+            if (touched) {
               navigate(`/${id}`);
-            } else {
-              clickSingleColumn();
             }
           } else {
             navigate(`/${id}`);
