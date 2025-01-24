@@ -1,7 +1,6 @@
 import { X } from "lucide-react";
 import React from "react";
 import { NodeInfo } from "../NodeInfo";
-import { useHomeState } from "../contexts/windowContext";
 
 type ContentModalProps = {
   selectedNode: NodeInfo;
@@ -9,7 +8,6 @@ type ContentModalProps = {
 };
 
 export const ContentModal: React.FC<ContentModalProps> = ({ selectedNode, setSelectedNode }) => {
-  const { windowState } = useHomeState();
   const nodeType = selectedNode.type;
 
   if (!selectedNode) return null;
@@ -20,7 +18,14 @@ export const ContentModal: React.FC<ContentModalProps> = ({ selectedNode, setSel
       className="fixed inset-0 w-screen h-screen p-0 bg-transparent backdrop:bg-black backdrop:bg-opacity-50"
       onClose={() => setSelectedNode(null)}
     >
-      <div className="fixed inset-0 w-full h-full bg-black bg-opacity-50">
+      <div
+        className="fixed inset-0 w-full h-full bg-black bg-opacity-50"
+        onClick={(e) => {
+          if (e.target !== e.currentTarget) {
+            setSelectedNode(null);
+          }
+        }}
+      >
         <div className="flex items-center justify-center h-full p-4 mt-10">
           <div className="relative max-w-[75vw] max-h-[75vh]">
             <button

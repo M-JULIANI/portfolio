@@ -26,6 +26,8 @@ export const LayoutImage: React.FC<LayoutImageProps> = (props: LayoutImageProps)
         backgroundImage: `url(${src})`,
         width: width,
         height: width,
+        backgroundSize: "cover",
+        backgroundPosition: "top",
       }}
     />
   );
