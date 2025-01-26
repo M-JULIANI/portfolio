@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { NodeInfo } from "./NodeInfo";
 import { useNavigate, useParams } from "react-router-dom";
 import { Layout } from "./Layout";
@@ -20,7 +20,7 @@ export const ProjectPage: React.FC<{ node: NodeInfo | null }> = ({ node }) => {
 
   const paragraphs = (projectNode.props.content || "").split(/(?:\n\n|  )/);
   return (
-    <Layout node={node}>
+    <Layout node={node} offsetFactor={1.0}>
       <div className="flex flex-col items-center justify-center w-full pb-4">
         <h4 className="text-2xl font-space-mono p-3 max-w-[600px]">{projectNode.props.name}</h4>
         {projectNode.props?.links?.length && (
@@ -34,9 +34,9 @@ export const ProjectPage: React.FC<{ node: NodeInfo | null }> = ({ node }) => {
             })}
           </div>
         )}
-        <div style={{ padding: "48px 12px", justifyContent: "center", justifyItems: "center" }}>
+        <div className="py-12">
           {paragraphs.map((paragraph, index) => (
-            <div key={index} className="paragraph-content">
+            <div key={index} className="paragraph-content max-w-3xl">
               {paragraph}
             </div>
           ))}

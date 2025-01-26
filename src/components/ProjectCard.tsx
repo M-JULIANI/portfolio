@@ -2,7 +2,6 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import { NodeInfo } from "../NodeInfo";
 import { LayoutImage } from "./LayoutImage";
 import { useHomeState } from "../contexts/windowContext";
-import { ButtonStyle, CardColor, DarkGrayCard } from "../styles";
 import { Pill } from "./Pill";
 
 interface ProjectCardProps {
@@ -54,13 +53,12 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
     <div
       ref={gridRef}
       data-testid="project-card"
-      style={{
-        width: singleColumn ? windowState.width - 100 : "100%",
-        display: "flex",
-        alignContent: "center",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
+      className={`
+        flex
+        items-center
+        justify-center
+        ${singleColumn ? `w-[${windowState.width - 100}px]` : "w-full"}
+      `}
     >
       <div
         onMouseOver={() => (singleColumn ? null : setMouseOver(true))}
@@ -70,60 +68,28 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
           height: singleColumn ? 400 : distance,
           maxHeight: 400,
           minHeight: 100,
-          width: "100%",
-          background: CardColor,
-          borderRadius: "17px",
-          cursor: "pointer",
-          transition: "all 0.3s cubic-bezier(.25,.8,.25,1)",
-          overflow: "hidden",
-          boxShadow: "-2px -1.5px  10px  0px #00000040",
-          "&:hover": {
-            boxShadow: "-4px -3px 20px 0px #00000040",
-          },
         }}
+        className={`
+            w-full 
+            bg-card
+            rounded-[17px]
+            cursor-pointer
+            transition-all
+            duration-300
+            ease-[cubic-bezier(.25,.8,.25,1)]
+            overflow-hidden
+            shadow-[-2px_-1.5px_10px_0px_rgba(0,0,0,0.25)]
+            hover:shadow-[-4px_-3px_20px_0px_rgba(0,0,0,0.25)]
+          `}
       >
-        <div
-          style={{
-            width: "100%",
-            height: "100%",
-            display: "grid",
-            alignItems: "center",
-            justifyContent: "center",
-            position: "relative",
-            overflow: "hidden",
-          }}
-        >
+        <div className="w-full h-full grid place-items-center relative overflow-hidden">
           <>
             {thumbnail && thumbnail !== "" ? <LayoutImage node={node} width={350} isThumbnail={true} /> : null}
             {mouseOver && singleColumn ? (
-              <div
-                style={{
-                  position: "absolute",
-                  top: 0,
-                  width: "100%",
-                  background: DarkGrayCard,
-                  display: "flex",
-                }}
-              >
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    width: "100%",
-                    height: "100%",
-                  }}
-                >
+              <div className="absolute top-0 w-full bg-dark-gray-card flex">
+                <div className="flex items-center justify-center w-full h-full">
                   <button
-                    style={{
-                      ...ButtonStyle,
-
-                      width: "100%",
-                      height: "40px",
-                      display: "grid",
-                      justifyContent: "center",
-                      alignItems: "center",
-                    }}
+                    className="w-full h-full bg-card rounded-[17px] cursor-pointer transition-all duration-300 ease-[cubic-bezier(.25,.8,.25,1)] overflow-hidden shadow-[-2px_-1.5px_10px_0px_rgba(0,0,0,0.25)] hover:shadow-[-4px_-3px_20px_0px_rgba(0,0,0,0.25)]"
                     onClick={(e) => {
                       e.stopPropagation();
                       navigate(`/${id}`);
@@ -135,14 +101,7 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
               </div>
             ) : null}
             {mouseOver ? (
-              <div
-                style={{
-                  position: "absolute",
-                  bottom: 0,
-                  width: "100%",
-                  backgroundColor: singleColumn ? DarkGrayCard : CardColor,
-                }}
-              >
+              <div className={`absolute bottom-0 w-full ${singleColumn ? "bg-dark-gray-card" : "bg-card"}`}>
                 <div className="grid gap-2 p-4">
                   <div
                     className={`${

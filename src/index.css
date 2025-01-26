@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 /* Custom styles */
 @layer components {
   #root {
@@ -41,7 +37,6 @@
 
   .paragraph-content {
     width: 100%;
-    max-width: 600px;
     margin-bottom: 1rem;
     word-wrap: break-word;
     justify-content: center;
