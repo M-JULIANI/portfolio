@@ -8,6 +8,22 @@ interface ProjectCardProps {
   node: NodeInfo;
   navigate: (path: string) => void;
 }
+
+const ButtonStyle = {
+  color: "black",
+  "&:hover": {
+    color: "white",
+    backgroundColor: "#d4d4d4",
+  },
+  "&:focus": {
+    outline: "none",
+  },
+  "&:disabled": {
+    opacity: 0.75,
+    cursor: "not-allowed",
+    backgroundColor: "#e0e0e0",
+  },
+};
 const ProjectCard: React.FC<ProjectCardProps> = (props) => {
   const { windowState } = useHomeState();
   const { singleColumn } = windowState;
@@ -89,7 +105,15 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
               <div className="absolute top-0 w-full bg-dark-gray-card flex">
                 <div className="flex items-center justify-center w-full h-full">
                   <button
-                    className="w-full h-full bg-card rounded-[17px] cursor-pointer transition-all duration-300 ease-[cubic-bezier(.25,.8,.25,1)] overflow-hidden shadow-[-2px_-1.5px_10px_0px_rgba(0,0,0,0.25)] hover:shadow-[-4px_-3px_20px_0px_rgba(0,0,0,0.25)]"
+                    style={{
+                      ...ButtonStyle,
+                      width: "100%",
+                      height: "40px",
+                      display: "grid",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                    //className="w-full h-full bg-card rounded-[17px] cursor-pointer transition-all duration-300 ease-[cubic-bezier(.25,.8,.25,1)] overflow-hidden shadow-[-2px_-1.5px_10px_0px_rgba(0,0,0,0.25)] hover:shadow-[-4px_-3px_20px_0px_rgba(0,0,0,0.25)]"
                     onClick={(e) => {
                       e.stopPropagation();
                       navigate(`/${id}`);
