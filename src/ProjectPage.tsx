@@ -53,11 +53,25 @@ export const ProjectPage: React.FC<{ node: NodeInfo | null }> = ({ node }) => {
 };
 
 export const ProjectGrid: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const childrenArray = React.Children.toArray(children);
+  const getGridClass = () => {
+    const count = Math.min(4, childrenArray.length);
+    switch (count) {
+      case 1:
+        return "grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-1";
+      case 2:
+        return "grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2";
+      case 3:
+        return "grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3";
+      case 4:
+      default:
+        return "grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4";
+    }
+  };
+
   return (
     <div className="w-full p-4">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 justify-items-center">
-        {children}
-      </div>
+      <div className={`grid ${getGridClass()} gap-4 justify-items-center`}>{children}</div>
     </div>
   );
 };
