@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NodeInfo } from "./NodeInfo";
 import { useNavigate, useParams } from "react-router-dom";
 import { Layout } from "./Layout";
@@ -15,6 +15,48 @@ export const ProjectPage: React.FC<{ node: NodeInfo | null }> = ({ node }) => {
 
   const [selectedNode, setSelectedNode] = useState<NodeInfo | null>(null);
   const projectNode = node?.children.find((x) => x.id === id);
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    const focusedId = document.activeElement?.id;
+    if (!focusedId?.startsWith("project-item-") || !projectNode?.children) return;
+
+    const currentIndex = projectNode.children.findIndex((p) => `project-item-${p.id}` === focusedId);
+    if (currentIndex === -1) return;
+
+    const cols = window.innerWidth >= 1024 ? 4 : window.innerWidth >= 768 ? 2 : 1;
+    let nextIndex: number | null = null;
+
+    switch (e.key) {
+      case "ArrowRight":
+        nextIndex = currentIndex < projectNode.children.length - 1 ? currentIndex + 1 : null;
+        break;
+      case "ArrowLeft":
+        nextIndex = currentIndex > 0 ? currentIndex - 1 : null;
+        break;
+      case "ArrowDown":
+        nextIndex = currentIndex + cols < projectNode.children.length ? currentIndex + cols : null;
+        break;
+      case "ArrowUp":
+        nextIndex = currentIndex - cols >= 0 ? currentIndex - cols : null;
+        break;
+      case "Enter":
+      case " ":
+        e.preventDefault();
+        setSelectedNode(projectNode.children[currentIndex]);
+        return;
+    }
+
+    if (nextIndex !== null) {
+      e.preventDefault();
+      document.getElementById(`project-item-${projectNode.children[nextIndex].id}`)?.focus();
+    }
+  };
+
+  useEffect(() => {
+    if (projectNode?.children && projectNode.children.length > 0) {
+      document.getElementById(`project-item-${projectNode.children[0].id}`)?.focus();
+    }
+  }, [projectNode]);
 
   if (projectNode === undefined) return null;
 
@@ -36,14 +78,29 @@ export const ProjectPage: React.FC<{ node: NodeInfo | null }> = ({ node }) => {
         )}
         <div className="py-12">
           {paragraphs.map((paragraph, index) => (
-            <div key={index} className="paragraph-content max-w-3xl">
+            <div
+              key={index}
+              className="paragraph-content max-w-3xl"
+              tabIndex={0}
+              role="article"
+              aria-label={`Paragraph ${index + 1}`}
+            >
               {paragraph}
             </div>
           ))}
         </div>
-        <ProjectGrid>
+        <ProjectGrid onKeyDown={handleKeyDown}>
           {projectNode.children?.map((child) => (
-            <ProjectItem key={child.id} node={child} navigate={navigate} setSelectedNode={setSelectedNode} />
+            <div
+              id={`project-item-${child.id}`}
+              key={child.id}
+              tabIndex={0}
+              role="button"
+              aria-label={`Project item ${child.id}`}
+              className="w-full h-full flex flex-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/50 focus-visible:-ring-offset-2 rounded-[17px] focus-visible:ring-offset-white"
+            >
+              <ProjectItem node={child} navigate={navigate} setSelectedNode={setSelectedNode} />
+            </div>
           ))}
         </ProjectGrid>
         {selectedNode && <ContentModal selectedNode={selectedNode} setSelectedNode={setSelectedNode} />}
@@ -52,7 +109,10 @@ export const ProjectPage: React.FC<{ node: NodeInfo | null }> = ({ node }) => {
   );
 };
 
-export const ProjectGrid: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const ProjectGrid: React.FC<{ children: React.ReactNode; onKeyDown: (e: React.KeyboardEvent) => void }> = ({
+  children,
+  onKeyDown,
+}) => {
   const childrenArray = React.Children.toArray(children);
   const getGridClass = () => {
     const count = Math.min(4, childrenArray.length);
@@ -71,7 +131,9 @@ export const ProjectGrid: React.FC<{ children: React.ReactNode }> = ({ children 
 
   return (
     <div className="w-full p-4">
-      <div className={`grid ${getGridClass()} gap-4 justify-items-center`}>{children}</div>
+      <div className={`grid ${getGridClass()} gap-4 justify-items-center`} onKeyDown={onKeyDown}>
+        {children}
+      </div>
     </div>
   );
 };
