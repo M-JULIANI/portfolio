@@ -11,7 +11,7 @@ interface ProjectCardProps {
 
 const ProjectCard: React.FC<ProjectCardProps> = (props) => {
   const { windowState } = useHomeState();
-  const { singleColumn } = windowState;
+  const { singleColumn, isTouchDevice } = windowState;
   const { node, navigate } = props;
   const { id } = node;
   const { name, tags, thumbnail } = node.props;
@@ -24,10 +24,10 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
   const cardRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (mouseOver && singleColumn) {
+    if (mouseOver && isTouchDevice) {
       gridRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
     }
-  }, [mouseOver, singleColumn]);
+  }, [mouseOver, isTouchDevice]);
 
   const distance = useMemo(() => {
     const gridElement = gridRef.current;
@@ -107,9 +107,9 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
     >
       <div
         ref={cardRef}
-        onMouseOver={() => (singleColumn ? null : setMouseOver(true))}
-        onMouseOut={() => (singleColumn ? (mouseOver ? setMouseOver(false) : null) : setMouseOver(false))}
-        onClick={() => (singleColumn ? clickSingleColumn() : navigate(`/${id}`))}
+        onMouseOver={() => setMouseOver(true)}
+        onMouseOut={() => setMouseOver(false)}
+        onClick={() => (isTouchDevice ? clickSingleColumn() : navigate(`/${id}`))}
         style={{
           height: singleColumn ? 400 : distance,
           maxHeight: 400,
@@ -131,7 +131,7 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
         <div className="w-full h-full grid place-items-center justify-center relative overflow-hidden">
           <>
             {thumbnail && thumbnail !== "" ? <LayoutImage node={node} width={350} isThumbnail={true} /> : null}
-            {mouseOver && singleColumn ? (
+            {mouseOver && isTouchDevice ? (
               <div className="absolute top-0 w-full bg-dark-gray-card flex">
                 <div className="flex items-center justify-center w-full h-full">
                   <button
@@ -147,11 +147,11 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
               </div>
             ) : null}
             {mouseOver || isFocused ? (
-              <div className={`absolute bottom-0 w-full ${singleColumn ? "bg-dark-gray-card" : "bg-card"}`}>
+              <div className={`absolute bottom-0 w-full ${isTouchDevice ? "bg-dark-gray-card" : "bg-card"}`}>
                 <div className="grid gap-2 p-4">
                   <div
                     className={`${
-                      singleColumn ? "text-white" : "text-black"
+                      isTouchDevice ? "text-white" : "text-black"
                     } font-space-mono text-xs overflow-hidden text-ellipsis flex`}
                     data-testid={"project-name"}
                   >
@@ -159,7 +159,7 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
                   </div>
                   <div className="grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-2">
                     {tags?.map((x) => {
-                      return <Pill tag={x} />;
+                      return <Pill key={x} tag={x} />;
                     })}
                   </div>
                 </div>

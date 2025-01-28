@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 interface KeyboardNavigationOptions {
   itemPrefix: string;
@@ -15,7 +15,21 @@ export const useKeyboardNavigation = ({
   onEscape,
   getColumnCount,
 }: KeyboardNavigationOptions) => {
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
+
+  useEffect(() => {
+    const isTouch =
+      "ontouchstart" in window ||
+      navigator.maxTouchPoints > 0 ||
+      // @ts-ignore - Some browsers might not support this
+      navigator.msMaxTouchPoints > 0;
+    setIsTouchDevice(isTouch);
+  }, []);
+
   const handleKeyDown = (e: React.KeyboardEvent) => {
+    // disable keyboard navigation on touch devices
+    if (isTouchDevice) return;
+
     const focusedId = document.activeElement?.id;
     if (!focusedId?.startsWith(itemPrefix) || !items) return;
 
@@ -55,12 +69,12 @@ export const useKeyboardNavigation = ({
     }
   };
 
-  //initialize focus on first item
+  // tnitialize focus on first item only for non-touch devices
   useEffect(() => {
-    if (items && items.length > 0) {
+    if (!isTouchDevice && items && items.length > 0) {
       document.getElementById(`${itemPrefix}${items[0].id}`)?.focus();
     }
-  }, [items, itemPrefix]);
+  }, [items, itemPrefix, isTouchDevice]);
 
-  return { handleKeyDown };
+  return { handleKeyDown, isTouchDevice };
 };

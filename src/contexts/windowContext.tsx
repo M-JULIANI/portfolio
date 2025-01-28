@@ -5,6 +5,7 @@ export type WindowState = {
   mouseX: number;
   mouseY: number;
   singleColumn: boolean;
+  isTouchDevice: boolean;
 };
 
 interface IHomeContext {
@@ -27,6 +28,10 @@ export const useHomeState = (): IHomeContext => {
 const SMALL_BUFFER = 20;
 
 const isOneCol = (w: number) => w >= 200 && w <= 640;
+const isTouchDevice = () => {
+  return "ontouchstart" in window || navigator.maxTouchPoints > 0 || window.matchMedia("(pointer: coarse)").matches;
+};
+
 // Provider component
 const HomeStateProvider = (props: { children: JSX.Element | JSX.Element[] }) => {
   const [windowState, setWindowState] = useState<WindowState>({
@@ -35,6 +40,7 @@ const HomeStateProvider = (props: { children: JSX.Element | JSX.Element[] }) => 
     mouseX: 0,
     mouseY: 0,
     singleColumn: isOneCol(window.innerWidth),
+    isTouchDevice: isTouchDevice(),
   });
 
   useEffect(() => {
@@ -44,6 +50,7 @@ const HomeStateProvider = (props: { children: JSX.Element | JSX.Element[] }) => 
         width: window.innerWidth,
         height: window.innerHeight,
         singleColumn: isOneCol(window.innerWidth),
+        isTouchDevice: isTouchDevice(),
       }));
     };
 
@@ -66,6 +73,7 @@ const HomeStateProvider = (props: { children: JSX.Element | JSX.Element[] }) => 
         mouseX: event.clientX,
         mouseY: event.clientY,
         singleColumn: isOneCol(window.innerWidth),
+        isTouchDevice: isTouchDevice(),
       }));
     };
 
