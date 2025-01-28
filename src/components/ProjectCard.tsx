@@ -16,26 +16,12 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
   const { id } = node;
   const { name, tags, thumbnail } = node.props;
   const [mouseOver, setMouseOver] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
 
   const { mouseX, mouseY } = windowState;
 
   const gridRef = useRef<HTMLDivElement | null>(null);
-
-  const [focusedElement, setFocusedElement] = useState<HTMLElement | null>(null);
-
-  useEffect(() => {
-    const handleFocusChange = () => {
-      setFocusedElement(document.activeElement as HTMLElement);
-    };
-
-    document.addEventListener("focusin", handleFocusChange);
-    document.addEventListener("focusout", handleFocusChange);
-
-    return () => {
-      document.removeEventListener("focusin", handleFocusChange);
-      document.removeEventListener("focusout", handleFocusChange);
-    };
-  }, []);
+  const cardRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (mouseOver && singleColumn) {
@@ -45,9 +31,17 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
 
   const distance = useMemo(() => {
     const gridElement = gridRef.current;
-    if (!gridElement) return 400;
+    if (!gridElement || isFocused) return 400;
 
-    const rect = gridElement.getBoundingClientRect();
+    //requestAnimationFrame to get the most up-to-date rect values
+    let rect: DOMRect;
+    if (isFocused) {
+      requestAnimationFrame(() => {
+        rect = gridElement.getBoundingClientRect();
+      });
+    }
+    rect = gridElement.getBoundingClientRect();
+
     const halfWidth = rect.width * 0.5;
     const halfHeight = rect.height * 0.5;
 
@@ -57,10 +51,9 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
     let referenceX = mouseX;
     let referenceY = mouseY;
 
-    if (focusedElement) {
-      const focusedRect = focusedElement.getBoundingClientRect();
-      referenceX = focusedRect.left + focusedRect.width * 0.5;
-      referenceY = focusedRect.top + focusedRect.height * 0.5;
+    if (isFocused) {
+      referenceX = elementCenterX;
+      referenceY = elementCenterY;
     }
 
     const distanceX = Math.abs(referenceX - elementCenterX);
@@ -70,7 +63,26 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
     const overallDiagonal = Math.sqrt(windowState.width * windowState.width + windowState.height * windowState.height);
     const scaledDistance = 50 * (overallDiagonal / distance);
     return scaledDistance;
-  }, [mouseX, mouseY, windowState.width, windowState.height, focusedElement]);
+  }, [mouseX, mouseY, windowState.width, windowState.height, isFocused]);
+
+  useEffect(() => {
+    const checkFocus = () => {
+      const parentElement = cardRef.current?.parentElement?.parentElement;
+      setIsFocused(parentElement === document.activeElement);
+    };
+
+    //initial check
+    checkFocus();
+
+    // focus event listeners to document to catch all focus changes
+    document.addEventListener("focusin", checkFocus);
+    document.addEventListener("focusout", checkFocus);
+
+    return () => {
+      document.removeEventListener("focusin", checkFocus);
+      document.removeEventListener("focusout", checkFocus);
+    };
+  }, []);
 
   const clickSingleColumn = () => {
     setMouseOver(true);
@@ -90,18 +102,18 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
       onMouseMove={() => {
         if (document.activeElement instanceof HTMLElement) {
           document.activeElement.blur();
-          setFocusedElement(null);
         }
       }}
     >
       <div
+        ref={cardRef}
         onMouseOver={() => (singleColumn ? null : setMouseOver(true))}
         onMouseOut={() => (singleColumn ? (mouseOver ? setMouseOver(false) : null) : setMouseOver(false))}
         onClick={() => (singleColumn ? clickSingleColumn() : navigate(`/${id}`))}
         style={{
           height: singleColumn ? 400 : distance,
           maxHeight: 400,
-          minHeight: 100,
+          minHeight: 200,
         }}
         className={`
             w-full 
@@ -134,7 +146,7 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
                 </div>
               </div>
             ) : null}
-            {mouseOver ? (
+            {mouseOver || isFocused ? (
               <div className={`absolute bottom-0 w-full ${singleColumn ? "bg-dark-gray-card" : "bg-card"}`}>
                 <div className="grid gap-2 p-4">
                   <div

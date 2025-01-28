@@ -10,35 +10,37 @@ export const Home: React.FC<{ node: NodeInfo | null }> = ({ node }) => {
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     const focusedId = document.activeElement?.id;
-    if (!focusedId?.startsWith("project-")) return;
+    if (!focusedId?.startsWith("project-") || !projects) return;
 
-    e.preventDefault();
-    const currentIndex = projects?.findIndex((p) => `project-${p.id}` === focusedId) ?? -1;
+    const currentIndex = projects.findIndex((p) => `project-${p.id}` === focusedId);
     if (currentIndex === -1) return;
 
     const cols = window.innerWidth >= 1024 ? 4 : window.innerWidth >= 768 ? 3 : window.innerWidth >= 640 ? 2 : 1;
+    let nextIndex: number | null = null;
 
     switch (e.key) {
       case "ArrowRight":
-        if (currentIndex < (projects?.length ?? 0) - 1) {
-          document.getElementById(`project-${projects?.[currentIndex + 1].id}`)?.focus();
-        }
+        nextIndex = currentIndex < projects.length - 1 ? currentIndex + 1 : null;
         break;
       case "ArrowLeft":
-        if (currentIndex > 0) {
-          document.getElementById(`project-${projects?.[currentIndex - 1].id}`)?.focus();
-        }
+        nextIndex = currentIndex > 0 ? currentIndex - 1 : null;
         break;
       case "ArrowDown":
-        if (currentIndex + cols < (projects?.length ?? 0)) {
-          document.getElementById(`project-${projects?.[currentIndex + cols].id}`)?.focus();
-        }
+        nextIndex = currentIndex + cols < projects.length ? currentIndex + cols : null;
         break;
       case "ArrowUp":
-        if (currentIndex - cols >= 0) {
-          document.getElementById(`project-${projects?.[currentIndex - cols].id}`)?.focus();
-        }
+        nextIndex = currentIndex - cols >= 0 ? currentIndex - cols : null;
         break;
+      case "Enter":
+      case " ":
+        e.preventDefault();
+        navigate(`/${projects[currentIndex].id}`);
+        return;
+    }
+
+    if (nextIndex !== null) {
+      e.preventDefault();
+      document.getElementById(`project-${projects[nextIndex].id}`)?.focus();
     }
   };
 
@@ -69,6 +71,7 @@ export const Home: React.FC<{ node: NodeInfo | null }> = ({ node }) => {
               tabIndex={0}
               role="button"
               aria-label={`Project ${child.id}`}
+              className="focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/50 focus-visible:-ring-offset-2 rounded-[17px] focus-visible:ring-offset-white z-20"
             >
               <ProjectCard node={child} navigate={navigate} />
             </div>
