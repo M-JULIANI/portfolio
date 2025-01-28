@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { NodeInfo } from "./NodeInfo";
 import { useNavigate, useParams } from "react-router-dom";
 import { Layout } from "./Layout";
 import ProjectItem from "./components/ProjectItem";
 import { ContentModal } from "./components/ContentModal";
+import { useKeyboardNavigation } from "./hooks/useKeyboardNavigation";
 
 export type ProjectParams = {
   id: string;
@@ -16,47 +17,17 @@ export const ProjectPage: React.FC<{ node: NodeInfo | null }> = ({ node }) => {
   const [selectedNode, setSelectedNode] = useState<NodeInfo | null>(null);
   const projectNode = node?.children.find((x) => x.id === id);
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    const focusedId = document.activeElement?.id;
-    if (!focusedId?.startsWith("project-item-") || !projectNode?.children) return;
-
-    const currentIndex = projectNode.children.findIndex((p) => `project-item-${p.id}` === focusedId);
-    if (currentIndex === -1) return;
-
-    const cols = window.innerWidth >= 1024 ? 4 : window.innerWidth >= 768 ? 2 : 1;
-    let nextIndex: number | null = null;
-
-    switch (e.key) {
-      case "ArrowRight":
-        nextIndex = currentIndex < projectNode.children.length - 1 ? currentIndex + 1 : null;
-        break;
-      case "ArrowLeft":
-        nextIndex = currentIndex > 0 ? currentIndex - 1 : null;
-        break;
-      case "ArrowDown":
-        nextIndex = currentIndex + cols < projectNode.children.length ? currentIndex + cols : null;
-        break;
-      case "ArrowUp":
-        nextIndex = currentIndex - cols >= 0 ? currentIndex - cols : null;
-        break;
-      case "Enter":
-      case " ":
-        e.preventDefault();
-        setSelectedNode(projectNode.children[currentIndex]);
-        return;
-    }
-
-    if (nextIndex !== null) {
-      e.preventDefault();
-      document.getElementById(`project-item-${projectNode.children[nextIndex].id}`)?.focus();
-    }
-  };
-
-  useEffect(() => {
-    if (projectNode?.children && projectNode.children.length > 0) {
-      document.getElementById(`project-item-${projectNode.children[0].id}`)?.focus();
-    }
-  }, [projectNode]);
+  const { handleKeyDown } = useKeyboardNavigation({
+    itemPrefix: "project-item-",
+    items: projectNode?.children || [],
+    onEnter: (currentIndex) => {
+      setSelectedNode(projectNode?.children[currentIndex] || null);
+    },
+    onEscape: () => {
+      setSelectedNode(null);
+    },
+    getColumnCount: () => (window.innerWidth >= 1024 ? 4 : window.innerWidth >= 768 ? 2 : 1),
+  });
 
   if (projectNode === undefined) return null;
 

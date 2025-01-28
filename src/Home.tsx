@@ -1,55 +1,23 @@
-import React, { useEffect } from "react";
+import React from "react";
 import ProjectCard from "./components/ProjectCard";
 import { NodeInfo } from "./NodeInfo";
 import { useNavigate } from "react-router-dom";
 import { Layout } from "./Layout";
+import { useKeyboardNavigation } from "./hooks/useKeyboardNavigation";
 
 export const Home: React.FC<{ node: NodeInfo | null }> = ({ node }) => {
   const navigate = useNavigate();
   const projects = node?.children.filter((x) => x.type === "project");
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    const focusedId = document.activeElement?.id;
-    if (!focusedId?.startsWith("project-") || !projects) return;
-
-    const currentIndex = projects.findIndex((p) => `project-${p.id}` === focusedId);
-    if (currentIndex === -1) return;
-
-    const cols = window.innerWidth >= 1024 ? 4 : window.innerWidth >= 768 ? 3 : window.innerWidth >= 640 ? 2 : 1;
-    let nextIndex: number | null = null;
-
-    switch (e.key) {
-      case "ArrowRight":
-        nextIndex = currentIndex < projects.length - 1 ? currentIndex + 1 : null;
-        break;
-      case "ArrowLeft":
-        nextIndex = currentIndex > 0 ? currentIndex - 1 : null;
-        break;
-      case "ArrowDown":
-        nextIndex = currentIndex + cols < projects.length ? currentIndex + cols : null;
-        break;
-      case "ArrowUp":
-        nextIndex = currentIndex - cols >= 0 ? currentIndex - cols : null;
-        break;
-      case "Enter":
-      case " ":
-        e.preventDefault();
-        navigate(`/${projects[currentIndex].id}`);
-        return;
-    }
-
-    if (nextIndex !== null) {
-      e.preventDefault();
-      document.getElementById(`project-${projects[nextIndex].id}`)?.focus();
-    }
-  };
-
-  //init to first
-  useEffect(() => {
-    if (projects && projects.length > 0) {
-      document.getElementById(`project-${projects[0].id}`)?.focus();
-    }
-  }, [projects]);
+  const { handleKeyDown } = useKeyboardNavigation({
+    itemPrefix: "project-",
+    items: projects || [],
+    onEnter: (currentIndex) => {
+      navigate(`/${projects?.[currentIndex].id}`);
+    },
+    getColumnCount: () =>
+      window.innerWidth >= 1024 ? 4 : window.innerWidth >= 768 ? 3 : window.innerWidth >= 640 ? 2 : 1,
+  });
 
   if (node == null) return null;
   return (
