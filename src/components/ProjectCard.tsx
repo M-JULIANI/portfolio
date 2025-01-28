@@ -21,6 +21,22 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
 
   const gridRef = useRef<HTMLDivElement | null>(null);
 
+  const [focusedElement, setFocusedElement] = useState<HTMLElement | null>(null);
+
+  useEffect(() => {
+    const handleFocusChange = () => {
+      setFocusedElement(document.activeElement as HTMLElement);
+    };
+
+    document.addEventListener("focusin", handleFocusChange);
+    document.addEventListener("focusout", handleFocusChange);
+
+    return () => {
+      document.removeEventListener("focusin", handleFocusChange);
+      document.removeEventListener("focusout", handleFocusChange);
+    };
+  }, []);
+
   useEffect(() => {
     if (mouseOver && singleColumn) {
       gridRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -29,21 +45,32 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
 
   const distance = useMemo(() => {
     const gridElement = gridRef.current;
-    if (gridElement) {
-      const rect = gridElement.getBoundingClientRect();
-      const halfWidth = rect.width * 0.5;
-      const halfHeight = rect.height * 0.5;
-      const distanceX = Math.abs(mouseX - rect.left - halfWidth);
-      const distanceY = Math.abs(mouseY - rect.top - halfHeight);
-      const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
-      const overallDiagonal = Math.sqrt(
-        windowState.width * windowState.width + windowState.height * windowState.height,
-      );
-      const scaledDistance = 50 * (overallDiagonal / distance);
-      return scaledDistance;
+    if (!gridElement) return 400;
+
+    const rect = gridElement.getBoundingClientRect();
+    const halfWidth = rect.width * 0.5;
+    const halfHeight = rect.height * 0.5;
+
+    const elementCenterX = rect.left + halfWidth;
+    const elementCenterY = rect.top + halfHeight;
+
+    let referenceX = mouseX;
+    let referenceY = mouseY;
+
+    if (focusedElement) {
+      const focusedRect = focusedElement.getBoundingClientRect();
+      referenceX = focusedRect.left + focusedRect.width * 0.5;
+      referenceY = focusedRect.top + focusedRect.height * 0.5;
     }
-    return 200;
-  }, [mouseX, mouseY, windowState.width, windowState.height]);
+
+    const distanceX = Math.abs(referenceX - elementCenterX);
+    const distanceY = Math.abs(referenceY - elementCenterY);
+    const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
+
+    const overallDiagonal = Math.sqrt(windowState.width * windowState.width + windowState.height * windowState.height);
+    const scaledDistance = 50 * (overallDiagonal / distance);
+    return scaledDistance;
+  }, [mouseX, mouseY, windowState.width, windowState.height, focusedElement]);
 
   const clickSingleColumn = () => {
     setMouseOver(true);
@@ -60,6 +87,12 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
         justify-center
         ${singleColumn ? `w-[${windowState.width - 100}px]` : "w-full"}
       `}
+      onMouseMove={() => {
+        if (document.activeElement instanceof HTMLElement) {
+          document.activeElement.blur();
+          setFocusedElement(null);
+        }
+      }}
     >
       <div
         onMouseOver={() => (singleColumn ? null : setMouseOver(true))}
