@@ -14,15 +14,13 @@ export const PortraitImage: React.FC<PortraitImageProps> = (props: PortraitImage
 
   return (
     <div
-      className="portrait-image"
+      role="img"
+      aria-label="Portrait photograph of Marco Juliani"
+      className="portrait-image w-full h-full max-w-[500px] max-h-[300px] rounded-xl bg-cover"
       style={{
         backgroundImage: `url(${src})`,
-        borderRadius: "12px",
-        width: "100%",
-        height: "100%",
-        maxWidth: "500px",
-        maxHeight: "300px",
       }}
+      tabIndex={0}
     />
   );
 };

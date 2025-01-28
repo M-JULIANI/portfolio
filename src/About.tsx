@@ -32,19 +32,24 @@ export const About: React.FC<{ node: NodeInfo | null }> = ({ node }) => {
     <Layout node={node} offsetFactor={singleColumn ? 1.0 : 0.5}>
       <div className="w-full h-full pb-12 pt-12 sm:pt-16 md:pt-24 grid">
         <div className="flex flex-col items-center">
+          <h1 className="sr-only">About Marco Juliani</h1>
           <div className="w-[90%] max-w-3xl h-auto aspect-[3/1]">
             <PortraitImage node={about} />
           </div>
           <div className="w-[90%] max-w-lg mx-auto py-8 sm:py-12 md:py-16 font-roboto">
             {paragraphs.map((paragraph, index) => (
-              <p key={index} className="w-full break-words mb-4 text-justify">
+              <p key={index} className="w-full break-words mb-4 text-justify" tabIndex={0}>
                 {paragraph}
               </p>
             ))}
           </div>
           <div className="flex w-full items-center justify-center gap-12">
-            {items.map((x) => {
-              return <button onClick={() => handleOpen(x.src)}>{x.icon}</button>;
+            {items.map((x, index) => {
+              return (
+                <button key={index} onClick={() => handleOpen(x.src)} aria-label={`Visit ${new URL(x.src).hostname}`}>
+                  {x.icon}
+                </button>
+              );
             })}
           </div>
         </div>
