@@ -26,7 +26,14 @@ export const ProjectPage: React.FC<{ node: NodeInfo | null }> = ({ node }) => {
     onEscape: () => {
       setSelectedNode(null);
     },
-    getColumnCount: () => (window.innerWidth >= 1024 ? 4 : window.innerWidth >= 768 ? 2 : 1),
+    getColumnCount: () => {
+      const itemCount = projectNode?.children?.length || 0;
+      const count = Math.min(4, itemCount);
+      if (count === 1) return 1;
+      if (count === 2) return window.innerWidth >= 768 ? 2 : 1;
+      if (count === 3) return window.innerWidth >= 1024 ? 3 : window.innerWidth >= 768 ? 2 : 1;
+      return window.innerWidth >= 1024 ? 4 : window.innerWidth >= 768 ? 2 : 1;
+    },
   });
 
   if (projectNode === undefined) return null;
