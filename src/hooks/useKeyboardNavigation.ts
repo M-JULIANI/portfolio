@@ -6,6 +6,7 @@ interface KeyboardNavigationOptions {
   onEnter?: (currentIndex: number) => void;
   onEscape?: () => void;
   getColumnCount: () => number;
+  focusOnMount?: boolean;
 }
 
 export const useKeyboardNavigation = ({
@@ -14,6 +15,7 @@ export const useKeyboardNavigation = ({
   onEnter,
   onEscape,
   getColumnCount,
+  focusOnMount = true,
 }: KeyboardNavigationOptions) => {
   const [isTouchDevice, setIsTouchDevice] = useState(false);
 
@@ -71,10 +73,10 @@ export const useKeyboardNavigation = ({
 
   // tnitialize focus on first item only for non-touch devices
   useEffect(() => {
-    if (!isTouchDevice && items && items.length > 0) {
+    if (!isTouchDevice && items && items.length > 0 && focusOnMount) {
       document.getElementById(`${itemPrefix}${items[0].id}`)?.focus();
     }
-  }, [items, itemPrefix, isTouchDevice]);
+  }, [items, itemPrefix, isTouchDevice, focusOnMount]);
 
   return { handleKeyDown, isTouchDevice };
 };

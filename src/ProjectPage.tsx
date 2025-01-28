@@ -34,6 +34,7 @@ export const ProjectPage: React.FC<{ node: NodeInfo | null }> = ({ node }) => {
       if (count === 3) return window.innerWidth >= 1024 ? 3 : window.innerWidth >= 768 ? 2 : 1;
       return window.innerWidth >= 1024 ? 4 : window.innerWidth >= 768 ? 2 : 1;
     },
+    focusOnMount: false,
   });
 
   if (projectNode === undefined) return null;
