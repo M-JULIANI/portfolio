@@ -1,22 +1,26 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useEffect, useState, useRef } from "react";
+
 export type WindowState = {
-  width: number;
-  height: number;
-  mouseX: number;
-  mouseY: number;
   singleColumn: boolean;
   isTouchDevice: boolean;
 };
 
+interface WindowRefs {
+  mouseX: React.MutableRefObject<number>;
+  mouseY: React.MutableRefObject<number>;
+  mousePosition: { x: number; y: number };
+  width: React.MutableRefObject<number>;
+  height: React.MutableRefObject<number>;
+}
+
 interface IHomeContext {
   windowState: WindowState;
+  windowRefs: WindowRefs;
   setWindowState: React.Dispatch<React.SetStateAction<WindowState>>;
 }
 
-// Create context making it potentially undefined
 const HomeStateContext = createContext<IHomeContext | undefined>(undefined);
 
-// Custom hook to use the home state
 export const useHomeState = (): IHomeContext => {
   const context = useContext(HomeStateContext);
   if (!context) {
@@ -32,67 +36,75 @@ const isTouchDevice = () => {
   return "ontouchstart" in window || navigator.maxTouchPoints > 0 || window.matchMedia("(pointer: coarse)").matches;
 };
 
-// Provider component
 const HomeStateProvider = (props: { children: JSX.Element | JSX.Element[] }) => {
+  const mouseX = useRef(0);
+  const mouseY = useRef(0);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const widthRef = useRef(window.innerWidth);
+  const heightRef = useRef(window.innerHeight);
+
   const [windowState, setWindowState] = useState<WindowState>({
-    width: window.innerWidth,
-    height: window.innerHeight,
-    mouseX: 0,
-    mouseY: 0,
     singleColumn: isOneCol(window.innerWidth),
     isTouchDevice: isTouchDevice(),
   });
 
   useEffect(() => {
     const handleResize = () => {
+      widthRef.current = window.innerWidth;
+      heightRef.current = window.innerHeight;
+
       setWindowState((prev) => ({
         ...prev,
-        width: window.innerWidth,
-        height: window.innerHeight,
         singleColumn: isOneCol(window.innerWidth),
-        isTouchDevice: isTouchDevice(),
       }));
     };
 
-    const isTouch = () => {
-      return (
-        "ontouchstart" in window ||
-        navigator.maxTouchPoints > 0 ||
-        // @ts-ignore - Some browsers might not support this
-        navigator.msMaxTouchPoints > 0
-      );
-    };
-
-    // Combined mouse movement logic with buffer
     const handleMouseMove = (event: MouseEvent) => {
-      if (Math.abs(event.clientX - windowState.mouseX) < SMALL_BUFFER) return;
-      if (Math.abs(event.clientY - windowState.mouseY) < SMALL_BUFFER) return;
+      if (Math.abs(event.clientX - mouseX.current) < SMALL_BUFFER) return;
+      if (Math.abs(event.clientY - mouseY.current) < SMALL_BUFFER) return;
 
-      setWindowState((prev) => ({
-        ...prev,
-        mouseX: event.clientX,
-        mouseY: event.clientY,
-        singleColumn: isOneCol(window.innerWidth),
-        isTouchDevice: isTouchDevice(),
-      }));
+      mouseX.current = event.clientX;
+      mouseY.current = event.clientY;
     };
+
+    let animationFrameId: number;
+    const animate = () => {
+      setMousePosition({
+        x: mouseX.current,
+        y: mouseY.current,
+      });
+      animationFrameId = requestAnimationFrame(animate);
+    };
+    animate();
 
     window.addEventListener("resize", handleResize);
 
-    // Only add mouse tracking for non-touch devices
-    if (!isTouch() && window.matchMedia("(hover: hover)").matches) {
+    if (!isTouchDevice() && window.matchMedia("(hover: hover)").matches) {
       window.addEventListener("mousemove", handleMouseMove);
     }
 
     return () => {
       window.removeEventListener("resize", handleResize);
       window.removeEventListener("mousemove", handleMouseMove);
+      cancelAnimationFrame(animationFrameId);
     };
   }, []);
 
-  return (
-    <HomeStateContext.Provider value={{ windowState, setWindowState }}>{props.children}</HomeStateContext.Provider>
-  );
+  const windowRefs: WindowRefs = {
+    mouseX,
+    mouseY,
+    mousePosition,
+    width: widthRef,
+    height: heightRef,
+  };
+
+  const value = {
+    windowState,
+    windowRefs,
+    setWindowState,
+  };
+
+  return <HomeStateContext.Provider value={value}>{props.children}</HomeStateContext.Provider>;
 };
 
 export { HomeStateContext, HomeStateProvider };
