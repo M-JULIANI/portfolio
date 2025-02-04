@@ -10,15 +10,14 @@ interface ProjectCardProps {
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = (props) => {
-  const { windowState } = useHomeState();
+  const { windowState, windowRefs } = useHomeState();
   const { singleColumn, isTouchDevice } = windowState;
+  const { mouseX, mouseY, width: windowWidth, height: windowHeight } = windowRefs;
   const { node, navigate } = props;
   const { id } = node;
   const { name, tags, thumbnail } = node.props;
   const [mouseOver, setMouseOver] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
-
-  const { mouseX, mouseY } = windowState;
 
   const gridRef = useRef<HTMLDivElement | null>(null);
   const cardRef = useRef<HTMLDivElement>(null);
@@ -48,8 +47,8 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
     const elementCenterX = rect.left + halfWidth;
     const elementCenterY = rect.top + halfHeight;
 
-    let referenceX = mouseX;
-    let referenceY = mouseY;
+    let referenceX = mouseX.current;
+    let referenceY = mouseY.current;
 
     if (isFocused) {
       referenceX = elementCenterX;
@@ -60,10 +59,12 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
     const distanceY = Math.abs(referenceY - elementCenterY);
     const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
 
-    const overallDiagonal = Math.sqrt(windowState.width * windowState.width + windowState.height * windowState.height);
+    const overallDiagonal = Math.sqrt(
+      windowWidth.current * windowWidth.current + windowHeight.current * windowHeight.current,
+    );
     const scaledDistance = 50 * (overallDiagonal / distance);
     return scaledDistance;
-  }, [mouseX, mouseY, windowState.width, windowState.height, isFocused]);
+  }, [mouseX, mouseY, windowWidth, windowHeight, isFocused]);
 
   useEffect(() => {
     const checkFocus = () => {
@@ -97,7 +98,7 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
         flex
         items-center
         justify-center
-        ${singleColumn ? `w-[${windowState.width - 100}px]` : "w-full"}
+        ${singleColumn ? `w-[${windowWidth.current - 100}px]` : "w-full"}
       `}
       onMouseMove={() => {
         if (document.activeElement instanceof HTMLElement) {
