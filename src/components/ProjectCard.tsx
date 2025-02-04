@@ -12,7 +12,7 @@ interface ProjectCardProps {
 const ProjectCard: React.FC<ProjectCardProps> = (props) => {
   const { windowState, windowRefs } = useHomeState();
   const { singleColumn, isTouchDevice } = windowState;
-  const { mouseX, mouseY, width: windowWidth, height: windowHeight } = windowRefs;
+  const { mousePosition, width: windowWidth, height: windowHeight } = windowRefs;
   const { node, navigate } = props;
   const { id } = node;
   const { name, tags, thumbnail } = node.props;
@@ -32,23 +32,15 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
     const gridElement = gridRef.current;
     if (!gridElement || isFocused) return 400;
 
-    //requestAnimationFrame to get the most up-to-date rect values
-    let rect: DOMRect;
-    if (isFocused) {
-      requestAnimationFrame(() => {
-        rect = gridElement.getBoundingClientRect();
-      });
-    }
-    rect = gridElement.getBoundingClientRect();
-
+    const rect = gridElement.getBoundingClientRect();
     const halfWidth = rect.width * 0.5;
     const halfHeight = rect.height * 0.5;
 
     const elementCenterX = rect.left + halfWidth;
     const elementCenterY = rect.top + halfHeight;
 
-    let referenceX = mouseX.current;
-    let referenceY = mouseY.current;
+    let referenceX = mousePosition.x;
+    let referenceY = mousePosition.y;
 
     if (isFocused) {
       referenceX = elementCenterX;
@@ -64,7 +56,7 @@ const ProjectCard: React.FC<ProjectCardProps> = (props) => {
     );
     const scaledDistance = 50 * (overallDiagonal / distance);
     return scaledDistance;
-  }, [mouseX, mouseY, windowWidth, windowHeight, isFocused]);
+  }, [mousePosition, windowWidth, windowHeight, isFocused]);
 
   useEffect(() => {
     const checkFocus = () => {
