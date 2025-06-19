@@ -4,7 +4,7 @@ import { LayoutImage } from "./components/LayoutImage";
 import { NodeInfo } from "./NodeInfo";
 import { BasicMenu } from "./Menu";
 
-export const openCV = () => window.open("assets/Marco-Juliani-Resume-2024.pdf", "_blank");
+export const openCV = () => window.open("assets/Marco-Juliani-Resume-2025.pdf", "_blank");
 export const openGithub = () => window.open("https://github.com/M-JULIANI", "_blank");
 
 export const openBlog = () => window.open("https://m-juliani.github.io/blog/", "_blank");
