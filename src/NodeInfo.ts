@@ -6,6 +6,7 @@ export interface NodeInfo {
     src?: string;
     name?: string;
     tags?: string[];
+    date?: string;
     content?: string;
     thumbnail?: string;
     links?: any[];
